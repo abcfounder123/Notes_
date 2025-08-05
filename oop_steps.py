@@ -25,7 +25,7 @@ Engine တွင် fuel_type ပါသည်။
 Step.2 ( Divide )
 
 paper name - Car
-data -  VIN, engine, tires, 50000
+data -  VIN, engine, tires
 method - 
 
 paper name - Tires
