@@ -61,7 +61,7 @@ abc  ( data types 15 )
 
 apple ( type casting, ... )
 
-paratic
+practice 
 
 grammer ( syntax )
 
