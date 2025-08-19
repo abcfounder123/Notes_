@@ -14,20 +14,20 @@ Lazy class ဆိုတာက အိမ်စာမပါပဲ တစ်ခါ�
 
 ################################################
 
-1. time
-2. select
-3. loop
-4. function
+1. Sequence(time)
+2. Selection
+3. Iteration 
+4. Function
 
 ################################################
 
 1. data types
-2. control flow
-3. function
+2. control flow (sequence, selection, iteration)
+3. function (procedure)
 
 ################################################
 
-1. time ( sequence )
+1. time (sequence)
    - top to b
    - left to right
    - parenthesis 
