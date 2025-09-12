@@ -355,13 +355,10 @@ class My_list:
 
     def __repr__(self):
         s = "["
-
         for i in self.x:
             s += i
-            s += ", "        # "[apple, banana, orange,
-            
+            s += ", "        # "[apple, banana, ...         
         s += "]"
-
         return s
 
     def __iter__(self):
@@ -374,7 +371,6 @@ class My_list:
             raise StopIteration()
         self.p += 1
         return v
-
 
 
 l = My_list("apple", "banana", "orange", "mangoes")
