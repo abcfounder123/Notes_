@@ -1329,7 +1329,929 @@ while True:
    
 ################################################################################################
 
+
+GUI of Tac Ti Toe
+
+################################################
+
+Step.1   --->   root
+        
+from tkinter import *
+
+
+x = Tk()
+x.title("Tac Ti Toe")
+
+x.mainloop() 
+
+################################################
+
+Step.2   --->   button
+
+from tkinter import *
+
+
+x = Tk()
+x.title("Tac Ti Toe")
+
+Button(x, width=4, height=1, font=('Arial', 30, 'bold'), text='B1').grid(row=0, column=0)
+x.mainloop()
+
+################################################
+
+Step.3   --->   label
+
+from tkinter import *
+
+
+x = Tk()
+x.title("Tac Ti Toe")
+
+b1 = Button(x, width=4, height=1, font=('Arial', 30, 'bold'), text='B1')
+b1.grid(row=0, column=0)
+
+x.mainloop()
+
+################################################
+
+Step.4   --->   three button
+
+from tkinter import *
+
+
+x = Tk()
+x.title("Tac Ti Toe")
+
+b1 = Button(x, width=4, height=1, font=('Arial', 30, 'bold'), text='B1')
+b1.grid(row=0, column=0)
+b2 = Button(x, width=4, height=1, font=('Arial', 30, 'bold'), text='B2')
+b2.grid(row=0, column=1)
+b3 = Button(x, width=4, height=1, font=('Arial', 30, 'bold'), text='B3')
+b3.grid(row=0, column=2)
+
+x.mainloop()
+
+################################################
+
+from tkinter import *
+
+
+x = Tk()
+x.title("Tac Ti Toe")
+
+b1 = Button(x, width=4, height=1, font=('Arial', 30, 'bold'), text='B1')
+b2 = Button(x, width=4, height=1, font=('Arial', 30, 'bold'), text='B2')
+b3 = Button(x, width=4, height=1, font=('Arial', 30, 'bold'), text='B3')
+
+b1.grid(row=0, column=0)
+b2.grid(row=0, column=1)
+b3.grid(row=0, column=2)
+
+x.mainloop()
+
+################################################
+
+Step.5   --->   9 button
+
+from tkinter import *
+
+
+x = Tk()
+x.title("Tac Ti Toe")
+
+b1 = Button(x, width=4, height=1, font=('Arial', 30, 'bold'), text='B1')
+b2 = Button(x, width=4, height=1, font=('Arial', 30, 'bold'), text='B2')
+b3 = Button(x, width=4, height=1, font=('Arial', 30, 'bold'), text='B3')
+
+b4 = Button(x, width=4, height=1, font=('Arial', 30, 'bold'), text='B4')
+b5 = Button(x, width=4, height=1, font=('Arial', 30, 'bold'), text='B5')
+b6 = Button(x, width=4, height=1, font=('Arial', 30, 'bold'), text='B6')
+
+b7 = Button(x, width=4, height=1, font=('Arial', 30, 'bold'), text='B7')
+b8 = Button(x, width=4, height=1, font=('Arial', 30, 'bold'), text='B8')
+b9 = Button(x, width=4, height=1, font=('Arial', 30, 'bold'), text='B9')
+
+b1.grid(row=0, column=0)
+b2.grid(row=0, column=1)
+b3.grid(row=0, column=2)
+b4.grid(row=1, column=0)
+b5.grid(row=1, column=1)
+b6.grid(row=1, column=2)
+b7.grid(row=2, column=0)
+b8.grid(row=2, column=1)
+b9.grid(row=2, column=2)
+
+x.mainloop()
+
+################################################
+
+Step.6   --->   nested loop
+
+for row in range(3):
+    for column in range(3):
+        print(row, column)
+
+0  0 
+0  1
+0  2
+
+1  0
+1  1
+1  2
+
+2  0
+2  1
+2  2
+
+################################################
+
+# loop
+from tkinter import *
+
+
+x = Tk()
+x.title("Tac Ti Toe")
+
+for row in range(3):
+    for column in range(3):
+        Button(x, width=16, height=8, font=('Arial', 30, 'bold'), text='B1').grid(row=row, column=column)
+
+x.mainloop()
+
+
+################################################
+
+Step.7   --->   empty text
+
+from tkinter import *
+
+
+x = Tk()
+x.title("Tac Ti Toe")
+
+n = 0
+for row in range(3):
+    for column in range(3):
+        n += 1
+        Button(x, width=16, height=8, font=('Arial', 30, 'bold'), text='').grid(row=row, column=column)
+
+x.mainloop()
+
+################################################
+
+Step.8   --->   if click, show X
+
+# event -> all data from click position
+# event.widget -> botton of event position
+
+
+from tkinter import *
+
+
+def click(event):
+    b = event.widget
+    b['text'] = 'X'
+
+
+x = Tk()
+x.title("Tac Ti Toe")
+
+n = 0
+for row in range(3):
+    for column in range(3):
+        n += 1
+        b = Button(x, width=8, height=4, font=('Arial', 30, 'bold'), text='')
+        b.grid(row=row, column=column)
+        b.bind("<Button-1>", click)
+
+x.mainloop()
+
+################################################
+
+Step.9   --->   switch_player
+
+current_player = "X"
+
+
+def switch_player():
+    global current_player
+    if current_player == "X":
+        current_player = "O"
+    else:
+        current_player = "X"
+        
+        
+################################################        
+
+from tkinter import *
+
+
+current_player = "X"
+
+
+def switch_player():
+    global current_player
+    if current_player == "X":
+        current_player = "O"
+    else:
+        current_player = "X"
+        
+        
+def click(event):
+    b = event.widget
+    b['text'] = current_player
+    switch_player()
+    
+
+x = Tk()
+x.title("Tac Ti Toe")
+
+n = 0
+for row in range(3):
+    for column in range(3):
+        n += 1
+        b = Button(x, width=4, height=1, font=('Arial', 30, 'bold'), text=f'B{n}')
+        b.grid(row=row, column=column)
+        b.bind("<Button-1>", click)
+
+x.mainloop()
+
+################################################
+
+Step.10   --->   control to write once
+
+idea -> if somthing value, stop function and do nothing
+code -> if b['text']: return
+
+
+def click(event):
+    b = event.widget
+    if b['text']:
+        return
+    b['text'] = current_player
+    switch_player()
+    
+
+################################################
+
+from tkinter import *
+
+
+current_player = "X"
+
+
+def switch_player():
+    global current_player
+    if current_player == "X":
+        current_player = "O"
+    else:
+        current_player = "X"
        
+        
+def click(event):
+    b = event.widget
+    if b['text']:
+        return
+    b['text'] = current_player
+    switch_player()
+    
+
+x = Tk()
+x.title("Tac Ti Toe")
+
+for row in range(3):
+    for column in range(3):
+        b = Button(x, width=4, height=2, font=('Arial', 30, 'bold'), text='')
+        b.grid(row=row, column=column)
+        b.bind("<Button-1>", click)
+
+x.mainloop()
+
+################################################
+
+Step.11   --->   board, winner(), show_winner()  from CLI Tac Ti Toe
+
+################################################
+
+from tkinter import *
+from tkinter import messagebox
+
+
+current_player = "O"
+board = [
+            [None, None, None],
+            [None, None, None],
+            [None, None, None],
+]
+
+
+def winner():
+    for i in range(3):
+        row = board[i][0]['text'] == current_player and  board[i][1]['text'] == current_player and board[i][2]['text'] == current_player
+        if row:
+            return True
+    for i in range(3):
+        col= board[0][i]['text'] == current_player and  board[1][i]['text'] == current_player and board[2][i]['text'] == current_player
+        if col:
+            return True
+    for a,b,c in ((0,1,2), (2,1,0)):
+        diagonal = board[0][a]['text'] == current_player and  board[1][b]['text'] == current_player and board[2][c]['text'] == current_player
+        if diagonal:
+            return True
+
+
+def show_winner():
+    m = f"Player {current_player} win!"
+    messagebox.showinfo("Game Over", m)
+
+
+def switch_player():
+    global current_player
+    if current_player == "X":
+        current_player = "O"
+    else:
+        current_player = "X"
+        
+
+def click(event):
+    b = event.widget
+    if b['text']:
+        return None
+    b['text'] = current_player
+    b.update_idletasks()
+    if winner():
+        show_winner()
+        return 
+    switch_player()
+
+
+x = Tk()
+x.title("Tac Ti Toe")
+
+for row in range(3):
+    for column in range(3):
+        b = Button(x, width=4, height=2, font=('Arial', 30, 'bold'), text='')
+        b.grid(row=row, column=column)
+        b.bind("<Button-1>", click)
+        board[row][column] = b
+
+x.mainloop()
+
+################################################
+
+Step.12   --->   restart 
+
+
+def restart():
+    for r in range(3):
+        for c in range(3):
+            board[r][c]["text"] = ""
+
+
+def restart():
+    for l in board:
+        for b in l:
+            b["text"] = ""
+            
+
+################################################
+
+from tkinter import *
+from tkinter import messagebox
+
+
+current_player = "O"
+
+board = [
+            [None, None, None],
+            [None, None, None],
+            [None, None, None],
+]
+
+
+def winner():
+    for i in range(3):
+        row = board[i][0]['text'] == current_player and  board[i][1]['text'] == current_player and board[i][2]['text'] == current_player
+        if row:
+            return True
+    for i in range(3):
+        col= board[0][i]['text'] == current_player and  board[1][i]['text'] == current_player and board[2][i]['text'] == current_player
+        if col:
+            return True
+    for a,b,c in ((0,1,2), (2,1,0)):
+        diagonal = board[0][a]['text'] == current_player and  board[1][b]['text'] == current_player and board[2][c]['text'] == current_player
+        if diagonal:
+            return True
+
+
+def restart():
+    for r in range(3):
+        for c in range(3):
+            board[r][c]["text"] = ""
+
+
+def show_winner():
+    m = f"Player {current_player} win!"
+    messagebox.showinfo("Game Over", m)
+    restart()
+
+
+def switch_player():
+    global current_player
+    if current_player == "X":
+        current_player = "O"
+    else:
+        current_player = "X"
+        
+
+def click(event):
+    b = event.widget
+    if b['text']:
+        return None
+    b['text'] = current_player
+    b.update_idletasks() 
+    if winner():
+        show_winner()
+        return 
+    switch_player()
+
+
+x = Tk()
+x.title("Tac Ti Toe")
+
+for row in range(3):
+    for column in range(3):
+        b = Button(x, width=4, height=2, font=('Arial', 30, 'bold'), text='')
+        b.grid(row=row, column=column)
+        b.bind("<Button-1>", click)
+        board[row][column] = b
+
+x.mainloop()
+
+################################################
+
+Step.13   --->   tie(), show_tie()
+
+
+# CLI
+def tie():
+    n = 0
+    for l in board: 
+        for b in l:
+            if b in ["X", "O"]:
+                n += 1
+    if n == 9:
+        return True
+        
+
+# button
+def tie():
+    n = 0
+    for l in board:
+        for b in l:
+            if b["text"]:
+                n += 1
+    if n == 9:
+        return True
+        
+
+# code quality       
+def tie():
+    for l in board:
+        for b in l:
+            if not b["text"]:
+                return False
+    return True
+    
+
+def show_tie():
+    m = f"No one win!"
+    messagebox.showinfo("Game Over", m)
+    restart()
+    
+    
+################################################    
+    
+from tkinter import *
+from tkinter import messagebox
+
+current_player = "O"
+
+board = [
+    [None, None, None],
+    [None, None, None],
+    [None, None, None],
+]
+
+
+def winner():
+    for i in range(3):
+        row = board[i][0]['text'] == current_player and board[i][1]['text'] == current_player and board[i][2][
+            'text'] == current_player
+        if row:
+            return True
+    for i in range(3):
+        col = board[0][i]['text'] == current_player and board[1][i]['text'] == current_player and board[2][i][
+            'text'] == current_player
+        if col:
+            return True
+    for a, b, c in ((0, 1, 2), (2, 1, 0)):
+        diagonal = board[0][a]['text'] == current_player and board[1][b]['text'] == current_player and board[2][c][
+            'text'] == current_player
+        if diagonal:
+            return True
+
+
+def restart():
+    n = 0
+    for l in board:
+        for b in l:
+            b["text"] = ""
+
+
+def tie():
+    n = 0
+    for l in board:
+        for b in l:
+            if b["text"]:
+                n += 1
+    if n == 9:
+        return True
+
+
+def show_tie():
+    m = f"No one win. Tie!"
+    messagebox.showinfo("Game Over", m)
+    restart()
+
+
+def show_winner():
+    m = f"Player {current_player} win!"
+    messagebox.showinfo("Game Over", m)
+    restart()
+
+
+def switch_player():
+    global current_player
+    if current_player == "X":
+        current_player = "O"
+    else:
+        current_player = "X"
+
+
+def click(event):
+    b = event.widget
+    if b['text']:
+        return None
+    b['text'] = current_player
+    b.update_idletasks() 
+    if winner():
+        show_winner()
+        return
+
+    if tie():
+        show_tie()
+
+    switch_player()
+
+
+x = Tk()
+x.title("Tac Ti Toe")
+
+for row in range(3):
+    for column in range(3):
+        b = Button(x, width=4, height=2, font=('Arial', 30, 'bold'), text='')
+        b.grid(row=row, column=column)
+        b.bind("<Button-1>", click)
+        board[row][column] = b
+
+x.mainloop()
+ 
+################################################
+
+Step.14   --->   Scrolls ( Add and show scrolls after Game Over. ) 
+
+# Marks
+x_scroll = 0
+y_scroll = 0
+l1 = Label(x, text="X scroll = 0", font=('Arial', 25, 'bold'))
+l1.grid(row=3, columnspan=3) # columnspan -> column count
+
+l2 = Label(x, text="O scroll = ", font=('Arial', 25, 'bold'))
+l2.grid(row=4, columnspan=3)
+
+
+def show_winner():
+    m = f"Player {current_player} win!"
+    messagebox.showinfo("Game Over", m)
+    if current_player == 'X':
+        global x_scroll
+        x_scroll += 1
+        l1['text'] = f"X scroll = {x_scroll}"
+    else:
+        global y_scroll
+        y_scroll += 1
+        l2['text'] = f"Y scroll = {y_scroll}"
+    restart()
+    
+
+################################################
+
+from tkinter import *
+from tkinter import messagebox
+
+current_player = "O"
+x_scroll = 0
+y_scroll = 0
+
+board = [
+    [None, None, None],
+    [None, None, None],
+    [None, None, None],
+]
+
+
+def winner():
+    for i in range(3):
+        row = board[i][0]['text'] == current_player and board[i][1]['text'] == current_player and board[i][2][
+            'text'] == current_player
+        if row:
+            return True
+    for i in range(3):
+        col = board[0][i]['text'] == current_player and board[1][i]['text'] == current_player and board[2][i][
+            'text'] == current_player
+        if col:
+            return True
+    for a, b, c in ((0, 1, 2), (2, 1, 0)):
+        diagonal = board[0][a]['text'] == current_player and board[1][b]['text'] == current_player and board[2][c][
+            'text'] == current_player
+        if diagonal:
+            return True
+
+
+def restart():
+    n = 0
+    for l in board:
+        for b in l:
+            b["text"] = ""
+
+
+def tie():
+    for l in board:
+        for b in l:
+            if not b["text"]:
+                return False
+    return True
+
+
+def show_tie():
+    m = f"No one win!"
+    messagebox.showinfo("Game Over", m)
+    restart()
+
+
+def show_winner():
+    m = f"Player {current_player} win!"
+    messagebox.showinfo("Game Over", m)
+    if current_player == 'X':
+        global x_scroll
+        x_scroll += 1
+        l1['text'] = f"X scroll = {x_scroll}"
+    else:
+        global y_scroll
+        y_scroll += 1
+        l2['text'] = f"O scroll = {y_scroll}"
+    restart()
+
+
+def switch_player():
+    global current_player
+    if current_player == "X":
+        current_player = "O"
+    else:
+        current_player = "X"
+
+
+def click(event):
+    b = event.widget
+    if b['text']:
+        return None
+    b['text'] = current_player
+    b.update_idletasks() 
+    if winner():
+        show_winner()
+        return
+
+    if tie():
+        show_tie()
+
+    switch_player()
+
+
+x = Tk()
+x.title("Tac Ti Toe")
+
+for row in range(3):
+    for column in range(3):
+        b = Button(x, width=4, height=2, font=('Arial', 30, 'bold'), text='')
+        b.grid(row=row, column=column)
+        b.bind("<Button-1>", click)
+        board[row][column] = b
+
+l1 = Label(x, text="X scroll = 0", font=('Arial', 25, 'bold'))
+l1.grid(row=3, columnspan=3) # columnspan -> column count
+
+l2 = Label(x, text="O scroll = 0", font=('Arial', 25, 'bold'))
+l2.grid(row=4, columnspan=3)
+
+x.mainloop()
+
+
+################################################
+
+Step.15   --->   add color
+
+# click()
+
+if current_player == 'X':
+    b["fg"] = "purple"
+else:
+    b["fg"] = "blue"
+    
+    
+def click(event):
+    b = event.widget
+    if b['text']:
+        return None
+
+    if current_player == 'X':
+        b["fg"] = "purple"
+    else:
+        b["fg"] = "blue"
+    b['text'] = current_player
+    b.update_idletasks() 
+    if winner():
+        show_winner()
+        return
+
+    if tie():
+        show_tie()
+
+    switch_player()
+
+
+################################################
+
+from tkinter import *
+from tkinter import messagebox
+
+current_player = "O"
+x_scroll = 0
+y_scroll = 0
+
+board = [
+    [None, None, None],
+    [None, None, None],
+    [None, None, None],
+]
+
+
+def winner():
+    for i in range(3):
+        row = board[i][0]['text'] == current_player and board[i][1]['text'] == current_player and board[i][2][
+            'text'] == current_player
+        if row:
+            return True
+    for i in range(3):
+        col = board[0][i]['text'] == current_player and board[1][i]['text'] == current_player and board[2][i][
+            'text'] == current_player
+        if col:
+            return True
+    for a, b, c in ((0, 1, 2), (2, 1, 0)):
+        diagonal = board[0][a]['text'] == current_player and board[1][b]['text'] == current_player and board[2][c][
+            'text'] == current_player
+        if diagonal:
+            return True
+
+
+def restart():
+    n = 0
+    for l in board:
+        for b in l:
+            b["text"] = ""
+
+
+def tie():
+    for l in board:
+        for b in l:
+            if not b["text"]:
+                return False
+    return True
+
+
+def show_tie():
+    m = f"No one win!"
+    messagebox.showinfo("Game Over", m)
+    restart()
+
+
+def show_winner():
+    m = f"Player {current_player} win!"
+    messagebox.showinfo("Game Over", m)
+    if current_player == 'X':
+        global x_scroll
+        x_scroll += 1
+        l1['text'] = f"X scroll = {x_scroll}"
+    else:
+        global y_scroll
+        y_scroll += 1
+        l2['text'] = f"Y scroll = {y_scroll}"
+    restart()
+
+
+def switch_player():
+    global current_player
+    if current_player == "X":
+        current_player = "O"
+    else:
+        current_player = "X"
+
+
+def click(event):
+    b = event.widget
+    
+    if b['text']:
+        return None
+
+    b['text'] = current_player
+    b.update_idletasks()
+
+    if current_player == 'X':
+        b["fg"] = "purple"
+    else:
+        b["fg"] = "blue"
+
+    if winner():
+        show_winner()
+        return
+
+    if tie():
+        show_tie()
+        return
+
+    switch_player()
+
+
+x = Tk()
+x.title("Tac Ti Toe")
+
+for row in range(3):
+    for column in range(3):
+        b = Button(x, width=4, height=2, font=('Arial', 30, 'bold'), text='')
+        b.grid(row=row, column=column)
+        b.bind("<Button-1>", click)
+        board[row][column] = b
+
+l1 = Label(x, text="X scroll = 0", font=('Arial', 25, 'bold'))
+l1.grid(row=3, columnspan=3) # columnspan -> column count
+
+l2 = Label(x, text="O scroll = 0", font=('Arial', 25, 'bold'))
+l2.grid(row=4, columnspan=3)
+
+x.mainloop()
+
+################################################
+
+Step.16   --->   Making application
+
+Window computer
+1. pip3 install pyinstaller
+3. python3 -m PyInstaller --onefile --windowed ttt.py    
+
+################################################
+
+Macbook
+1. bash
+2. cd/Users/myothantzin/PycharmProjects/NewCourse2025
+3. python3 -m PyInstaller --onefile --windowed ttt.py
+
+
+Build complete! The results are available in: /Users/myothantzin/PycharmProjects/NewCourse2025/dist
+
+right click => open => finder
+
+################################################################################################
+
+Tac Ti Toe 
+
+CLI 23 steps + GUI 16 steps 
+
+total steps = 39 steps
+
+
+################################################################################################
+
+   
 
 """
 
