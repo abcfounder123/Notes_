@@ -1080,7 +1080,256 @@ while True:
         break
 
 ################################################################################################
-      
+
+Step.22   --->  valid range, draw once, until correct move
+
+idea -> limit valid range   --->   0 < p < 10
+idea -> limit to draw once  --->   board[r][c] not in ["X", "O"]
+idea -> until correct move  --->   while loop
+
+
+def player_one():
+    while True:
+        p = int(input("Enter player one move ( X ) : "))
+        r = (p - 1) // 3
+        c = (p - 1) % 3
+        if 0 < p < 10 and board[r][c] not in ["X", "O"]:
+            board[r][c] = "X"
+            break
+        else:
+            print("Invalid move. Try again.\n")
+
+
+################################################
+
+
+def draw():
+    print("+-------" * 3, "+", sep="")
+
+    for r in range(3):  # range(3), range(0, 3, 1) => 0, 1, 2
+        print("|       " * 3 + "|")
+
+        for c in range(3):  # 0 1 2
+            print(f"|   {board[r][c]}   ", end="")
+
+        print("|")
+
+        print("|       " * 3 + "|")
+        print("+-------" * 3 + "+")
+
+
+def player_one():
+    while True:
+        p = int(input("Enter player one move ( X ) : "))
+        r = (p - 1) // 3
+        c = (p - 1) % 3
+        if 0 < p < 10 and board[r][c] not in ["X", "O"]:
+            board[r][c] = "X"
+            break
+        else:
+            print("Invalid move. Try again!")
+            
+
+def player_two():
+    while True:
+        p = int(input("Enter player two move ( O ) : "))
+        r = (p - 1) // 3
+        c = (p - 1) % 3
+        if 0 < p < 10 and board[r][c] not in ["X", "O"]:
+            board[r][c] = "O"
+            break
+        else:
+            print("Invalid move. Try again!")
+
+
+def win():
+    # row သုံးခုကို စစ်ခြင်း
+    for r in range(3): # 0 1 2
+        row = board[r][0] == "X" and  board[r][1] == "X" and board[r][2] == "X"
+        if row:
+            return True
+
+    # column သုံးခုကို စစ်ခြင်း
+    for c in range(3):  # 0 1 2
+        col = board[0][c] == "X" and board[1][c] == "X" and board[2][c] == "X"
+        if col:
+            return True
+
+    # diagonals 2
+    for a, b, c in [(0, 1, 2), (2, 1, 0)]:  # [(), ()] => (0,1,2)
+        diagonal = board[0][a] == "X" and board[1][b] == "X" and board[2][c] == "X"
+        if diagonal:
+            return True
+
+
+def tie():
+    print()
+    n = 0
+    for l in board:
+        for b in l: 
+            if b in ["X", "O"]:
+                n += 1
+    if n == 9:
+        return True
+
+
+board = [
+         [1,2,3],
+         [4,5,6],
+         [7,8,9]
+]
+
+draw()
+
+while True:
+    player_one()
+    draw()
+    if win():
+        print("Player one win.")
+        break
+
+    if tie():
+        print("Tie!")
+        break
+
+    player_two()
+    draw()
+    if win():
+        print("Player two win.")
+        break
+
+    if tie():
+        print("Tie!")
+        break
+
+
+################################################
+
+Step.23   --->   computer
+
+
+from random import *
+
+
+def computer():
+    while True:
+        p = randrange(1, 10)
+        r = (p - 1) // 3
+        c = (p - 1) % 3
+        if 0 < p < 10 and board[r][c] not in ["X", "O"]:
+            board[r][c] = "O"
+            break
+        else:
+            print("Invalid move. Try again.\n")
+            
+            
+################################################            
+
+
+from random import randrange
+
+
+def draw():
+    print("+-------" * 3, "+", sep="")
+
+    for r in range(3):  # range(3), range(0, 3, 1) => 0, 1, 2
+        print("|       " * 3 + "|")
+
+        for c in range(3):  # 0 1 2
+            print(f"|   {board[r][c]}   ", end="")
+
+        print("|")
+
+        print("|       " * 3 + "|")
+        print("+-------" * 3 + "+")
+
+
+def player_one():
+    while True:
+        p = int(input("Enter player one move ( X ) : "))
+        r = (p - 1) // 3
+        c = (p - 1) % 3
+        if 0 < p < 10 and board[r][c] not in ["X", "O"]:
+            board[r][c] = "X"
+            break
+        else:
+            print("Invalid move. Try again!")
+
+
+def computer():
+    while True:
+        p = randrange(1, 10)
+        r = (p - 1) // 3
+        c = (p - 1) % 3
+        if 0 < p < 10 and board[r][c] not in ["X", "O"]:
+            board[r][c] = "O"
+            break
+
+
+def win():
+    # row သုံးခုကို စစ်ခြင်း
+    for r in range(3): # 0 1 2
+        row = board[r][0] == "X" and  board[r][1] == "X" and board[r][2] == "X"
+        if row:
+            return True
+
+    # column သုံးခုကို စစ်ခြင်း
+    for c in range(3):  # 0 1 2
+        col = board[0][c] == "X" and board[1][c] == "X" and board[2][c] == "X"
+        if col:
+            return True
+
+    # diagonals 2
+    for a, b, c in [(0, 1, 2), (2, 1, 0)]:  # [(), ()] => (0,1,2)
+        diagonal = board[0][a] == "X" and board[1][b] == "X" and board[2][c] == "X"
+        if diagonal:
+            return True
+
+
+def tie():
+    print()
+    n = 0
+    for l in board:
+        for b in l:
+            if b in ["X", "O"]:
+                n += 1
+    if n == 9:
+        return True
+
+
+board = [
+         [1,2,3],
+         [4,5,6],
+         [7,8,9]
+]
+
+draw()
+
+while True:
+    player_one()
+    draw()
+    if win():
+        print("Player one win.")
+        break
+
+    if tie():
+        print("Tie!")
+        break
+
+    computer()
+    draw()
+    if win():
+        print("Player two win.")
+        break
+
+    if tie():
+        print("Tie!")
+        break
+
+   
+################################################################################################
+
+       
 
 """
 
