@@ -1,10 +1,4 @@
 
-
-
-
-
-
-
 """
 ################################################
 
@@ -994,3 +988,32 @@ elif c2:print("A")
 elif c4:print("C")
 
 #############
+
+correct sample
+
+c1                              A+
+not c1, c2                      A
+not c1, notc2, c3               B
+not c1, notc2, not c3, c4       C
+not c1, notc2, not c3, not c4   fail
+
+
+mark = int(input("Mark = "))
+
+c1 = mark >= 90
+c2 = mark >= 80
+c3 = mark >= 70
+c4 = mark >= 50
+c5 = mark < 50
+
+if c1:print("A+")
+elif c2:print("A")
+elif c3:print("B")
+elif c4:print("C")
+else :print("fail")
+
+# elif c5:print("fail")
+
+################################################
+
+"""
