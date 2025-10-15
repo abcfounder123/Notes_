@@ -255,4 +255,131 @@ if low_level:
 
 ################################################################################################
 
+one from many (elif -> else + if)
+
+greater or equal 500, doctor
+greater  or equal 400, engineer
+greater  or equal 300, distance 
+
+c1 = greater or equal 500
+c2 = greater or equal 400
+c3 = greater or equal 300
+
+c1, doctor
+not c1 and c2, engineer
+not c1 and not c2 and c3, distance 
+not c1 and not c2 and not c3, online shop
+
+################################################
+
+mark = int(input("Mark = "))
+
+c1 = mark >= 500
+c2 = mark >= 400
+c3 = mark >= 300
+
+
+if c1:print("doctor")
+if not c1 and c2:print("engineer")
+if not c1 and not c2 and c3:print("distance")
+if not c1 and not c2 and not c3:print("online shop")
+
+################################################
+
+4      <--
+
+1      <--
+2
+3      <--
+
+################################################
+
+mark = int(input("Mark = "))
+
+c1 = mark >= 500
+c2 = mark >= 400
+c3 = mark >= 300
+
+
+if c1:print("doctor")
+elif c2:print("engineer")
+elif c3:print("distance")
+else:print("online shop")
+
+################################################
+
+mark >= 90    A+
+mark >= 80    A
+mark >= 70    B
+mark >= 50    C
+mark < 50     fail
+
+
+c1 = mark >= 90    
+c2 = mark >= 80    
+c3 = mark >= 70   
+c4 = mark >= 50    
+c5 = mark < 50     
+
+c1                              A+
+not c1, c2                      A
+not c1, notc2, c3               B
+not c1, notc2, not c3, c4       C
+
+mark < 50     fail
+
+################################################
+
+# Error sample
+
+if c1:print("A+")       <---    c1                                       A+
+elif c3:print("B")      <---    not c1 and c3                            B
+elif c2:print("A")      <---    not c1 and not c3 and c2                 A
+elif c4:print("D")      <---    not c1 and not c3 and not c2 and c4      C
+    
+mark = int(input("Mark = "))
+
+c1 = mark >= 90
+c2 = mark >= 80
+c3 = mark >= 70
+c4 = mark >= 50
+
+if c1:print("A+")
+elif c3:print("B")
+elif c2:print("A")
+elif c4:print("C")
+
+################################################
+
+correct sample
+
+c1                              A+
+not c1, c2                      A
+not c1, notc2, c3               B
+not c1, notc2, not c3, c4       C
+not c1, notc2, not c3, not c4   fail
+
+
+mark = int(input("Mark = "))
+
+c1 = mark >= 90
+c2 = mark >= 80
+c3 = mark >= 70
+c4 = mark >= 50
+c5 = mark < 50
+
+if c1:print("A+")
+elif c2:print("A")
+elif c3:print("B")
+elif c4:print("C")
+else :print("fail")
+
+# elif c5:print("fail")
+
+################################################
+
+
+
+
+
 """
