@@ -383,5 +383,187 @@ help(print)
 
 ################################################################################################
 
+day.16
+
+1. Parameters
+
+Parameters(6)
+1. standard/ normal parameter  
+2. default parameter           
+3. positional only parameter  
+4. keword only parameter      
+5. variable-length positional parameter 
+6. variable-length keyword parameter  
+
+Special parameter(4)  
+3. positional only parameter  
+4. keword only parameter      
+5. variable-length positional parameter 
+6. variable-length keyword parameter 
+
+################################################
+
+2. Definition
+
+def f():
+    program.1
+    program.2
+    program.3
+
+def -> function definition
+f   -> function name
+()  -> parameter list
+:   -> code block
+program -> function body
+
+################################################
+
+3. positional arguments Vs keyword arguments
+
+def x(a, b, c):
+    print(a, b, c)
+    
+x(1, 2, 3)
+x(3, 2, 1)
+x(a=1, b=2, c=3)
+x(c=3, b=2, a=1)
+
+
+Output
+
+1 2 3
+3 2 1
+1 2 3
+1 2 3
+
+################################################
+
+4. Simple is better than complex.
+
+def add(a, b, /):
+    pass
+    
+    
+add(1, 2)
+
+################################################
+
+5. Complex is better than complicated.
+
+def info(*, name, age, country, ph, id, height, weight, education):
+    print()
+    
+################################################
+
+*   ->  all values
+
+a = ()
+a = (1, 2)
+a = (1, 2, 3, 4, 5)
+
+
+def f(*a):
+    print(a)
+
+
+f()
+f(1, 2)
+f(1, 2, 3, 4, 5)
+
+################################################
+
+**   ->  all items(key and value)
+
+a = {}
+a = {'a': 1, 'b': 2}
+a = {'a': 1, 'b': 2, 'c': 3, 'age': 20}
+a = {"name": "Mg Mg"}
+
+
+def info(**a):
+    print(a)
+
+
+info()
+info(a=1, b=2)
+info(a=1, b=2, c=3, age=20)
+info(name="Mg Mg")
+
+################################################
+
+6. Using strange function.1
+
+Python file  <--- math module (fun)
+
+folder       <--- Django framework (module)
+
+################################################
+
+help(print)
+
+
+def print(*args, sep=' ', end='\n', file=None, flush=False):
+    pass
+    
+################################################
+
+print("Parameters", 1, 2, 3, "apple", sep="\n- ")
+
+# "Parameters" + sep + 1 + sep + 2 + sep + 3 + sep + "apple" + end
+# "Parameters" + "\n- " + 1 + "\n- " + 2 + "\n- " + 3 + "\n- " + "apple" + "\n"
+
+Parameters
+- 1
+- 2
+- 3
+- apple
+
+################################################
+
+Fruits
+ - apple
+ - orange
+ - mangoes
+ - banana
+
+
+print("Fruits", "apple", "orange", "mangoes", "banana", sep="\n - ")
+
+################################################
+
+add
+
+1 + 1 = 2
+1 + 2 = 3
+100 + 200 = ?
+summation = ?
+
+1890 + 20 = 1910
+227 + 2733 = 
+90288985 + 977575 =
+727575837583978375 + 9908483084390384 = 
+
+summation 3 = 1 + 2 + 3 = 6
+
+################################################
+
+(self, value, mod=None, /) 
+(self, /, sep=None, maxsplit=-1)
+(self, /, tabsize=8)
+(self, /, encoding='utf-8', errors='strict')
+sin(x, /)
+sqrt(x, /) 
+prod(iterable, /, *, start=1)                    -->  iterable(3), start(4+2)
+nextafter(x, y, /, *, steps=None)                -->  x(3), y(3), steps(4+2)
+lcm(*integers)                                   -->  integers(5)
+isclose(a, b, *, rel_tol=1e-09, abs_tol=0.0)     -->  a(1), b(1), rel_tol(4+2), abs_tol(4+2)
+ 
+################################################
+
+import math
+ans = math.sqrt(16)
+print(ans)
+
+################################################################################################
 """
 
