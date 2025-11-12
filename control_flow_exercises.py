@@ -48,7 +48,11 @@ is_alphabet (a to z တွေနဲ့ ကကြီး ခကွေးလို�
 
 19. find_max_min(lst) အများဆုံးနဲ့ အနည်းဆုံးတန်ဖိုး ရှာခြင်း။ 
 
-20.
+20. linear search
+
+21. Uppercase and Lowercase
+
+22. Binary Search
 
 ...
 
@@ -491,6 +495,729 @@ marks = [63, 65, 99, 64, 78, 97]
 print(min_max(marks))
 
 ################################################################################################
+
+20. linear search
+
+
+atoms = ["Hydrogen", "Helium", "Lithium", "Beryllium",
+         "Boron", "Carbon", "Nitrogen", "Oxygen", "Fluorine",
+         "Neon", "Sodium", "Magnesium", "Aluminium", "Silicon",
+         "Phosphorus", "Sulfur", "Chlorine", "Argon", "Potassium",
+         "Calcium", "Scandium", "Titanium", "Vanadium", "Chromium",
+         "Manganese", "Iron", "Cobalt", "Nickel", "Copper", "Zinc",
+         "Manganese" "Germanium", "strontium",
+         "Gallium", "Germanium", "Arsenic", "Selenium", "Bromine",
+         "Krypton", "Rubidium", "Strontium", "Yttrium", "Zirconium",
+         "Niobium", "Molybdenum", "Technetium", "Ruthenium", "Rhodium",
+         "Palladium", "Silver", "Cadmium", "Indium", "Tin", "Antimony", "Barium",
+         "Tellurium", "Iodine", "Xenon", "Cesium", "Barium", "Lanthanum",
+         "Cerium", "Praseodymium", "Neodymium", "Promethium", "Samarium",
+         "Europium", "Gadolinium", "Terbium", "Dysprosium", "Holmium",
+         "Erbium", "Thulium", "Ytterbium", "Lutetium", "Hafnium", "Tantalum",
+         "Tungsten", "Platinum", "Gold",
+         "Mercury", "Astatine", "Radon", "Francium", "Radium"]
+
+################################################
+
+20.1.Normal Search
+
+for i in atoms:
+    if i == "Lithium":
+        print("We found Lithium.")
+        break
+
+################################################
+      
+20.2.Search index
+
+for i in range(len(atoms)): # 84 => 0 to 83
+    if atoms[i] == "Lithium":
+        print("We found Lithium. \nIndex of li = ", i)
+        break
+
+################################################
+        
+20.3.Search index and position   
+ 
+for i in range(len(atoms)): # 84 => 0 to 83
+    if atoms[i] == "Lithium":
+        print("We found Lithium.")
+        print("Index of li = ", i)
+        print("Position of li =", i + 1)
+        break
+
+################################################
+
+20.4.Search index and position of input data        
+        
+name = input("Enter a search term: ")
+
+for i in range(len(atoms)):
+    if atoms[i] == name:
+        print(f"We found {name}.")
+        print(f"Index of {name} = ", i)
+        print(f"Position of {name} =", i + 1)
+        print("- " * 40)
+
+################################################
+
+20.5.Search and count (0, +1)
+
+name = input("Enter a search term: ")
+n = 0
+
+for i in range(len(atoms)):
+    if atoms[i] == name:
+        n += 1
+        print(f"We found {name}.")
+        print(f"Position of {name} =", i + 1)
+        print("- " * 40)
+
+print(f"Count of {name} = {n}")
+
+################################################
+
+20.6.Uppercase and Lowercase should be the same element.  (all to lowercase)
+
+name = input("Enter a search term: ")  
+n = 0
+
+for i in range(len(atoms)):
+    if atoms[i].lower() == name.lower(): # # LITHIUM, Lithium => lithium
+        n += 1
+        print(f"We found {name}.")
+        print(f"Position of {name} =", i + 1)
+        print("- " * 40)
+
+print(f"Count of {name} = {n}")
+
+################################################
+
+20.7.Uppercase and Lowercase should be the same element.  (all to Uppercase)
+
+name = input("Enter a search term: ")
+n = 0
+
+for i in range(len(atoms)):
+    if atoms[i].upper() == name.upper(): # # LITHIUM, Lithium => LITHIUM
+        n += 1
+        print(f"We found {name}.")
+        print(f"Position of {name} =", i + 1)
+        print("- " * 40)
+
+print(f"Count of {name} = {n}")
+
+################################################
+
+20.8.Effect only function
+
+def linear_search(collection, element):
+    n = 0
+    for i in range(len(collection)):
+        if collection[i].upper() == element.upper():  # # LITHIUM, Lithium => lithium
+            n += 1
+            print(f"We found {element}.")
+            print(f"Position of {element} =", i + 1)
+    print(f"Count of {element} = {n}")
+    print("- " * 40)
+    
+################################################
+
+20.9.Result only function
+
+def linear_search(collection, element):
+    for i in range(len(collection)):
+        if collection[i].upper() == element.upper():  
+            return True
+    return False
+    
+################################################
+
+20.10.Searching all index of apple 
+   
+def linear_search(collection, element):
+    l = []
+    for i in range(len(collection)):
+        if collection[i].upper() == element.upper():  # # LITHIUM, Lithium => lithium
+            l.append(i)
+    return l
+
+
+fruits = ["banana", "orange", "apple", "mangoes", "apple"]
+
+apple = linear_search(fruits, "apple")  # [2, 4]
+print(apple)
+
+################################################
+
+20.11.Searching all positions of apple 
+
+def linear_search(collection, element):
+    l = []
+    for i in range(len(collection)):
+        if collection[i].upper() == element.upper():
+            l.append(i + 1)
+    return l
+
+
+fruits = ["banana", "orange", "apple", "mangoes", "apple"]
+
+apple = linear_search(fruits, "apple")  # [3, 5]
+print(apple)
+
+################################################
+
+20.12.Count and Searching all positions
+
+def linear_search(collection, element):
+    p = []
+    n = 0
+    for i in range(len(collection)):
+        if collection[i].upper() == element.upper():
+            p.append(i + 1)
+            n += 1
+    return n, p
+
+
+fruits = ["banana", "orange", "apple", "mangoes", "apple"]
+
+apple = linear_search(fruits, "apple")  # (2, [3, 5])
+print(apple)
+
+################################################
+
+21. Upper and Lower 
+
+21.1. Uppercase character to lowercase character
+
+A -> 65
+a -> 97
+A to a  ( +32 )
+
+u = "A"
+l = chr(ord(u) + 32)
+print(l)
+
+################################################
+
+21.2. Lowercase character to uppercase character
+A -> 65
+a -> 97
+a to A  ( -32 )
+
+
+l = "a"
+u = chr(ord(l) - 32)
+print(u)
+
+################################################
+
+21.3. Uppercase character to lowercase character
+
+s = "APPLE"
+
+for c in s:
+    l = chr(ord(c) + 32)
+    print(l)
+
+
+a
+p
+p
+l
+e
+
+################################################
+
+21.4. Uppercase character string to lowercase character string
+
+s = "APPLE"
+ans = ""
+
+for c in s:
+    l = chr(ord(c) + 32)
+    ans = ans + l
+
+print(ans) # apple
+
+################################################
+
+21.5. Lowercase character string to Uppercase character string
+
+s = "apple"
+ans = ""
+
+for c in s:
+    l = chr(ord(c) - 32)
+    ans = ans + l
+
+print(ans) # APPLE
+
+################################################
+
+21.6. Test Case and Error handling
+
+A ->   65  =>  33 => !
+=> c in "abcdefghijklmnopqrstuvwxyz"
+
+################################################
+
+21.7. L to U
+
+s = "ApplEfiwhfbwebfGIGG-+ I go to school."
+ans = ""
+
+for c in s:
+    if c in "abcdefghijklmnopqrstuvwxyz":
+        ans = ans + chr(ord(c) - 32)
+    else:
+        ans = ans + c
+
+print(ans)
+
+
+################################################
+
+21.8. U to L
+
+s = "ApplEfiwhfbwebfGIGG-+ I go to school."
+ans = ""
+
+for c in s:
+    if c in "ABCDEFGHIJKLMNOPQRSTUVWXYZ":
+        ans = ans + chr(ord(c) + 32)
+    else:
+        ans = ans + c
+
+print(ans)
+
+
+################################################
+
+21.9. effect only function
+
+def lower(s):
+    ans = ""
+
+    for c in s:
+        if c in "ABCDEFGHIJKLMNOPQRSTUVWXYZ":
+            ans = ans + chr(ord(c) + 32)
+        else:
+            ans = ans + c
+
+    print(ans)
+
+
+lower("ApplEfiwhfbwebfGIGG-+ I go to school.") # applefiwhfbwebfgigg-+ i go to school.
+
+################################################
+
+21.10. result only function
+
+def lower(s):
+    ans = ""
+
+    for c in s:
+        if c in "ABCDEFGHIJKLMNOPQRSTUVWXYZ":
+            ans = ans + chr(ord(c) + 32)
+        else:
+            ans = ans + c
+
+    return ans
+
+
+x = lower("Lithium") # lithium
+print(x)
+
+################################################
+
+21.11.  lower in linearsearch
+
+def lower(s):
+    ans = ""
+
+    for c in s:
+        if c in "ABCDEFGHIJKLMNOPQRSTUVWXYZ":
+            ans = ans + chr(ord(c) + 32)
+        else:
+            ans = ans + c
+
+    return ans
+
+
+# count and all positions
+def linear_search(collection, element):
+    p = []
+    n = 0
+    for i in range(len(collection)):
+        if lower(collection[i]) == lower(element):
+            p.append(i + 1)
+            n += 1
+    return n, p
+
+
+fruits = ["banana", "orange", "apple", "mangoes", "apple"]
+
+apple = linear_search(fruits, "Apple")  # (2, [3, 5])
+print(apple)
+
+
+################################################
+
+21.12. upper in linearsearch
+
+def upper(s):
+    ans = ""
+
+    for c in s:
+        if c in "abcdefghijklmnopqrstuvwxyz":
+            ans = ans + chr(ord(c) - 32)
+        else:
+            ans = ans + c
+
+    return ans
+
+
+# count and all positions
+def linear_search(collection, element):
+    p = []
+    n = 0
+    for i in range(len(collection)):
+        if upper(collection[i]) == upper(element):
+            p.append(i + 1)
+            n += 1
+    return n, p
+
+
+fruits = ["banana", "orange", "apple", "mangoes", "apple"]
+
+apple = linear_search(fruits, "Apple")  # (2, [3, 5])
+print(apple)
+
+
+################################################
+
+c. sort() => if str, sort by ordinal No.
+
+A -> 65
+B -> 66
+
+[7, 1, 2, 5, 8] => [1, 2, 5, 7, 8]
+"BCA"           => 66 67 65 =>  65 66 67 =  "ABC"
+"BCa"           => 66 67 97 =>  "BCa" 
+
+
+################################################################################################
+
+22. Binary search
+
+1. sort
+
+2. middle value, compare
+3. if value is greater, Right
+   if value is smaller, left
+   
+4. if found, break
+5. if empty, break 
+
+
+################################################
+
+[9, 4, 3, 2, 6, 1, 8, 5]   # 6 sec
+
+[1, 2, 3, 4, 5, 6, 8, 9]  
+
+0
+
+middle = 5
+[1, 2, 3, 4,]
+
+middle = 3
+[1, 2]
+
+middle = 2
+[1]
+  
+middle = 1, empty = don't found  (4)
+
+################################################
+
+
+[100, 207, 208, 301, 315, 1000, 1001, 3000] 
+
+2000
+
+middle = 315
+[315, 1000, 1001, 3000] 
+
+middle = 1001
+[1001, 3000] 
+
+middle = 3000
+[1001,]
+
+middle = 1001, empty = don't found    (4)
+
+################################################
+
+
+[100, 207, 208, 301, 315, 1000, 1001, 3000] 
+
+207
+
+m = 315
+[100, 207, 208, 301,]
+
+m = 208
+[100, 207,]
+
+m = 207, found 207, break (3)
+
+################################################
+
+Binary search
+1. sort
+
+2. middle value, compare
+3. if value is smaller, left
+   if value is greater, Right
+  
+4. if found, break
+5. if empty, break
+
+middle value = c[t//2]
+compare
+- equal -> m == e
+- if value is smaller, e < m
+  - Left c[:m] 
+- if value is greater, e > m
+  - Right c[m:] 
+- break
+- empty , len == 0, len < 1
+- not empty, len != 0, len > 0
+
+################################################
+
+last one element for left => [1] 
+l = c[:0] -> empty
+
+################################################
+
+last one element for right => [9]
+r = [0:]  -> [9]
+never empty and need to stop process by ourself => if len(collection) == 1: break
+
+################################################
+
+22. Binary search
+
+collection = [1, 2, 3, 4, 5, 6, 8, 9] # 8
+e = 10
+
+
+while len(collection) > 0: # [9]
+    total = len(collection) # 1
+    m = total // 2          # 0
+    middle_value = collection[m] # [1, 2, 3, 4, 5, 6, 8, 9] -> 5, [1, 2, 3, 4] -> 3, [1, 2] -> 2, [1,] -> 1
+
+    # print(collection, middle_value)
+
+    #  middle value, compare
+    if middle_value == e:
+        print(f"found {e}.")
+        break
+
+    # if value is smaller, left
+    elif e < middle_value:
+        collection = collection[:m] # [1, 2, 3, 4] -> [1, 2], [1,] , [:0] -> []
+
+    # if value is greater, Right
+    elif e > middle_value:
+        if len(collection) == 1: # for last element
+            break
+
+        collection = collection[m:] #  [5, 6, 8, 9],  [8, 9], [9] , r = [0:]  -> [last]
+
+################################################
+
+linear Vs Binary
+
+"Lithium"  ->   3, 6
+"Gold"     ->   78, 6
+
+1          ->   1, 19
+1000000    ->   1000000, 19
+
+################################################
+
+while len(collection) > 0: 
+    total = len(collection) 
+    m = total // 2        
+    middle_value = collection[m] 
+
+    print(collection, middle_value)
+    print()
+
+    #  middle value, compare
+    if middle_value == e:
+        print(f"found {e}.")
+        break
+
+    # if value is smaller, left
+    elif e < middle_value:
+        collection = collection[:m] 
+
+    # if value is greater, Right
+    elif e > middle_value:
+        if len(collection) == 1:
+            break
+
+        collection = collection[m:]
+
+################################################
+
+22.1. Effect only function
+
+def binary_search(collection, e):
+    n = 0
+    collection = sorted(collection)
+    print(collection)
+    while len(collection) > 0:  # [9]
+        total = len(collection)  # 1
+        m = total // 2  # 0
+        middle_value = collection[m]  # [1, 2, 3, 4, 5, 6, 8, 9] -> 5, [1, 2, 3, 4] -> 3, [1, 2] -> 2, [1,] -> 1
+
+        print(collection, middle_value)
+        print()
+
+        #  middle value, compare
+        if middle_value == e:
+            print(f"found {e}.")
+            break
+
+        # if value is smaller, left
+        elif e < middle_value:
+            collection = collection[:m]  # [1, 2, 3, 4] -> [1, 2], [1,] , [:0] -> []
+
+        # if value is greater, Right
+        elif e > middle_value:
+            if len(collection) == 1:
+                break
+
+            collection = collection[m:]  # [5, 6, 8, 9],  [8, 9], [9] , r = [0:]  -> [last]
+        n += 1
+    print(n)
+    
+    
+################################################
+
+22.2.Result only function 
+
+
+def binary_search(collection, e):
+    e = e.capitalize()
+    collection = sorted(collection)
+    while len(collection) > 0:  # [9]
+        total = len(collection)  # 1
+        m = total // 2  # 0
+        middle_value = collection[m]  # [1, 2, 3, 4, 5, 6, 8, 9] -> 5, [1, 2, 3, 4] -> 3, [1, 2] -> 2, [1,] -> 1
+
+        #print(collection, middle_value)
+        #print()
+
+        #  middle value, compare
+        if middle_value == e:
+            return True
+
+        # if value is smaller, left
+        elif e < middle_value:
+            collection = collection[:m]  # [1, 2, 3, 4] -> [1, 2], [1,] , [:0] -> []
+
+        # if value is greater, Right
+        elif e > middle_value:
+            if len(collection) == 1:
+                break
+
+            collection = collection[m:]  # [5, 6, 8, 9],  [8, 9], [9] , r = [0:]  -> [last]
+
+    return False
+
+
+################################################
+
+22.3. Final results of linear search and binary search (for education purpose)
+
+
+def linear_search(collection, element):
+    for i in range(len(collection)):
+        if collection[i].upper() == element.upper():
+            return True
+    return False
+
+
+def binary_search(collection, e):
+    e = e.capitalize()
+    collection = sorted(collection)
+    while len(collection) > 0:  # [9]
+        total = len(collection)  # 1
+        m = total // 2  # 0
+        middle_value = collection[m]  # [1, 2, 3, 4, 5, 6, 8, 9] -> 5, [1, 2, 3, 4] -> 3, [1, 2] -> 2, [1,] -> 1
+
+        #print(collection, middle_value)
+        #print()
+
+        #  middle value, compare
+        if middle_value == e:
+            return True
+
+        # if value is smaller, left
+        elif e < middle_value:
+            collection = collection[:m]  # [1, 2, 3, 4] -> [1, 2], [1,] , [:0] -> []
+
+        # if value is greater, Right
+        elif e > middle_value:
+            if len(collection) == 1:
+                break
+
+            collection = collection[m:]  # [5, 6, 8, 9],  [8, 9], [9] , r = [0:]  -> [last]
+
+    return False
+
+
+atoms = ["Hydrogen", "Helium", "Lithium", "Beryllium",
+         "Boron", "Carbon", "Nitrogen", "Oxygen", "Fluorine",
+         "Neon", "Sodium", "Magnesium", "Aluminium", "Silicon",
+         "Phosphorus", "Sulfur", "Chlorine", "Argon", "Potassium",
+         "Calcium", "Scandium", "Titanium", "Vanadium", "Chromium",
+         "Manganese", "Iron", "Cobalt", "Nickel", "Copper", "Zinc",
+         "Manganese" "Germanium", "Strontium",
+         "Gallium", "Germanium", "Arsenic", "Selenium", "Bromine",
+         "Krypton", "Rubidium", "Strontium", "Yttrium", "Zirconium",
+         "Niobium", "Molybdenum", "Technetium", "Ruthenium", "Rhodium",
+         "Palladium", "Silver", "Cadmium", "Indium", "Tin", "Antimony", "Barium",
+         "Tellurium", "Iodine", "Xenon", "Cesium", "Barium", "Lanthanum",
+         "Cerium", "Praseodymium", "Neodymium", "Promethium", "Samarium",
+         "Europium", "Gadolinium", "Terbium", "Dysprosium", "Holmium",
+         "Erbium", "Thulium", "Ytterbium", "Lutetium", "Hafnium", "Tantalum",
+         "Tungsten", "Platinum", "Gold",
+         "Mercury", "Astatine", "Radon", "Francium", "Radium"]
+
+ans = linear_search(atoms, "gold")
+print(ans)
+
+ans = binary_search(atoms, "gold")
+print(ans)
+
+
+ans = linear_search(atoms, "X")
+print(ans)
+
+ans = binary_search(atoms, "X")
+print(ans)
+
+################################################################################################
+
+
 
 """
 
