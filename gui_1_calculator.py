@@ -1,6 +1,6 @@
 
 """
-kinter (Tk + interface)
+Tkinter (Tk + interface)
 
 Tk = ToolKit for Tcl (Tool Command Language)
 
