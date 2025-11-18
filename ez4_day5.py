@@ -252,5 +252,217 @@ Summary
 
 ################################################################################################
 
+day.6
+
+9. Comparision operators (6) ( value ) (True, False)
+   - equal
+   - not equal
+   - greater than
+   - less than
+   - greater than or equal 
+   - less than or equal 
+
+x == y
+x != y
+x > y
+x < y
+
+x is greater than or equal to y.
+x >= y
+
+################################################
+
+Identity operators (ID)
+- is
+- is not 
+
+################################################
+
+Membership operator
+- in
+- not in
+
+################################################
+
+Logical operators (logic value -> True, False)
+
+10. Logical not
+
+11. Logical and
+
+12. Logical or
+
+~ 1 => 0
+not True => False
+
+1 & 1 => 1
+True and True => True
+True or False => True
+
+################################################
+
+13. ternary operator, conditional operator, if else operator
+
+value  if  condition  else    value
+
+greater = n1 if n1 > n2 else n2
+smaller = n1 if n1 < n2 else n2
+permit = "sell" if age > 18 else "not sell"
+exam_result = "pass" if marks >= 40 else "fail"
+
+################################################
+
+14. assignmemt opeators (13)
+
+1. assign ( = )
+
+x = 1
+x = 2
+x = "apple"
+x = True
+x = []
+fruits = ["apple", "banana", "orange"]
+
+2. exponent and assign  ( **= )
+
+x = 10
+x **= 3   => x = 1000
+
+7. add and assign  ( += )
+
+x = 10
+x += 2    => x = 12
+x += 2    => x = 14
+x += 1    => x = 15
+
+################################################
+
+assignmemt opeators (13)
+
+1. =
+2. **=
+3. *=
+4. /=
+5. //=
+6. %=
+7. +=
+8. -=
+9. <<=
+10. >>=
+11. &=
+12. ^=
+13. |=
+
+################################################
+
+15. walrus operator ( := )(assign and use)
+    - assign in operation 
+    
+################################################    
+    
+group(7)
+
+1. Arithmetic Operators (9)
+
+1. Exponentation
+2. Unary plus
+3. Unary minus
+4. Multiplication
+5. Division
+6. Floor Division
+7. Modulus
+8. Addition
+9. Subtraction 
+
+################################################
+
+2. Bitwise operator (6)
+
+1. Left shift
+2. Right shift
+3. Bitwise AND
+4. Bitwise Exclusive OR
+5. Bitwise OR
+6. Bitwise not            
+
+################################################
+
+3. Comparision operators (6) 
+   - equal
+   - not equal
+   - greater than
+   - less than
+   - greater than or equal 
+   - less than or equal 
+
+4. Identity operators (ID)
+- is
+- is not 
+
+5. Membership operator
+- in
+- not in
+
+################################################
+
+6. Logical operators 
+
+1. Logical not
+2. Logical and
+3. Logical or
+
+################################################
+
+7. assignmemt opeators (13)
+
+1. =
+2. **=
+3. *=
+4. /=
+5. //=
+6. %=
+7. +=
+8. -=
+9. <<=
+10. >>=
+11. &=
+12. ^=
+13. |=
+
+################################################
+
+Precedence 15
+
+1.  e   
+2.  u    Unary plus, Unary minus, bitwise not
+3.  * / 
+4.  + -
+5. shift 
+6. and
+7. xor    exclusive
+8. or
+9. c
+10. not
+11. and 
+12. or
+13. t
+14. assignmemt
+15. walrus
+
+
+group(7)
+
+1.
+2.
+
+3.
+4.
+5.
+
+6.
+7.
+
+################################################################################################
+
 """
 
