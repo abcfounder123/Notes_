@@ -931,5 +931,677 @@ x.mainloop()
 
 ##################################################################################
 
+day. 2
+
+Step.14 -->  Scrolls ( Add and show scrolls after game over. )
+
+  .     .     .
+
+  .     .     .
+
+  .     .     .
+
+  X scroll = 0
+
+  O scroll = 0
+
+x_scroll = 0
+y_scroll = 0
+
+l1 = Label(x, text="X scroll = 0", font=('Arial', 30, 'bold'))
+l1.grid(row=3, columnspan=3)
+
+l2 = Label(x, text="O scroll = 0", font=('Arial', 30, 'bold'))
+l1.grid(row=4, columnspan=3)
+
+
+def show_winner():
+    m = f"Player {current_player} win!"
+    messagebox.showinfo("Game Over", m)
+    if current_player == 'X':
+        global x_scroll
+        x_scroll += 1
+        l1['text'] = f"X scroll = {x_scroll}"
+    else:
+        global y_scroll
+        y_scroll += 1
+        l2['text'] = f"O scroll = {x_scroll}"
+
+#########################################
+
+from tkinter import *
+from tkinter import messagebox
+
+
+current_player = "X"
+board = [
+    [None, None, None],
+    [None, None, None],
+    [None, None, None]
+
+]
+x_scroll = 0
+y_scroll = 0
+
+
+def click(event):
+    b = event.widget
+    if b['text']:
+        return
+    b['text'] = current_player
+
+    if winner():
+        show_winner()
+        restart()
+
+    if tie():
+        show_tie()
+        restart()
+
+    switch_player()
+
+
+def switch_player():
+    global current_player
+    if current_player == 'X':
+        current_player = 'O'
+    else:
+        current_player = 'X'
+
+
+def winner():
+    # r0   (1, 2, 3)
+    if board[0][0]['text'] == current_player and board[0][1]['text'] == current_player and board[0][2]['text'] == current_player:
+        return True
+    # r1   (4, 5, 6)
+    if board[1][0]['text'] == current_player and board[1][1]['text'] == current_player and board[1][2]['text'] == current_player:
+        return True
+    # r2   (7, 8, 9)
+    if board[2][0]['text'] == current_player and board[2][1]['text'] == current_player and board[2][2]['text'] == current_player:
+        return True
+
+    # c0(1, 4, 7)
+    if board[0][0]['text'] == current_player and board[1][0]['text'] == current_player and board[2][0]['text'] == current_player:
+        return True
+
+    # c1(2, 5, 8)
+    if board[0][1]['text'] == current_player and board[1][1]['text'] == current_player and board[2][1]['text'] == current_player:
+        return True
+
+    # c2(3, 6, 9)
+    if board[0][2]['text'] == current_player and board[1][2]['text'] == current_player and board[2][2]['text'] == current_player:
+        return True
+
+    # d1(1, 5, 9)
+    if board[0][0]['text'] == current_player and board[1][1]['text'] == current_player and board[2][2]['text'] == current_player:
+        return True
+
+    # d2(3, 5, 7)
+    if board[0][2]['text'] == current_player and board[1][1]['text'] == current_player and board[2][0]['text'] == current_player:
+        return True
+
+
+def show_winner():
+    m = f"Player {current_player} win!"
+    messagebox.showinfo("Game Over", m)
+    if current_player == 'X':
+        global x_scroll
+        x_scroll += 1
+        l1['text'] = f"X scroll = {x_scroll}"
+    else:
+        global y_scroll
+        y_scroll += 1
+        l2['text'] = f"O scroll = {x_scroll}"
+
+
+def restart():
+    board[0][0]['text'] = ''
+    board[0][1]['text'] = ''
+    board[0][2]['text'] = ''
+    board[1][0]['text'] = ''
+    board[1][1]['text'] = ''
+    board[1][2]['text'] = ''
+    board[2][0]['text'] = ''
+    board[2][1]['text'] = ''
+    board[2][2]['text'] = ''
+
+
+def tie():
+    if board[0][0]['text'] and board[0][1]['text'] and board[0][2]['text'] and board[1][0]['text'] and board[1][1]['text'] and board[1][2]['text'] and board[2][0]['text'] and board[2][1]['text'] and board[2][2]['text']:
+        return True
+
+
+def show_tie():
+    m = f"Draw!"
+    messagebox.showinfo("Game Over", m)
+
+
+x = Tk()
+x.title("Tac Ti Toe")
+
+n = 0
+for row in range(3): # 0
+    for col in range(3): # 0 1 2
+        n += 1
+        b = Button(x, width=4, height=2, font=('Arial', 30, 'bold'), text='')
+        b.grid(row=row, column=col)
+        b.bind("<Button-1>", click)
+        board[row][col] = b
+
+l1 = Label(x, text="X scroll = 0", font=('Arial', 30, 'bold'))
+l1.grid(row=3, columnspan=3)
+
+l2 = Label(x, text="O scroll = 0", font=('Arial', 30, 'bold'))
+l2.grid(row=4, columnspan=3)
+
+x.mainloop()
+
+#########################################
+
+Step.15 -->  fg color
+
+X    purple
+O    blue
+
+if current_player == 'X':
+    b['fg'] = 'purple'
+else:
+    b['fg'] = 'blue'
+
+
+def click(event):
+    b = event.widget
+
+    if b['text']:
+        return
+
+    if current_player == 'X':
+        b['fg'] = 'purple'
+    else:
+        b['fg'] = 'blue'
+
+    b['text'] = current_player
+
+    if winner():
+        show_winner()
+        restart()
+
+    if tie():
+        show_tie()
+        restart()
+
+    switch_player()
+
+
+#########################################
+
+
+from tkinter import *
+from tkinter import messagebox
+
+
+current_player = "X"
+board = [
+    [None, None, None],
+    [None, None, None],
+    [None, None, None]
+
+]
+x_scroll = 0
+y_scroll = 0
+
+
+def click(event):
+    b = event.widget
+
+    if b['text']:
+        return
+
+    if current_player == 'X':
+        b['fg'] = 'purple'
+    else:
+        b['fg'] = 'blue'
+
+    b['text'] = current_player
+
+    if winner():
+        show_winner()
+        restart()
+
+    if tie():
+        show_tie()
+        restart()
+
+    switch_player()
+
+
+def switch_player():
+    global current_player
+    if current_player == 'X':
+        current_player = 'O'
+    else:
+        current_player = 'X'
+
+
+def winner():
+    # r0   (1, 2, 3)
+    if board[0][0]['text'] == current_player and board[0][1]['text'] == current_player and board[0][2]['text'] == current_player:
+        return True
+    # r1   (4, 5, 6)
+    if board[1][0]['text'] == current_player and board[1][1]['text'] == current_player and board[1][2]['text'] == current_player:
+        return True
+    # r2   (7, 8, 9)
+    if board[2][0]['text'] == current_player and board[2][1]['text'] == current_player and board[2][2]['text'] == current_player:
+        return True
+
+    # c0(1, 4, 7)
+    if board[0][0]['text'] == current_player and board[1][0]['text'] == current_player and board[2][0]['text'] == current_player:
+        return True
+
+    # c1(2, 5, 8)
+    if board[0][1]['text'] == current_player and board[1][1]['text'] == current_player and board[2][1]['text'] == current_player:
+        return True
+
+    # c2(3, 6, 9)
+    if board[0][2]['text'] == current_player and board[1][2]['text'] == current_player and board[2][2]['text'] == current_player:
+        return True
+
+    # d1(1, 5, 9)
+    if board[0][0]['text'] == current_player and board[1][1]['text'] == current_player and board[2][2]['text'] == current_player:
+        return True
+
+    # d2(3, 5, 7)
+    if board[0][2]['text'] == current_player and board[1][1]['text'] == current_player and board[2][0]['text'] == current_player:
+        return True
+
+
+def show_winner():
+    m = f"Player {current_player} win!"
+    messagebox.showinfo("Game Over", m)
+    if current_player == 'X':
+        global x_scroll
+        x_scroll += 1
+        l1['text'] = f"X scroll = {x_scroll}"
+    else:
+        global y_scroll
+        y_scroll += 1
+        l2['text'] = f"O scroll = {x_scroll}"
+
+
+def restart():
+    board[0][0]['text'] = ''
+    board[0][1]['text'] = ''
+    board[0][2]['text'] = ''
+    board[1][0]['text'] = ''
+    board[1][1]['text'] = ''
+    board[1][2]['text'] = ''
+    board[2][0]['text'] = ''
+    board[2][1]['text'] = ''
+    board[2][2]['text'] = ''
+
+
+def tie():
+    if board[0][0]['text'] and board[0][1]['text'] and board[0][2]['text'] and board[1][0]['text'] and board[1][1]['text'] and board[1][2]['text'] and board[2][0]['text'] and board[2][1]['text'] and board[2][2]['text']:
+        return True
+
+
+def show_tie():
+    m = f"Draw!"
+    messagebox.showinfo("Game Over", m)
+
+
+x = Tk()
+x.title("Tac Ti Toe")
+
+n = 0
+for row in range(3): # 0
+    for col in range(3): # 0 1 2
+        n += 1
+        b = Button(x, width=4, height=2, font=('Arial', 30, 'bold'), text='')
+        b.grid(row=row, column=col)
+        b.bind("<Button-1>", click)
+        board[row][col] = b
+
+l1 = Label(x, text="X scroll = 0", font=('Arial', 30, 'bold'))
+l1.grid(row=3, columnspan=3)
+
+l2 = Label(x, text="O scroll = 0", font=('Arial', 30, 'bold'))
+l2.grid(row=4, columnspan=3)
+
+x.mainloop()
+
+#########################################
+
+Step.16   --->   Making application
+
+Window computer
+1. pip3 install pyinstaller
+3. python3 -m PyInstaller --onefile --windowed ttt.py
+
+################################################
+
+Macbook
+1. bash
+2. cd/Users/myothantzin/PycharmProjects/NewCourse2025
+3. python3 -m PyInstaller --onefile --windowed ttt.py
+
+Build complete! The results are available in: /Users/myothantzin/PycharmProjects/NewCourse2025/dist
+
+right click => open => finder
+
+################################################
+
+from tkinter import *
+from tkinter import messagebox
+
+
+current_player = "X"
+board = [
+    [None, None, None],
+    [None, None, None],
+    [None, None, None]
+
+]
+x_scroll = 0
+y_scroll = 0
+
+
+def click(event):
+    b = event.widget
+
+    if b['text']:
+        return
+
+    if current_player == 'X':
+        b['fg'] = 'purple'
+    else:
+        b['fg'] = 'blue'
+
+    b['text'] = current_player
+
+    if winner():
+        show_winner()
+        restart()
+
+    if tie():
+        show_tie()
+        restart()
+
+    switch_player()
+
+
+def switch_player():
+    global current_player
+    if current_player == 'X':
+        current_player = 'O'
+    else:
+        current_player = 'X'
+
+
+def winner():
+    # r0   (1, 2, 3)
+    if board[0][0]['text'] == current_player and board[0][1]['text'] == current_player and board[0][2]['text'] == current_player:
+        return True
+    # r1   (4, 5, 6)
+    if board[1][0]['text'] == current_player and board[1][1]['text'] == current_player and board[1][2]['text'] == current_player:
+        return True
+    # r2   (7, 8, 9)
+    if board[2][0]['text'] == current_player and board[2][1]['text'] == current_player and board[2][2]['text'] == current_player:
+        return True
+
+    # c0(1, 4, 7)
+    if board[0][0]['text'] == current_player and board[1][0]['text'] == current_player and board[2][0]['text'] == current_player:
+        return True
+
+    # c1(2, 5, 8)
+    if board[0][1]['text'] == current_player and board[1][1]['text'] == current_player and board[2][1]['text'] == current_player:
+        return True
+
+    # c2(3, 6, 9)
+    if board[0][2]['text'] == current_player and board[1][2]['text'] == current_player and board[2][2]['text'] == current_player:
+        return True
+
+    # d1(1, 5, 9)
+    if board[0][0]['text'] == current_player and board[1][1]['text'] == current_player and board[2][2]['text'] == current_player:
+        return True
+
+    # d2(3, 5, 7)
+    if board[0][2]['text'] == current_player and board[1][1]['text'] == current_player and board[2][0]['text'] == current_player:
+        return True
+
+
+def show_winner():
+    m = f"Player {current_player} win!"
+    messagebox.showinfo("Game Over", m)
+    if current_player == 'X':
+        global x_scroll
+        x_scroll += 1
+        l1['text'] = f"X scroll = {x_scroll}"
+    else:
+        global y_scroll
+        y_scroll += 1
+        l2['text'] = f"O scroll = {x_scroll}"
+
+
+def restart():
+    board[0][0]['text'] = ''
+    board[0][1]['text'] = ''
+    board[0][2]['text'] = ''
+    board[1][0]['text'] = ''
+    board[1][1]['text'] = ''
+    board[1][2]['text'] = ''
+    board[2][0]['text'] = ''
+    board[2][1]['text'] = ''
+    board[2][2]['text'] = ''
+
+
+def tie():
+    if board[0][0]['text'] and board[0][1]['text'] and board[0][2]['text'] and board[1][0]['text'] and board[1][1]['text'] and board[1][2]['text'] and board[2][0]['text'] and board[2][1]['text'] and board[2][2]['text']:
+        return True
+
+
+def show_tie():
+    m = f"Draw!"
+    messagebox.showinfo("Game Over", m)
+
+
+x = Tk()
+x.title("Tac Ti Toe")
+
+n = 0
+for row in range(3): # 0
+    for col in range(3): # 0 1 2
+        n += 1
+        b = Button(x, width=10, height=5, font=('Arial', 30, 'bold'), text='')
+        b.grid(row=row, column=col)
+        b.bind("<Button-1>", click)
+        board[row][col] = b
+
+l1 = Label(x, text="X scroll = 0", font=('Arial', 30, 'bold'))
+l1.grid(row=3, columnspan=3)
+
+l2 = Label(x, text="O scroll = 0", font=('Arial', 30, 'bold'))
+l2.grid(row=4, columnspan=3)
+
+x.mainloop()
+
+################################################
+
+Step.17   --->   computer (random)
+
+
+def computer():
+    while True:
+        p = randrange(1, 10) # 1 to 9  => 5
+        r = (p - 1) // 3  # 1
+        c = (p - 1) % 3   # 1
+        if not board[r][c]['text']:
+            board[r][c]['text'] = current_player
+            break
+            
+            
+################################################            
+
+from tkinter import *
+from tkinter import messagebox
+from random import randrange
+
+
+current_player = "X"
+board = [
+    [None, None, None],
+    [None, None, None],
+    [None, None, None]
+
+]
+x_scroll = 0
+y_scroll = 0
+
+
+def click(event):
+    b = event.widget
+
+    if b['text']:
+        return
+
+    if current_player == 'X':
+        b['fg'] = 'purple'
+    else:
+        b['fg'] = 'blue'
+
+    b['text'] = current_player
+
+    if winner():
+        show_winner()
+        restart()
+
+    if tie():
+        show_tie()
+        restart()
+
+    switch_player()
+
+    computer()
+    
+    if winner():
+        show_winner()
+        restart()
+
+    if tie():
+        show_tie()
+        restart()
+
+    switch_player()
+
+
+def switch_player():
+    global current_player
+    if current_player == 'X':
+        current_player = 'O'
+    else:
+        current_player = 'X'
+
+
+def winner():
+    # r0   (1, 2, 3)
+    if board[0][0]['text'] == current_player and board[0][1]['text'] == current_player and board[0][2]['text'] == current_player:
+        return True
+    # r1   (4, 5, 6)
+    if board[1][0]['text'] == current_player and board[1][1]['text'] == current_player and board[1][2]['text'] == current_player:
+        return True
+    # r2   (7, 8, 9)
+    if board[2][0]['text'] == current_player and board[2][1]['text'] == current_player and board[2][2]['text'] == current_player:
+        return True
+
+    # c0(1, 4, 7)
+    if board[0][0]['text'] == current_player and board[1][0]['text'] == current_player and board[2][0]['text'] == current_player:
+        return True
+
+    # c1(2, 5, 8)
+    if board[0][1]['text'] == current_player and board[1][1]['text'] == current_player and board[2][1]['text'] == current_player:
+        return True
+
+    # c2(3, 6, 9)
+    if board[0][2]['text'] == current_player and board[1][2]['text'] == current_player and board[2][2]['text'] == current_player:
+        return True
+
+    # d1(1, 5, 9)
+    if board[0][0]['text'] == current_player and board[1][1]['text'] == current_player and board[2][2]['text'] == current_player:
+        return True
+
+    # d2(3, 5, 7)
+    if board[0][2]['text'] == current_player and board[1][1]['text'] == current_player and board[2][0]['text'] == current_player:
+        return True
+
+
+def show_winner():
+    m = f"Player {current_player} win!"
+    messagebox.showinfo("Game Over", m)
+    if current_player == 'X':
+        global x_scroll
+        x_scroll += 1
+        l1['text'] = f"X scroll = {x_scroll}"
+    else:
+        global y_scroll
+        y_scroll += 1
+        l2['text'] = f"O scroll = {x_scroll}"
+
+
+def restart():
+    board[0][0]['text'] = ''
+    board[0][1]['text'] = ''
+    board[0][2]['text'] = ''
+    board[1][0]['text'] = ''
+    board[1][1]['text'] = ''
+    board[1][2]['text'] = ''
+    board[2][0]['text'] = ''
+    board[2][1]['text'] = ''
+    board[2][2]['text'] = ''
+
+
+def tie():
+    if board[0][0]['text'] and board[0][1]['text'] and board[0][2]['text'] and board[1][0]['text'] and board[1][1]['text'] and board[1][2]['text'] and board[2][0]['text'] and board[2][1]['text'] and board[2][2]['text']:
+        return True
+
+
+def show_tie():
+    m = f"Draw!"
+    messagebox.showinfo("Game Over", m)
+
+
+def computer():
+    while True:
+        p = randrange(1, 10) # 1 to 9  => 5
+        r = (p - 1) // 3  # 1
+        c = (p - 1) % 3   # 1
+        if not board[r][c]['text']:
+            board[r][c]['text'] = current_player
+            break
+
+
+x = Tk()
+x.title("Tac Ti Toe")
+
+n = 0
+for row in range(3): # 0
+    for col in range(3): # 0 1 2
+        n += 1
+        b = Button(x, width=10, height=5, font=('Arial', 30, 'bold'), text='')
+        b.grid(row=row, column=col)
+        b.bind("<Button-1>", click)
+        board[row][col] = b
+
+l1 = Label(x, text="X scroll = 0", font=('Arial', 30, 'bold'))
+l1.grid(row=3, columnspan=3)
+
+l2 = Label(x, text="O scroll = 0", font=('Arial', 30, 'bold'))
+l2.grid(row=4, columnspan=3)
+
+x.mainloop()
+
+################################################################################################
+
+
+
 """
 
