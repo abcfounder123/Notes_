@@ -9,6 +9,8 @@ Procedural programming
 
 ################################################
 
+Day.13 (looping) (control flow)
+
 1. looping, iteration
 2. nested loop
 3. for and range
