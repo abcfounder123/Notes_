@@ -494,6 +494,8 @@ off_road_car.engine.on()
 
 #################################################
 
+Step.4   --->   Controlling data and function
+
 
 class Car:
     def __init__(self, VIN, tires, engine):
@@ -543,14 +545,14 @@ off_road_car.engine.on()
 
 2. Divide            ->   15 sec
 3. Draw              ->   30 sec
-4. car, pump, on     ->   50 sec
+-  car, pump, on     ->   50 sec
 
 total                ->   1 min 35 sec
 
-5. control           ->   1 min
+4. Controlling data and function  ->   1 min
    - data
-     - pressuse, state, 
-   - fun
+     - pressuse, state 
+   - function
      - on(), off()
      
 total                ->   ? <= 2 min 35 sec
