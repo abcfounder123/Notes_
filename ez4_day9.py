@@ -328,6 +328,225 @@ print("Force:", f, "N")
 
 ################################################
 
+initial_amount = 600 g
+half_life = 1000 years
+
+3000 years = ? 
+1000 years     ->  300 g       / 2
+1000 years     ->  150 g       / 2
+1000 years     ->   75 g       / 2
+
+n = ?  
+>> total / half_life
+>> 3000 / 1000 
+>> 3
+
+600 / 2 
+>> 600 * 1/2
+>> 600 * 0.5
+
+>>   ((600 / 2) / 2 ) / 2 
+>>   600 * 0.5 * 0.5 * 0.5 
+>>   600 * 0.5 ** n 
+>>   75 g
+
+initial_amount = 600 g
+half_life = 1000 years
+total = 10000 years
+
+>> initial_amount * 0.5 ** n 
+>> 600 * 0.5 ** 10
+
+
+8. Half-Life Calculator ( NO * 0.5 ** (time / half_life) )
+
+initial_amount = float(input("Enter initial amount(g): "))
+half_life = float(input("Enter half-life (years): "))  # 4.468e9 ( e9 = 1_000_000_000 )
+time = float(input("Enter elapsed time (years): "))  # 4_000_000_000
+ans = initial_amount * 0.5 ** (time / half_life)
+print("Remaining amount:", ans)
+
+################################################
+
+9. Character to ASCII Code / unicode( က )
+
+char = input("Enter a character: ")
+print("ASCII Code:", ord(char))
+
+################################################
+
+10. ASCII Code to Character
+
+ascii_code = int(input("Enter an ASCII code: "))
+print("Character:", chr(ascii_code))
+
+################################################
+
+11. decimal to bin, oct, hex
+
+decimal = int(input("Enter a decimal number: "))
+print("Binary:", bin(decimal))
+print("Octal:", oct(decimal))
+print("Hexadecimal:", hex(decimal))
+
+################################################
+
+12. bin, oct, hex  to decimal ( without code No )  "0011"
+
+int -> d = ?
+
+d = 10 -> d = 10
+b = 10 -> d =  2
+o = 10 -> d =  8
+x = 10 -> d = 16
+
+d = int("10", base=10)
+b = int("10", base=2)
+o = int("10", base=8)
+x = int("10", base=16)
+
+
+binary = input("Enter a binary number: ")
+print("Decimal:", int(binary, 2))
+
+oct = input("Enter a octal number: ")
+print("Decimal:", int(oct, 8))
+
+hex = input("Enter a hexadecimal number: ")
+print("Decimal:", int(hex, 16))
+
+################################################
+
+13. bin, oct, hex  to decimal ( with code No )  
+
+"0b1010"  
+-> 0b, 1010 
+-> base = 2
+
+binary = input("Enter a binary number: ")
+print("Decimal:", int(binary, base=0))
+
+oct = input("Enter a octal number: ")
+print("Decimal:", int(oct, base=0))
+
+hex = input("Enter a hexadecimal number: ")
+print("Decimal:", int(hex, base=0))
+
+################################################
+
+14. Celsius to Fahrenheit
+
+celsius = float(input("Enter temperature in Celsius: "))
+fahrenheit = (celsius * 9/5) + 32
+ans = f"{celsius} °C is equal to {fahrenheit} °F."
+print(ans)
+
+################################################
+
+15. Fahrenheit to Celsius
+
+fahrenheit = float(input("Enter temperature in Fahrenheit: "))
+celsius = (fahrenheit - 32) * 5/9
+print(f"{fahrenheit}°F is equal to {celsius}°C")
+
+################################################
+
+16. Temperature Converter (Celsius to Kelvin)
+
+celsius = float(input("Enter temperature in Celsius: "))
+kelvin = celsius + 273.15
+print(f"{celsius}°C is equal to {kelvin:.2f}K")
+
+################################################
+
+1km = 0.621371 miles
+- miles = km * 0.621371
+- km = miles / 0.621371
+
+1 miles = 1.609 km
+- km = miles * 1.609
+- miles = km / 1.609
+
+17. Kilometers to Miles       ( 1km = 0.621371 miles )   
+
+km = float(input("Enter distance in kilometers: "))
+miles = km * 0.621371
+print(f"{km} km is equal to {miles} miles")
+
+################################################
+
+18. Miles to Kilometers    
+
+miles = float(input("Enter distance in miles: "))
+km = miles / 0.621371
+print(f"{miles} miles is equal to {km} km")
+
+################################################
+
+19. Kilograms to Pounds   ( 1 kg = 2.20462 lb ) ( 1 lb = 0.454 kg )
+
+kg = float(input("Enter weight in kilograms: "))
+pounds = kg * 2.20462
+print(f"{kg} kg is equal to {pounds} pounds")
+
+################################################
+
+20. Pounds to Kilograms
+
+pounds = float(input("Enter weight in pounds: "))
+kg = pounds / 2.20462
+print(f"{pounds} pounds is equal to {kg} kg")
+
+################################################
+
+21. Meters to Feet     ( 1m = 3.28084 ft ) ( 1 ft = 0.305 m )
+
+meters = float(input("Enter length in meters: "))
+feet = meters * 3.28084
+print(f"{meters} meters is equal to {feet} feet")
+
+################################################
+
+22. Feet to Meters
+
+feet = float(input("Enter length in feet: "))
+meters = feet / 3.28084
+print(f"{feet} feet is equal to {meters} meters")
+
+################################################
+
+23. Seconds to Minutes and Hours
+
+seconds = int(input("Enter time in seconds: "))
+minutes = seconds / 60
+hours = seconds / 3600
+print(f"{seconds} seconds is equal to {minutes:.2f} minutes or {hours:.2f} hours")
+
+################################################
+
+24. Seconds to Seconds, Minutes and Hours   ( 350, 3950)
+
+seconds = int(input("Enter time in seconds: "))
+h = seconds // 3600
+m = (seconds % 3600) // 60
+s = (seconds % 3600) % 60
+print(f"{h}:{m}:{s}")
+
+################################################
+
+25. Seconds to Seconds, Minutes, Hours and days ( 90350 )
+25  --> 1 + 1
+
+seconds = int(input("Enter time in seconds: "))
+h = seconds // 3600
+m = (seconds % 3600) // 60
+s = (seconds % 3600) % 60
+d = h // 24
+nh = h % 24
+print(f"{d} days and {nh}:{m}:{s}")
+
+################################################
+
 """
 
 
