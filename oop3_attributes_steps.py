@@ -559,6 +559,354 @@ total                ->   ? <= 2 min 35 sec
 
 ##################################################################################################
 
+Day.25
+
+write, divide, draw, control
+
+write    --->  ....
+divide   --->  data, fun()   , water, electric, bed 2, toilet 2, ....
+draw design ( class .... )   , 
+  ........
+ / \\......\\
+ | |     | |
+------------------
+
+picture.1     Car()      ->   VIN, tires, engine
+picture.2     Tires()    ->   size, pressure=0, pump(p)
+picture.3     Engine()   ->   fuel_type, state="off", on(), off()
+
+##################################################################################################
+
+step.6   --->   auto create serial number
+
+n = 0
+Car.n += 1
+self.VIN = f"BMW-{Car.n:0>4}A"
+
+#################################################
+
+
+class Car:
+    n = 0
+    def __init__(self, tires, engine):
+        Car.n += 1
+        self.VIN = f"BMW-{Car.n:0>4}A"
+        self.tires = tires
+        self.engine = engine
+
+
+class Tires:
+    def __init__(self, size):
+        self.size = size
+        self.pressure = 0
+
+    def pump(self, p):
+        print(f"Pump with {p} psi.")
+        self.pressure = p
+
+
+class Engine:
+    def __init__(self, fuel_type):
+        self.fuel_type = fuel_type
+        self.state = "off"
+
+    def on(self):
+        if self.state == "off":
+            print("Engine on.")
+            self.state = "on"
+        else:
+            print("Already on.")
+
+    def off(self):
+        if self.state == "on":
+            print("Engine off.")
+            self.state = "off"
+        else:
+            print("Already off.")
+
+
+off_road_car = Car(tires=Tires(18), engine=Engine("petrol"))
+print(off_road_car.__dict__)
+
+off_road_car2 = Car(tires=Tires(18), engine=Engine("petrol"))
+print(off_road_car2.__dict__)
+
+off_road_car3 = Car(tires=Tires(18), engine=Engine("petrol"))
+print(off_road_car3.__dict__)
+
+print(Car.n)
+
+#################################################
+
+step.7   --->   representation string  ( memory address to serial number )
+
+memory address   ->   <__main__.Car object at 0x102fe0230>
+serial number    ->   BMW-0001A
+
+def __repr__(self):
+    return f"<__main__.Car object at {hex(id(self))}>"
+
+
+def __repr__(self):
+    return self.VIN
+    
+
+18 inches tires
+def __repr__(self):
+    return str(self.size) + " inches tires"
+    
+    
+Engine(petrol)
+def __repr__(self):
+    return f"Engine({self.fuel_type})"
+    
+#################################################
+    
+    
+class Car:
+    n = 0
+    def __init__(self, tires, engine):
+        Car.n += 1
+        self.VIN = f"BMW-{Car.n:0>4}A"
+        self.tires = tires
+        self.engine = engine
+
+    def __repr__(self):
+        return self.VIN
+
+
+class Tires:
+    def __init__(self, size):
+        self.size = size
+        self.pressure = 0
+
+    def pump(self, p):
+        print(f"Pump with {p} psi.")
+        self.pressure = p
+
+    def __repr__(self):
+        return str(self.size) + " inches tires"
+
+
+class Engine:
+    def __init__(self, fuel_type):
+        self.fuel_type = fuel_type
+        self.state = "off"
+
+    def on(self):
+        if self.state == "off":
+            print("Engine on.")
+            self.state = "on"
+        else:
+            print("Already on.")
+
+    def off(self):
+        if self.state == "on":
+            print("Engine off.")
+            self.state = "off"
+        else:
+            print("Already off.")
+
+    def __repr__(self):
+        return f"Engine({self.fuel_type})"
+
+
+# str, T, E, car
+off_road_car = Car(tires=Tires(18), engine=Engine("petrol"))
+print(off_road_car)
+print(off_road_car.tires)
+print(off_road_car.engine)
+
+off_road_car2 = Car(tires=Tires(18), engine=Engine("diesel"))
+print(off_road_car2)
+print(off_road_car2.engine)
+
+off_road_car3 = Car(tires=Tires(18), engine=Engine("gas"))
+print(off_road_car3)
+print(off_road_car3.engine)
+
+#################################################
+
+step.8   --->   creating many objects
+
+for _ in range(1000):
+    cars.append(Car(Tires(18), Engine("petrol")))
+
+#################################################
+
+
+class Car:
+    n = 0
+    def __init__(self, tires, engine):
+        Car.n += 1
+        self.VIN = f"BMW-{Car.n:0>4}A"
+        self.tires = tires
+        self.engine = engine
+
+    def __repr__(self):
+        return self.VIN
+
+
+class Tires:
+    def __init__(self, size):
+        self.size = size
+        self.pressure = 0
+
+    def pump(self, p):
+        print(f"Pump with {p} psi.")
+        self.pressure = p
+
+    def __repr__(self):
+        return str(self.size) + " inches tires"
+
+
+class Engine:
+    def __init__(self, fuel_type):
+        self.fuel_type = fuel_type
+        self.state = "off"
+
+    def on(self):
+        if self.state == "off":
+            print("Engine on.")
+            self.state = "on"
+        else:
+            print("Already on.")
+
+    def off(self):
+        if self.state == "on":
+            print("Engine off.")
+            self.state = "off"
+        else:
+            print("Already off.")
+
+    def __repr__(self):
+        return f"Engine({self.fuel_type})"
+
+
+cars = []
+
+# creating many objects
+# for - repeat 1000, iterate 0 to 999
+for _ in range(1000):
+    cars.append(Car(Tires(18), Engine("petrol")))
+
+print(cars)
+
+#################################################
+
+step.9   --->   controlling many objects
+
+
+for car in cars:
+    car.tires.pump(8)
+    car.engine.on()
+
+print(cars)
+
+#################################################
+
+odd serial number
+
+cars = [0, 1, 2, 3,4 5, ..., 999]
+pump = 0, 3, 5, 7, ..., 999
+start = 0
+stop = 100
+step = 2
+
+for car in cars[: :2]:
+    car.tires.pump(8)
+    car.engine.on()
+
+#################################################
+
+even 
+
+for car in cars[1: :2]:
+    car.tires.pump(8)
+    car.engine.on()
+
+#################################################
+
+reverse
+
+for car in cars[::-1]:
+    car.tires.pump(8)
+    car.engine.on()
+
+#################################################
+
+last 10
+
+for car in cars[-10:]:
+    car.tires.pump(8)
+    car.engine.on()
+
+#################################################
+
+
+class Car:
+    n = 0
+    def __init__(self, tires, engine):
+        Car.n += 1
+        self.VIN = f"BMW-{Car.n:0>4}A"
+        self.tires = tires
+        self.engine = engine
+
+    def __repr__(self):
+        return f"{self.VIN} (pressure = {self.tires.pressure}, Engine = {self.engine.state})"
+
+
+class Tires:
+    def __init__(self, size):
+        self.size = size
+        self.pressure = 0
+
+    def pump(self, p):
+        print(f"Pump with {p} psi.")
+        self.pressure = p
+
+    def __repr__(self):
+        return str(self.size) + " inches tires"
+
+
+class Engine:
+    def __init__(self, fuel_type):
+        self.fuel_type = fuel_type
+        self.state = "off"
+
+    def on(self):
+        if self.state == "off":
+            print("Engine on.")
+            self.state = "on"
+        else:
+            print("Already on.")
+
+    def off(self):
+        if self.state == "on":
+            print("Engine off.")
+            self.state = "off"
+        else:
+            print("Already off.")
+
+    def __repr__(self):
+        return f"Engine({self.fuel_type})"
+
+
+cars = []
+
+for _ in range(1000):
+    cars.append(Car(Tires(18), Engine("petrol")))
+
+print(cars)
+
+for car in cars[-10:]:
+    car.tires.pump(8)
+    car.engine.on()
+
+print(cars)
+
+##################################################################################################
+
 """
 
 
