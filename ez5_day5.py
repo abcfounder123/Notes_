@@ -1,6 +1,27 @@
 
 """
 
+Day.4
+
+Indexing
+- positive index
+- negative index
+- hard = total - abs of easy
+- f1, f5, f10
+- l1, l5, l10
+- index range = -t to t-1
+- middle
+  - odd, m = t // 2
+  - even, r = t // 2, l = r - 1 
+  
+################################################
+
+a b c d e f g        7
+0 1 2 3 4 5 6        positive index
+7 6 5 4 3 2 1        negative index
+
+################################################
+
 Day.5
 
 Slicing
