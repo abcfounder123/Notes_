@@ -43,6 +43,20 @@ is_alphabet (a to z တွေနဲ့ ကကြီး ခကွေးလို�
 
 14. count_vowels(s) (စာလုံးထဲက a, e, i, o, u ဘယ်နှစ်လုံးရှိလဲရေတွက်ခြင်း။)
 
+15. sum_of_list(iter) (စာရင်းထဲက နံပါတ်တွေကို ပေါင်းခြင်း။)
+
+16. max(lst) (အများဆုံးတန်ဖိုး ရှာခြင်း။)
+
+17. min(lst) (အနည်းဆုံးတန်ဖိုး ရှာခြင်း။)
+
+18. find_max_min(lst) အများဆုံးနဲ့ အနည်းဆုံးတန်ဖိုး ရှာခြင်း။ 
+
+19. find_max_min_total_average(lst) အများဆုံးနဲ့ အနည်းဆုံးတန်ဖိုး ရှာခြင်း။ 
+
+20. linear search
+
+21. Binary Search
+
 ################################################################################################
 
 1. is_even (တန်ဖိုးတစ်ခုခုကို 2 နဲ့စားလို့ အကြွင်း 0 ရရင် စုံကိန်းဖြစ်ပါတယ်။)( n % 2 == 0)
@@ -369,6 +383,569 @@ def count_vowels(s):
 
 print(count_vowels("I go to school by bicycle."))
 
+################################################################################################
+
+Day. 19
+
+15. sum_of_list(iter) (စာရင်းထဲက နံပါတ်တွေကို ပေါင်းခြင်း။)
+16. max(lst) (အများဆုံးတန်ဖိုး ရှာခြင်း။)
+17. min(lst) (အနည်းဆုံးတန်ဖိုး ရှာခြင်း။)
+18. find_max_min(lst) အများဆုံးနဲ့ အနည်းဆုံးတန်ဖိုး ရှာခြင်း။ 
+19. find_max_min_total_average(lst) အများဆုံးနဲ့ အနည်းဆုံးတန်ဖိုး ရှာခြင်း။ 
+20. linear search
+21. Binary Search
+
+################################################################################################
+
+15. sum_of_list(iter) (စာရင်းထဲက နံပါတ်တွေကို ပေါင်းခြင်း။)
+
+
+def sum(iter):
+    t = 0
+    for i in iter:
+        t += i
+    return t
+
+################################################
+
+16. max(lst) (အများဆုံးတန်ဖိုး ရှာခြင်း။)
+
+
+def greater_number(n1, n2, /):
+    if n1 > n2:
+        return n1
+    else:
+        return n2
+
+
+def max(lst):
+    m = lst[0] 
+    for i in lst[1:]: 
+        m = greater_number(m, i) 
+    return m
+
+
+x = [1, 5, 3, 7, 4, 12, 32, 432, 65, 567, 93]
+print(max(x))    
+
+################################################
+
+17. min(lst) (အနည်းဆုံးတန်ဖိုး ရှာခြင်း။)
+
+
+def less_number(n1, n2, /):
+    if n1 < n2:
+        return n1
+    else:
+        return n2
+
+
+def min(lst):
+    m = lst[0]
+    for i in lst[1:]:
+        m = less_number(m, i)
+    return m
+
+
+x = [5, 3, 7, 4, 12, 32, 432, 65, 567, 93, 1]
+print(min(x))
+
+################################################
+
+18. find_max_min(lst) အများဆုံးနဲ့ အနည်းဆုံးတန်ဖိုး ရှာခြင်း။ 
+
+def greater_number(n1, n2, /):
+    if n1 > n2:
+        return n1
+    else:
+        return n2
+
+
+def less_number(n1, n2, /):
+    if n1 < n2:
+        return n1
+    else:
+        return n2
+
+
+def max(lst):
+    m = lst[0]
+    for i in lst[1:]:
+        m = greater_number(m, i)
+    return m
+
+
+def min(lst):
+    m = lst[0]
+    for i in lst[1:]:
+        m = less_number(m, i)
+    return m
+
+
+def max_min(lst):
+    return max(lst), min(lst)
+
+
+x = [5, 3, 7, 4, 12, 32, 432, 65, 567, 93, 1]
+
+max_number, min_number = max_min(x)
+
+print(max_min(x))
+print(max_number)
+print(min_number)
+
+################################################
+
+19. find_max_min_total_average(lst) အများဆုံးနဲ့ အနည်းဆုံးတန်ဖိုး ရှာခြင်း။ 
+
+[1, 1, 2, 3, 3, 4, 4, 2]
+
+max = 4
+min = 1
+total = 20
+average = t/n = 20/8 = 2.5
+
+################################################
+
+
+def greater_number(n1, n2, /):
+    if n1 > n2:
+        return n1
+    else:
+        return n2
+
+
+def less_number(n1, n2, /):
+    if n1 < n2:
+        return n1
+    else:
+        return n2
+
+
+def max(lst):
+    m = lst[0]
+    for i in lst[1:]:
+        m = greater_number(m, i)
+    return m
+
+
+def min(lst):
+    m = lst[0]
+    for i in lst[1:]:
+        m = less_number(m, i)
+    return m
+
+
+def sum(iter):
+    t = 0
+    for i in iter:
+        t += i
+    return t
+
+
+def avg(lst):
+    return sum(lst)/len(lst)
+
+
+def max_min(lst):
+    return max(lst), min(lst)
+
+
+def max_min_total_average(lst):
+    return max(lst), min(lst), sum(lst), avg(lst)
+
+
+x = [1, 1, 2, 3, 3, 4, 4, 2]
+
+print(max_min_total_average(x))
+
+################################################
+
+20. linear search
+
+################################################
+
+atoms = ["Hydrogen", "Helium", "Lithium", "Beryllium",
+         "Boron", "Carbon", "Nitrogen", "Oxygen", "Fluorine",
+         "Neon", "Sodium", "Magnesium", "Aluminium", "Silicon",
+         "Phosphorus", "Sulfur", "Chlorine", "Argon", "Potassium",
+         "Calcium", "Scandium", "Titanium", "Vanadium", "Chromium",
+         "Manganese", "Iron", "Cobalt", "Nickel", "Copper", "Zinc",
+         "Manganese" "Germanium", "strontium",
+         "Gallium", "Germanium", "Arsenic", "Selenium", "Bromine",
+         "Krypton", "Rubidium", "Strontium", "Yttrium", "Zirconium",
+         "Niobium", "Molybdenum", "Technetium", "Ruthenium", "Rhodium",
+         "Palladium", "Silver", "Cadmium", "Indium", "Tin", "Antimony", "Barium",
+         "Tellurium", "Iodine", "Xenon", "Cesium", "Barium", "Lanthanum",
+         "Cerium", "Praseodymium", "Neodymium", "Promethium", "Samarium",
+         "Europium", "Gadolinium", "Terbium", "Dysprosium", "Holmium",
+         "Erbium", "Thulium", "Ytterbium", "Lutetium", "Hafnium", "Tantalum",
+         "Tungsten", "Platinum", "Gold",
+         "Mercury", "Astatine", "Radon", "Francium", "Radium"]
+
+################################################
+
+linear search
+
+84
+"Hydrogen"   -    0    1
+"Gold"       -   78   79
+"Radium"     -   83   84
+
+range      -  1 to 84
+
+1_000      -  1 to  1_000
+
+1_000_000  -  1 to  1_000_000
+
+n          -  1 to  n
+
+################################################
+
+iterate and compare
+- for atom in atoms:
+- atom == "Gold" 
+
+reduce time 
+- break
+
+for atom in atoms:
+    print(atom)
+    if atom == "Carbon":
+        print("We found Carbon.")
+        break
+
+################################################
+
+
+def linear_search(collection, element):
+    for e in collection:
+        if e == element:
+            return True
+    return False
+    
+    
+element = input("Element : ")
+c1 = linear_search(atoms, element)
+
+if c1:
+    print(f"We found {element}.")
+
+################################################
+
+21. Binary Search
+
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+1    left
+5    middle
+10   right
+
+################################################
+
+[10, 30, 40, 50, 70, 72, 74, 81, 98, 131, 164]
+
+0
+
+middle = 72
+[10, 30, 40, 50, 70]
+
+middle = 40
+[10, 30]
+
+middle = 30
+[10,]
+
+middle = 10
+[]
+
+don't found
+
+################################################
+
+1. sort 
+2. middle value, compare equal
+3. if value is smaller, left
+   if value is greater, right
+
+4. if found, break
+5. if empty, break
+
+################################################
+
+e = 10
+
+1. c = [10, 30, 40, 50, 70, 72, 74, 81, 98, 131, 164]       11
+
+2. middle value (m = t//2 -> 5 ),  c[m] ->  72
+   compare equal ( middle == e )
+
+3. if value is smaller, left
+   - if e < middle, c = c[:m] # 01234, [10, 30, 40, 50, 70]
+   if value is greater, right
+   - - if e > middle, c = c[m+1:] # 6789 10, [74, 81, 98, 131, 164] 
+   
+################################################
+  
+e = 10
+  
+c = [10, 30, 40, 50, 70, 72, 74, 81, 98, 131, 164]   11, 5  
+m = 72
+middle == e
+e < middle -> c[:m] 
+
+###
+
+c = [10, 30, 40, 50, 70]   5, 2
+m = 40
+middle == e
+e < middle -> c[:m] 
+
+###
+
+c = [10, 30]  2, 1
+m = 30
+middle == e
+e < middle -> c[:m]
+
+###
+
+c = [10]  1, 0
+m = 10
+middle == e -> if found, break
+
+################################################
+  
+e = 0
+  
+c = [10, 30, 40, 50, 70, 72, 74, 81, 98, 131, 164]   11, 5  
+m = 72
+middle == e
+e < middle -> c[:m] 
+
+###
+
+c = [10, 30, 40, 50, 70]   5, 2
+m = 40
+middle == e
+e < middle -> c[:m] 
+
+###
+
+c = [10, 30]  2, 1
+m = 30
+middle == e
+e < middle -> c[:m]
+
+###
+
+c = [10]  1, 0
+m = 10
+middle == e 
+e < middle -> c[:m] 
+
+###
+
+c = [], length = 0
+if empty, break
+
+################################################
+
+e = 10
+
+c = [10, 30, 40, 50, 70, 72, 74, 81, 98, 131, 164]
+
+t = len(c) # 11
+m = t // 2 # 5
+middle = c[m] # 72
+
+if middle == e:
+    print("found")
+    # break
+
+elif e < middle:
+    c = c[:m] # [10, 30, 40, 50, 70]
+
+elif e > middle:
+    c = c[m+1:] # [74, 81, 98, 131, 164]
+    
+################################################
+
+72 -> 1
+10 -> 4
+
+Infinite loop
+- while
+
+################################################
+
+e = 10
+
+c = [10, 30, 40, 50, 70, 72, 74, 81, 98, 131, 164] # 11
+print(c)
+print("- " * 39)
+
+while len(c) > 0:
+    t = len(c)  #   11  5  2  1
+    m = t // 2  #    5  2  1  0
+    middle = c[m] # 72 40 30 10
+    print(middle)
+    if middle == e:
+        print("found")
+        print("- " * 39)
+        break
+
+    elif e < middle:
+        c = c[:m]  # [10, 30, 40, 50, 70]  [10, 30] [10]
+        print(c)
+        print("- " * 39)
+
+    elif e > middle:
+        c = c[m + 1:]  # [74, 81, 98, 131, 164]
+        print(c)
+        print("- " * 39)
+        
+################################################
+
+[10, 30, 40, 50, 70, 72, 74, 81, 98, 131, 164]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+72
+[10, 30, 40, 50, 70]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+40
+[10, 30]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+30
+[10]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+10
+found
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+################################################
+
+[10, 30, 40, 50, 70, 72, 74, 81, 98, 131, 164]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+72
+[74, 81, 98, 131, 164]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+98
+[131, 164]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+164
+found
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+################################################
+
+84
+
+"Hydrogen"   -   0     1     6
+"Gold"       -   78   79     4
+"Radium"     -   83   84     5
+
+linear search -> 1 to 84
+binary search -> 1 to 6
+
+84
+
+42
+21
+10
+5
+2
+1
+
+################################################
+
+1_000_000
+linear search -> 1 to 1_000_000    10
+binary search -> 1 to 19            -
+
+1.500000
+2.250000
+3.125000
+4.62500
+5.31250
+6.15625
+7.7812
+8.3906
+9.1953
+10.976
+11.488
+12.244
+13.122
+14.61
+15.30
+16.15
+17.7
+18.3
+19.1
+
+################################################
+
+c = ['Aluminium', 'Antimony', 'Argon', 'Arsenic', 'Astatine', 'Barium', 'Barium', 'Beryllium', 'Boron', 'Bromine', 'Cadmium', 'Calcium', 'Carbon', 'Cerium', 'Cesium', 'Chlorine', 'Chromium', 'Cobalt', 'Copper', 'Dysprosium', 'Erbium', 'Europium', 'Fluorine', 'Francium', 'Gadolinium', 'Gallium', 'Germanium', 'Gold', 'Hafnium', 'Helium', 'Holmium', 'Hydrogen', 'Indium', 'Iodine', 'Iron', 'Krypton', 'Lanthanum', 'Lithium', 'Lutetium', 'Magnesium', 'Manganese', 'ManganeseGermanium', 'Mercury', 'Molybdenum', 'Neodymium', 'Neon', 'Nickel', 'Niobium', 'Nitrogen', 'Oxygen', 'Palladium', 'Phosphorus', 'Platinum', 'Potassium', 'Praseodymium', 'Promethium', 'Radium', 'Radon', 'Rhodium', 'Rubidium', 'Ruthenium', 'Samarium', 'Scandium', 'Selenium', 'Silicon', 'Silver', 'Sodium', 'Strontium', 'Strontium', 'Sulfur', 'Tantalum', 'Technetium', 'Tellurium', 'Terbium', 'Thulium', 'Tin', 'Titanium', 'Tungsten', 'Vanadium', 'Xenon', 'Ytterbium', 'Yttrium', 'Zinc', 'Zirconium']
+
+e = 'Scandium'
+
+print(c)
+print("- " * 39)
+
+while len(c) > 0:
+    t = len(c)  #   11  5  2  1
+    m = t // 2  #    5  2  1  0
+    middle = c[m] # 72 40 30 10
+    print(middle)
+    if middle == e:
+        print("found")
+        print("- " * 39)
+        break
+
+    elif e < middle:
+        c = c[:m]  # [10, 30, 40, 50, 70]  [10, 30] [10]
+        print(c)
+        print("- " * 39)
+
+    elif e > middle:
+        c = c[m + 1:]  # [74, 81, 98, 131, 164]
+        print(c)
+        print("- " * 39)
+
+################################################
+
+atoms = ['Aluminium', 'Antimony', 'Argon', 'Arsenic', 'Astatine', 'Barium', 'Barium', 'Beryllium', 'Boron', 'Bromine', 'Cadmium', 'Calcium', 'Carbon', 'Cerium', 'Cesium', 'Chlorine', 'Chromium', 'Cobalt', 'Copper', 'Dysprosium', 'Erbium', 'Europium', 'Fluorine', 'Francium', 'Gadolinium', 'Gallium', 'Germanium', 'Gold', 'Hafnium', 'Helium', 'Holmium', 'Hydrogen', 'Indium', 'Iodine', 'Iron', 'Krypton', 'Lanthanum', 'Lithium', 'Lutetium', 'Magnesium', 'Manganese', 'ManganeseGermanium', 'Mercury', 'Molybdenum', 'Neodymium', 'Neon', 'Nickel', 'Niobium', 'Nitrogen', 'Oxygen', 'Palladium', 'Phosphorus', 'Platinum', 'Potassium', 'Praseodymium', 'Promethium', 'Radium', 'Radon', 'Rhodium', 'Rubidium', 'Ruthenium', 'Samarium', 'Scandium', 'Selenium', 'Silicon', 'Silver', 'Sodium', 'Strontium', 'Strontium', 'Sulfur', 'Tantalum', 'Technetium', 'Tellurium', 'Terbium', 'Thulium', 'Tin', 'Titanium', 'Tungsten', 'Vanadium', 'Xenon', 'Ytterbium', 'Yttrium', 'Zinc', 'Zirconium']
+
+
+def linear_search(collection, element):
+    for e in collection:
+        if e == element:
+            return True
+    return False
+
+
+def binary_search(c, e):
+    while len(c) > 0:
+        t = len(c)
+        m = t // 2
+        middle = c[m]
+
+        if middle == e:
+            return True
+        elif e < middle:
+            c = c[:m]
+        elif e > middle:
+            c = c[m + 1:]
+    return False
+
+
+element = input("Element : ")
+
+if linear_search(atoms, element):
+    print(f"We found {element}.")
+
+if binary_search(atoms, element):
+    print(f"We found {element}.")
+    
 ################################################################################################
 
 """
