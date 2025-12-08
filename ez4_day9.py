@@ -547,6 +547,283 @@ print(f"{d} days and {nh}:{m}:{s}")
 
 ################################################
 
+Day. 11
+
+# * rate
+
+26. Currency Converter (USD to MMK)
+
+usd = float(input("Enter amount in USD: "))
+exchange_rate = 6000
+mmk = usd * exchange_rate
+print(f"{usd} USD is equal to {mmk} MMK")
+
+dollar = float(input("Dollar : "))
+kyats = dollar * 5000
+print(f"{dollar} $ is equal to {kyats:.0f} kyats.")
+
+################################################
+
+27. Currency Converter (Custom Rate)
+
+1 $        -> 5000 kyats
+1 kyats    -> 0.0002 $
+
+1 $ -> 40 B
+1 B -> 0.025 $
+
+amount = float(input("Enter amount: "))
+rate = float(input("Enter exchange rate: "))
+converted = amount * rate
+print(f"Converted amount: {converted}")
+
+Enter amount: 10000
+Enter exchange rate: 0.0002
+Converted amount: 2.0
+
+Enter amount: 2
+Enter exchange rate: 5000
+Converted amount: 10000.0
+
+################################################
+
+28. Step-to-Calorie Converter
+
+1 Step -> 0.04 kilo calorie
+1 kcal -> 25 steps
+
+steps = int(input("Enter number of steps taken: "))
+calories_burned = steps * 0.04  # Approximation for an average person
+print(f"Calories burned: {calories_burned:.0f} kcal")
+
+calories_burned = int(input("Calories burned: "))
+steps = calories_burned * 25
+print(f"Number of steps : {steps:.0f} steps")
+
+################################################
+
+29. Storage Converter (GB to MB & KB)
+
+
+b -> kb -> mb -> gb    (1000)(1024)
+b -> gb
+b
+k = e3 = 1000
+M = e6 = 1_000_000
+G = e9 = 1_000_000_000
+
+
+gb = float(input("Enter storage in GB: "))
+mb = gb * 1000
+kb = gb * 1_000_000
+print(f"{gb} GB is equal to {mb} MB or {kb} KB")
+
+gb = float(input("Enter storage in GB: "))
+mb = gb * 1024  # 2 ** 10  Vs  10 ** 3
+kb = mb * 1024
+print(f"{gb} GB is equal to {mb} MB or {kb} KB")
+
+################################################
+
+30. Bytes to GB + MB + KB + B
+  
+                    34_567_891_234 bytes
+                    
+                  34 GB + 567 MB + 891 KB + 234 B
+                                
+                    
+                    34_567_891_234 bytes
+
+                 34_567_891 KB    +  234 bytes
+                 
+            34_567 MB + 891 KB 
+
+       34 GB + 567 MB
+
+################################################
+
+31. 
+
+bytes_size = int(input("Enter size in bytes: ")) # 34_567_891_234 bytes
+
+e = 1000
+
+kb = bytes_size // e # 34_567_891 KB
+b = bytes_size % e # 234 B
+
+mb = kb // e # 34_567 MB
+kb2 = kb % e # 891 KB
+
+gb = mb // e # 34 GB
+mb2 = mb % e # 567 MB
+
+print(f"{bytes_size} bytes = {gb} GB {mb2} MB {kb2} KB {b} B")
+
+
+Enter size in bytes: 34_567_891_234
+34567891234 bytes = 34 GB 567 MB 891 KB 234 B
+
+################################################
+
+bytes_size = int(input("Enter size in bytes: ")) # 34_567_891_234 bytes
+
+e = 1024
+
+kb = bytes_size // e 
+b = bytes_size % e 
+
+mb = kb // e 
+kb2 = kb % e
+
+gb = mb // e
+mb2 = mb % e 
+
+print(f"{bytes_size} bytes = {gb} GB {mb2} MB {kb2} KB {b} B")
+
+
+Enter size in bytes: 34_567_891_234
+34567891234 bytes = 32 GB 198 MB 522 KB 290 B
+
+################################################
+
+32.
+
+         12_345_678_900       bytes
+         
+      12 GB     345_678_900 bytes
+         
+              345 MB      678_900   bytes
+              
+                      678 KB     900  bytes
+         
+ 12 GB  345 MB  678 KB  900  bytes
+
+
+bytes_size = int(input("Enter size in bytes: ")) # 12_345_678_900       bytes
+
+gb = bytes_size // 1e9                       # 12 GB
+mb = (bytes_size % 1e9) // 1e6               # 345 MB
+kb = ((bytes_size % 1e9) % 1e6) // 1e3       # 678 KB
+b = ((bytes_size % 1e9) % 1e6) % 1e3         # 900  bytes
+
+print(f"{gb} GB {mb} MB {kb} KB and {b} bytes")
+
+################################################
+
+bytes_size = int(input("Enter size in bytes: ")) # 12_345_678_900       bytes
+
+gb = bytes_size // (1024 ** 3)                               # 11 GB
+mb = (bytes_size % (1024 ** 3)) // (1024 ** 2)               # 509 MB
+kb = ((bytes_size % (1024 ** 3)) % (1024 ** 2)) // 1024       # 775 KB
+b = ((bytes_size % (1024 ** 3)) % (1024 ** 2)) % 1024         # 52 bytes
+
+print(f"{gb} GB {mb} MB {kb} KB and {b} bytes")
+
+################################################################################################
+
+1. Check Operating System
+
+import platform
+import sys
+import psutil
+
+print("Operating System:", platform.system()) # mac OS and IOS based on Darwin OS
+
+################################################
+
+2. Check OS Version
+
+import platform
+print("OS Version:", platform.version())
+
+################################################
+
+3. Check Machine Type (32-bit or 64-bit)
+
+import platform
+print("Machine Type:", platform.architecture()[0])
+
+################################################
+
+4. Check Python Version
+
+import sys
+print("Python Version:", sys.version)
+
+################################################
+
+5. Check Total RAM / Available RAM (Memory)
+
+import psutil
+ram = psutil.virtual_memory()
+total = ram.total / ( 1024 ** 3 )
+available = ram.available / ( 1024 ** 3 )
+print(f"Total RAM:", total, "GB")
+print(f"Available RAM:", available, "GB")
+
+################################################
+
+6. Check CPU Information
+
+import psutil
+print("CPU Cores:", psutil.cpu_count(logical=False))        
+print("Logical CPUs:", psutil.cpu_count(logical=True))     
+
+################################################
+
+platform
+1. system()
+2. version()
+3. architecture()[0] 
+
+sys
+1. version
+
+psutil
+1. virtual_memory() -> RAM 
+   - total = 8GB
+   - available = 3GB 
+   
+2. cpu_count(logical=False) # man = 2
+   cpu_count(logical=True)  # work = 4
+
+################################################
+
+Computer
+
+i5
+i7
+
+silicon chip
+m1         i7 12 generation
+m2
+m3
+m4
+m5
+
+i7    13 seconds      100 m     ( 1 km)
+m1    13 seconds      100 m     (40 km)
+
+Server
+
+quantom  aeroplane
+
+################################################
+
+AI
+
+AI    500 millions
+D       5 millions
+
+AI      5 millions to  500 millions, data 
+
+quantom  5000 
+
+New AI
+
+################################################################################################   
+
+
 """
 
 
