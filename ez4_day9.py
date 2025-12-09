@@ -721,6 +721,34 @@ print(f"{gb} GB {mb} MB {kb} KB and {b} bytes")
 
 ################################################################################################
 
+platform
+1. system()
+2. version()
+3. architecture()[0] 
+
+sys
+1. version
+
+psutil (process and system utilities )
+1. virtual_memory() -> RAM 
+   - total = 8GB
+   - available = 3GB 
+   
+2. cpu_count(logical=False) # man = 2
+   cpu_count(logical=True)  # work = 4
+   
+3. disk_usage('/')
+   - total = 256GB
+   - free = 156GB 
+   
+4. cpu_percent(interval=1)
+
+5. sensors_battery()
+   - power_plugged
+   - percent
+
+################################################
+
 1. Check Operating System
 
 import platform
@@ -771,21 +799,334 @@ print("Logical CPUs:", psutil.cpu_count(logical=True))
 
 ################################################
 
-platform
-1. system()
-2. version()
-3. architecture()[0] 
+Day.12
 
-sys
-1. version
+7. Check Disk Usage (Total and Free Space)
 
-psutil
-1. virtual_memory() -> RAM 
-   - total = 8GB
-   - available = 3GB 
-   
-2. cpu_count(logical=False) # man = 2
-   cpu_count(logical=True)  # work = 4
+import psutil
+disk = psutil.disk_usage('/')
+t = disk.total / ( 1024 ** 3 )
+f = disk.free / ( 1024 ** 3 )
+print(f"Total Disk Space: {t:.0f} GB")
+print(f"Free Disk Space: {f:.0f} GB")
+
+################################################
+
+8. Check CPU Usage
+
+import psutil
+cpu = psutil.cpu_percent(interval=1)
+print(f"CPU Usage:", cpu, "%")
+
+################################################
+
+9. Check Battery Status
+
+import psutil
+
+battery = psutil.sensors_battery()
+charging = battery.power_plugged
+percent = battery.percent
+
+print(f"Battery Status: {percent}%")
+print("Charging:", charging)
+
+################################################
+
+import psutil
+disk = psutil.disk_usage('/')
+
+gb = disk.free // ( 1024 ** 3 )
+mb = (disk.free % ( 1024 ** 3 )) // ( 1024 ** 2 )
+kb = ((disk.free % ( 1024 ** 3 )) % ( 1024 ** 2 )) // 1024
+b =  ((disk.free % ( 1024 ** 3 )) % ( 1024 ** 2 )) % 1024
+print(f"Free Disk Space: {gb} GB {mb} MB {kb} KB and {b} bytes")
+
+################################################################################################
+
+        bytes
+              
+         GB        B             ( 1024 ** 3 )
+         
+              MB     B           ( 1024 ** 2 )
+              
+                 KB    B         ( 1024 )
+                 
+                                
+               136_023_508_001 bytes       (1000)
+             
+        136_023_508 kb       1 b
+        
+   136_023 mb   508 kb
+    
+136 gb  23 mb     
+
+import psutil
+disk = psutil.disk_usage('/')
+
+gb = disk.free // ( 1024 ** 3 )
+mb = (disk.free % ( 1024 ** 3 )) // ( 1024 ** 2 )
+kb = ((disk.free % ( 1024 ** 3 )) % ( 1024 ** 2 )) // 1024
+b =  ((disk.free % ( 1024 ** 3 )) % ( 1024 ** 2 )) % 1024
+print(f"Free Disk Space: {gb} GB {mb} MB {kb} KB and {b} bytes")
+
+b = disk.free % 1024
+kb = (disk.free // 1024) % 1024
+mb = ((disk.free // 1024) // 1024) % 1024
+gb = ((disk.free // 1024) // 1024) // 1024
+print(f"Free Disk Space: {gb} GB {mb} MB {kb} KB and {b} bytes")
+
+################################################
+
+10. BMI (Body Mass Index) Calculator
+
+weight = float(input("Enter weight in kg: "))
+height = float(input("Enter height in meters: "))
+bmi = weight / (height ** 2)
+print(f"Your BMI is: {bmi}")
+
+weight = float(input("Enter weight in lb: ")) / 2.2
+height = float(input("Enter height in ft: ")) * 0.3048
+bmi = weight / (height ** 2)
+print(f"Your BMI is: {bmi}")
+
+
+# 1lb = 0.454 kg  ( lb * 0.454 )
+# 1kg = 2.2lb     ( lb / 2.2 )
+
+# 1ft = 0.3048m   ( ft * 0.3048 )
+# 1m = 3.28 ft    ( ft / 3.28 )
+
+weight2 = float(input("Enter weight in lb: ")) * 0.454
+height_f = float(input("Enter height in ft: ")) * 0.3048
+height_i = float(input("Enter height in inches: ")) * 0.0254
+height2 = height_f + height_i
+
+bmi2 = weight2 / (height2 ** 2)
+print(f"Your BMI is: {bmi2}")
+
+################################################
+
+11. Heart Rate Zones Calculator
+
+32
+
+188 bpm
+
+< 94         ( sit )
+
+> 94         ( walk )
+
+> 131 bpm    ( run )
+
+
+64
+
+< 78         ( sit )
+
+> 78         ( walk )
+
+> 109 bpm    ( run )
+
+100 % = 100 / 100 = 1
+95%  = 95 / 100 = 0.95
+85 % = 85 / 100 = 0.85
+75 % = 75 / 100 = 0.75
+50 % = 50 / 100 = 0.5
+5 %  = 5 / 100  = 0.05 
+105% = 105 / 100 = 1.05 
+
+age = int(input("Enter your age: "))
+max_heart_rate = 220 - age
+
+print(f"Maximum Heart Rate: {max_heart_rate} bpm")
+print(f"Fat Burn Zone (50-70%): {max_heart_rate * 0.5} - {max_heart_rate * 0.7} bpm")
+print(f"Cardio Zone (70-85%): {max_heart_rate * 0.7} - {max_heart_rate * 0.85} bpm")
+print(f"Peak Zone (85-100%): {max_heart_rate * 0.85} - {max_heart_rate} bpm")
+
+################################################
+
+12. Moles to Mass Converter
+
+molar_mass = float(input("Enter molar mass (g/mol): "))
+moles = float(input("Enter number of moles: "))
+print("Mass:", molar_mass * moles, "g")
+
+################################################
+
+13. Mass to Moles Converter
+
+mass = float(input("Enter mass (g): "))
+molar_mass = float(input("Enter molar mass (g/mol): "))
+print("Moles:", mass / molar_mass)
+
+################################################
+
+14. Concentration (Molarity) Calculator
+
+moles = float(input("Enter moles of solute: "))
+volume = float(input("Enter volume of solution (L): "))
+print("Molarity:", moles / volume, "M")
+
+################################################
+
+15. Dilution Calculator (M1V1 = M2V2)
+
+M1 = float(input("Enter initial molarity (M): "))
+V1 = float(input("Enter initial volume (L): "))
+M2 = float(input("Enter final molarity (M): "))
+print("Final volume:", (M1 * V1) / M2, "L")
+
+################################################
+
+16. Work Done
+
+force = float(input("Enter force (N): "))
+distance = float(input("Enter distance (m): "))
+print("Work Done:", force * distance, "J")
+
+################################################
+
+17. Gravitational Force
+
+G = 6.674 * (10**-11)
+m1 = float(input("Enter mass of first object (kg): "))
+m2 = float(input("Enter mass of second object (kg): "))
+r = float(input("Enter distance between objects (m): "))
+print("Gravitational Force:", G * (m1 * m2) / (r ** 2), "N")
+
+################################################
+
+18. Kinetic Energy ( 1/2.m.v**2 )  ( 0.5 * m * v ** 2 )
+
+mass = float(input("Enter mass (kg): "))
+velocity = float(input("Enter velocity (m/s): "))
+print("Kinetic Energy:", 0.5 * mass * velocity ** 2, "J")
+
+################################################
+
+19. Potential Energy (mgh) ( m * g * h )
+
+mass = float(input("Enter mass (kg): "))
+height = float(input("Enter height (m): "))
+g = 9.81
+ans = mass * g * height
+print("Potential Energy:", ans, "J")
+
+################################################
+
+20. Power Calculation (Electrical Power) ( P = VI ) ( V * I )
+
+voltage = float(input("Enter voltage (V): "))
+current = float(input("Enter current (A): "))
+
+print("Power:", voltage * current, "W")
+
+################################################
+
+21. Frequency and Wavelength (Wave Equation) (Frequency = speed / wavelength)
+
+Frequency = speed / wavelength
+
+wavelength = 3m
+
+speed = 12 m sec
+
+Frequency = 12 / 3 = 4
+
+speed = float(input("Enter wave speed (m/s): "))
+wavelength = float(input("Enter wavelength (m): "))
+print("Frequency:", speed / wavelength, "Hz")
+
+################################################
+
+22. Momentum
+
+mass = float(input("Enter mass (kg): "))
+velocity = float(input("Enter velocity (m/s): "))
+print("Momentum:", mass * velocity, "kg·m/s")
+
+################################################
+
+23. Ideal Gas Law Calculator (PV = nRT) (P = nRT/V) (P = n * R * T / V)
+
+V = float(input("Enter volume (L): "))
+n = float(input("Enter number of moles: "))
+R = 0.0821  # Gas constant (L·atm/mol·K)
+T = float(input("Enter temperature (K): "))
+print("Pressure:", (n * R * T) / V, "atm")
+
+################################################
+
+24. Percentage Composition
+
+p = 200
+s = 210
+x = (s / p) * 100  # 105 % -> + 5%
+print(x)
+
+element_mass = float(input("Enter mass of the element (g): "))
+compound_mass = float(input("Enter total mass of the compound (g): "))
+print("Percentage composition:", (element_mass / compound_mass) * 100, "%")
+
+################################################
+
+25. Heat Energy Calculation (q = mcΔT) (mass * specific_heat * temp_change)
+
+mass = float(input("Enter mass (g): "))
+specific_heat = float(input("Enter specific heat capacity (J/g·°C): "))
+temp_change = float(input("Enter temperature change (°C): "))
+print("Heat energy:", mass * specific_heat * temp_change, "J")
+
+################################################
+
+26. Avogadro’s Law Calculator (V1/n1 = V2/n2) (v2 = (V1/n1) * n2 )
+
+V1 = float(input("Enter initial volume (L): "))
+n1 = float(input("Enter initial moles: "))
+n2 = float(input("Enter final moles: "))
+print("Final volume:", (V1/n1) * n2, "L")
+
+################################################
+
+27. Running Pace Calculator
+
+distance = float(input("Enter distance in kilometers: "))
+time_minutes = float(input("Enter time taken in minutes: "))
+
+pace = time_minutes / distance
+print(f"Your running pace is {pace:.2f} minutes per km.")
+
+################################################
+
+28. Fuel Efficiency Converter (L/100km to MPG) (miles per gallon)
+
+mpg = 235.215 / liters_per_100km
+
+x = y / z
+y = x * z
+z = y / x
+liters_per_100km = 235.215 / mpg
+
+liters_per_100km = float(input("Enter fuel efficiency in L/100km: "))
+mpg = 235.215 / liters_per_100km
+print(mpg, "MPG")
+
+mpg = float(input("Enter fuel efficiency in mpg: "))
+liters_per_100km = 235.215 / mpg
+print(liters_per_100km, "l per 100km.")
+
+################################################
+
+29. Square Root Calculator
+
+number = float(input("Enter a number: "))
+sqrt = number ** (1/2)
+print(f"The square root of {number} is {sqrt}")
+
+# Cube Root Calculator
+number = float(input("Enter a number: "))
+print(f"The cube root of {number} is {number ** (1/3):.0f}")
 
 ################################################
 
