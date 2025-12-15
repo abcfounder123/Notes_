@@ -1164,6 +1164,220 @@ New AI
 
 ################################################################################################   
 
+Day.13     
+
+30. Simple Interest  (p * r * t)
+
+p = 100_000
+r = 10% = 10/100 = 0.1
+1year interest -> p * r = 10_000
+t = 5 years => 1year interest * t => p * r * t = 50000
+
+10%
+% => 100    ->  10
+r => 1      ->  0.1
+
+p = float(input("Enter principal amount: "))
+r = float(input("Enter interest rate (%): ")) / 100  # 0.1
+t = float(input("Enter time (years): "))
+print("Simple Interest:", p * r * t)
+
+################################################
+
+31. Compound Interest
+
+100_000
+1 year => 100_000 + 10_000 =>  110_000 
+2 year => 110_000 + 11_000 =>  121_000
+3 year => 121_000 + 12_100 =>  133_100
+
+################################################
+
+p = 100_000
+r = 0.1
+
+i = p * r # 10_000
+p = p + i # 110_000
+print(p)
+
+################################################
+
+p = 100_000
+r = 0.1
+
+i = p * r # 10_000
+p = p + i # 110_000
+print(f"1 year = {p}")
+
+i = p * r # 11_000
+p = p + i # 121_000
+print(f"2 year = {p}")
+
+i = p * r # 12_100
+p = p + i # 133_100
+print(f"3 year = {p}")
+
+i = p * r
+p = p + i
+print(f"4 year = {p}")
+
+i = p * r
+p = p + i 
+print(f"5 year = {p}")
+
+
+p = 100_000
+r = 0.1
+
+for n in range(1, 6): 
+    i = p * r
+    p = p + i
+    print(f"{n} year = {p}")
+
+################################################
+
+p = 100_000
+r = 0.1
+
+i = p * r # 10_000
+p = p + i # 110_000
+
+i = p * r # 11_000
+p = p + i # 121_000
+
+i = p * r # 12_100
+p = p + i # 133_100
+
+i = p * r
+p = p + i
+
+i = p * r
+p = p + i
+
+print(f"5 year = {p}")
+
+
+p = 100_000
+r = 0.1
+
+for _ in range(5):
+    i = p * r
+    p = p + i
+
+print(f"5 year = {p}")
+
+################################################
+
+for
+1. iteration       for n in range(1, 6)
+2. looping (_)     for _ in range(5)
+
+################################################
+
+p = float(input("Enter principal amount: "))
+r = float(input("Enter interest rate (%): ")) / 100  # 0.1
+t = int(input("Enter time (years): ")) # 5
+
+# print(f"{t} year = {(p * r * t) + p}")
+
+for _ in range(t):
+    i = p * r
+    p = p + i
+
+print(f"{t} year = {p}")
+
+################################################
+
+p = float(input("Enter principal amount: "))
+r = float(input("Enter interest rate (%): ")) / 100  # 0.1
+t = int(input("Enter time (years): ")) # 5
+
+for n in range(1, t+1):
+    i = p * r
+    p = p + i
+    print(f"{n} year = {p}")
+    
+################################################
+
+32. nested loop
+
+2 * 1 = 2
+2 * 2 = 4
+2 * 3 = 6
+2 * 4 = 8
+2 * 5 = 10
+2 * 6 = 12
+2 * 7 = 14
+2 * 8 = 16
+2 * 9 = 18
+2 * 10 = 20
+2 * 11 = 22
+2 * 12 = 24
+
+
+print(f"2 * 1 = ?")
+print(f"2 * 2 = ?")
+print(f"2 * 3 = ?")
+print(f"2 * 4 = ?")
+print(f"2 * 5 = ?")
+print(f"2 * 6 = ?")
+print(f"2 * 7 = ?")
+print(f"2 * 8 = ?")
+print(f"2 * 9 = ?")
+print(f"2 * 10 = ?")
+print(f"2 * 11 = ?")
+print(f"2 * 12 = ?")
+
+################################################
+
+for n in range(1, 13):
+    print(f"2 * {n} = {2 * n}")
+
+print("- " * 39)
+
+for n in range(1, 13):
+    print(f"3 * {n} = {3 * n}")
+
+print("- " * 39)
+
+for n in range(1, 13):
+    print(f"4 * {n} = {4 * n}")
+
+print("- " * 39)
+
+for n in range(1, 13):
+    print(f"5 * {n} = {5 * n}")
+
+print("- " * 39)
+
+################################################
+
+2 * 1 = 2
+2 * 2 = 4
+
+print(f"2 * 1 = 2")
+print(f"2 * 2 = 4")
+...
+..
+print(f"11 * 10 = 110")
+
+################################################
+    
+for i in range(2, 12):
+    for n in range(1, 11):
+        print(f"{i} * {n} = {i * n}")
+
+    print("- " * 39)
+    
+################################################
+
+for i in range(2, 25):
+    for n in range(1, 13):
+        print(f"{i} * {n} = {i * n}")
+
+    print("- " * 39)
+
+################################################################################################
 
 """
 
