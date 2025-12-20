@@ -1217,7 +1217,56 @@ print(ans)
 
 ################################################################################################
 
+leap year (ရက်ထပ်နှစ်) (and, or)
 
+# 1. divisible by 400 ( eg. 2000, 1600 )    ( y % 400 == 0 )
+# 2. divisible by 4 + not divisible by 100   ( y % 4 == 0 and y % 100 != 0 )
+# Rule.1 or Rule.2
+1 or ( 2.1 and 2.2 )
+
+# eg. 1600  (divisible by 400) rule No.1
+
+# eg. 1704  (divisible by 4, not divisible by 100)  rule No.2
+# eg. 1700  (divisible by 4, divisible by 100)      rule No.2.2
+# eg. 1703  (not divisible by 4, not divisible by 100)  rule No.2.1
+
+
+def is_leap_year(year):
+    print(f"rule 1 = {year % 400 == 0}")
+    print(f"rule 2.1 = {year % 4 == 0}")
+    print(f"rule 2.2 = {year % 100 != 0}")
+    return ( year % 400 == 0 ) or ( year % 4 == 0 and year % 100 != 0 )
+    
+
+def is_leap_year(year):
+    return ( year % 400 == 0 ) or ( year % 4 == 0 and year % 100 != 0 )
+
+
+print(is_leap_year(1600))
+
+################################################
+
+=> divisible by 4, + 1 days  
+=> -3d by 400 years 
+
+################################################
+
+# 24 h = 1 d, 365 d = 1 year
+# 1 d = 1 round of earth                 (24 h)
+# 1 year = 1 round of earth to the sun   (24 * 365) + 6 h
+# 4 year = 6 + 6 + 6 + 6 = 1 day (24 h)
+
+# 1601(6), 1602(12), 1603(18), 1604(24) -> divisible by 4, + 1 days  
+# 1700(100 years later)                 -> not add a day
+# 2000 (400 years later)                -> add a day
+
+# 6 hours = 5h 45.6 minutes
+# 1 year = 14.4 minutes
+# 100 year = not add a day (1440  minutes)  
+
+# 400 year = add a day  ( -3d by 400 years )
+
+################################################################################################
 
 """
 
