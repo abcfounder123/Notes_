@@ -719,6 +719,981 @@ feet = float(input("Enter length in feet: "))
 meters = feet * 0.305
 print(f"{feet} feet is equal to {meters} meters")
 
+################################################################################################
+
+Day.12
+
+                90350 sec
+                  
+            1505 min           50 sec
+            
+        25 h        5min
+     
+    1 day   1 h   
+    
+
+23. Seconds to Minutes and Hours
+
+seconds = int(input("Enter time in seconds: "))
+minutes = seconds / 60
+hours = seconds / 3600
+print(f"{seconds} seconds is equal to {minutes:.2f} minutes or {hours:.2f} hours")
+
 ################################################
+
+24. Seconds to Seconds, Minutes and Hours   ( 350, 3950)
+
+            3950 sec
+            
+            
+       1 hour        350 sec
+       
+                  5 min    50 sec
+
+seconds = int(input("Enter time in seconds: "))
+h = seconds // 3600               # 1 hour
+m = (seconds % 3600) // 60        # 350 sec // 60 => 5 min
+s = (seconds % 3600) % 60         # 50 sec
+print(f"{h}:{m}:{s}")
+
+################################################
+
+25. Seconds to Seconds, Minutes, Hours and days ( 90350 )
+25  --> 1 + 1
+
+seconds = int(input("Enter time in seconds: "))
+h = seconds // 3600
+m = (seconds % 3600) // 60
+s = (seconds % 3600) % 60
+d = h // 24
+nh = h % 24
+print(f"{d} days and {nh}:{m}:{s}")
+
+################################################################################################
+
+# * rate
+
+1$ = 5000 Kysts
+10$ = ?
+Kysts =  10 / 1  * 5000  = 50000
+
+2$ = 10000 Kysts
+10$ = ?
+Kysts =  10 / 2  * 10000  = 50000
+
+* rate
+
+26. Currency Converter (USD to MMK)
+
+usd = float(input("Enter amount in USD: "))     3
+exchange_rate = 5000                            1
+mmk = usd * exchange_rate                       2
+print(f"{usd} USD is equal to {mmk} MMK")       2     8
+
+dollar = float(input("Dollar : "))
+kyats = dollar * 5000
+print(f"{dollar} $ is equal to {kyats:.0f} kyats.")
+
+################################################
+
+27. Currency Converter (Custom Rate)
+
+1 $        -> 5000 kyats
+1 kyats    -> 0.0002 $
+
+1 $ -> 40 B
+1 B -> 0.025 $
+
+amount = float(input("Enter amount: "))
+rate = float(input("Enter exchange rate: "))
+converted = amount * rate
+print(f"Converted amount: {converted}")
+
+Enter amount: 10000
+Enter exchange rate: 0.0002
+Converted amount: 2.0
+
+Enter amount: 2
+Enter exchange rate: 5000
+Converted amount: 10000.0
+
+################################################
+
+28. Step-to-Calorie Converter
+
+1 Step -> 0.04 kilo calorie
+1 kcal -> 25 steps
+
+steps = int(input("Enter number of steps taken: "))
+calories_burned = steps * 0.04  # Approximation for an average person
+print(f"Calories burned: {calories_burned:.0f} kcal")
+
+calories_burned = int(input("Calories burned: "))
+steps = calories_burned * 25
+print(f"Number of steps : {steps:.0f} steps")
+
+################################################
+
+29. Storage Converter (GB to MB & KB)
+
+10    = 10 ** 1
+100   = 10 ** 2
+1000  = 10 ** 3
+
+2 ** 1  = 2
+2 ** 2  = 4
+2 ** 3  = 8
+2 ** 4  = 16
+2 ** 5  = 32
+2 ** 6  = 64
+2 ** 7  = 128
+2 ** 8  = 256
+2 ** 9  = 512
+2 ** 10 = 1024
+2 ** 11 = 2048
+
+1 * 24 * 60 * 60
+1 * 1000 * 1000 * 1000
+
+1 hour 
+min = h * 60
+sec = h * 60 * 60
+
+b -> kb -> mb -> gb    (1000)(1024)
+b -> gb
+b
+k = e3 = 1000
+M = e6 = 1_000_000
+G = e9 = 1_000_000_000
+
+gb = float(input("Enter storage in GB: "))
+mb = gb * 1000
+kb = gb * 1000 * 1000
+print(f"{gb} GB is equal to {mb} MB or {kb} KB")
+
+gb = float(input("Enter storage in GB: "))
+mb = gb * 1024  # 2 ** 10  Vs  10 ** 3
+kb = gb * 1024 * 1024
+print(f"{gb} GB is equal to {mb} MB or {kb} KB")
+
+################################################
+
+30. Bytes to GB + MB + KB + B
+    
+                    
+                    34_567_891_234 bytes
+
+                 34_567_891 KB    +  234 bytes
+                 
+            34_567 MB + 891 KB 
+
+       34 GB + 567 MB
+
+################################################
+
+31. 
+
+bytes = int(input("Enter size in bytes: ")) # 34_567_891_234 bytes
+e = 1000
+
+kb = bytes // e # 34_567_891 KB
+b = bytes % e   # 234 B
+
+mb = kb // e # 34_567 MB
+kb2 = kb % e # 891 KB
+
+gb = mb // e # 34 GB
+mb2 = mb % e # 567 MB
+
+print(f"{bytes} bytes = {gb} GB {mb2} MB {kb2} KB {b} B")
+
+
+34567891234 bytes = 34 GB 567 MB 891 KB 234 B
+34567891234 bytes = 32 GB 198 MB 522 KB 290 B
+
+################################################
+
+bytes_size = int(input("Enter size in bytes: ")) # 34_567_891_234 bytes
+
+e = 1024
+
+kb = bytes_size // e 
+b = bytes_size % e 
+
+mb = kb // e 
+kb2 = kb % e
+
+gb = mb // e
+mb2 = mb % e 
+
+print(f"{bytes_size} bytes = {gb} GB {mb2} MB {kb2} KB {b} B")
+
+
+Enter size in bytes: 34_567_891_234
+34567891234 bytes = 32 GB 198 MB 522 KB 290 B
+
+################################################
+
+32.
+
+         12_345_678_900       bytes
+         
+      12 GB     345_678_900 bytes
+         
+              345 MB      678_900   bytes
+              
+                      678 KB     900  bytes
+
+
+bytes_size = int(input("Enter size in bytes: ")) # 12_345_678_900       bytes
+
+gb = bytes_size // 1e9                       # 12 GB
+mb = (bytes_size % 1e9) // 1e6               # 345 MB
+kb = ((bytes_size % 1e9) % 1e6) // 1e3       # 678 KB
+b = ((bytes_size % 1e9) % 1e6) % 1e3         # 900  bytes
+
+print(f"{gb} GB {mb} MB {kb} KB and {b} bytes")
+
+################################################
+
+bytes_size = int(input("Enter size in bytes: ")) # 12_345_678_900       bytes
+
+gb = bytes_size // (1024 ** 3)                               # 11 GB
+mb = (bytes_size % (1024 ** 3)) // (1024 ** 2)               # 509 MB
+kb = ((bytes_size % (1024 ** 3)) % (1024 ** 2)) // 1024       # 775 KB
+b = ((bytes_size % (1024 ** 3)) % (1024 ** 2)) % 1024         # 52 bytes
+
+print(f"{gb} GB {mb} MB {kb} KB and {b} bytes")
+
+################################################
+
+                  90350 sec
+                  
+            1505 min           50 sec        60
+            
+        25 h        5min                     60
+     
+     1 day 1 h                               24
+         
+################################################
+    
+                            90350 sec
+
+    86400              1 day         3950 sec
+    
+    3600                           1 h       350 sec
+    
+    60                                     5 min  50 sec
+
+n = 60 * 60 * 24 = 86400
+
+sec = int(input("Seconds = "))
+d = sec // 86400
+h = (sec % 86400) // 3600
+m = ((sec % 86400) % 3600) // 60
+s = ((sec % 86400) % 3600) % 60
+print(f"{d} day {h} : {m} : {s}")
+        
+################################################################################################
+
+platform
+1. system()
+2. version()
+3. architecture()[0] 
+
+sys
+1. version
+
+psutil (process and system utilities )
+1. virtual_memory() -> RAM 
+   - total = 8GB
+   - available = 3GB 
+   
+2. cpu_count(logical=False) # man = 2
+   cpu_count(logical=True)  # work = 4
+   
+3. disk_usage('/')
+   - total = 256GB
+   - free = 156GB 
+   
+4. cpu_percent(interval=1)
+
+5. sensors_battery()
+   - power_plugged
+   - percent
+
+################################################
+
+1. Check Operating System
+
+import platform
+
+print("Operating System:", platform.system()) # mac OS and IOS based on Darwin OS
+
+################################################
+
+2. Check OS Version
+
+import platform
+print("OS Version:", platform.version())
+
+################################################
+
+3. Check Machine Type (32-bit or 64-bit)
+
+import platform
+print("Machine Type:", platform.architecture()[0])
+
+################################################
+
+4. Check Python Version
+
+import sys
+print("Python Version:", sys.version)
+
+################################################
+
+5. Check Total RAM / Available RAM (Memory)
+
+import psutil
+ram = psutil.virtual_memory()
+total = ram.total / ( 1024 ** 3 )
+available = ram.available / ( 1024 ** 3 )
+print(f"Total RAM:", total, "GB")
+print(f"Available RAM:", available, "GB")
+
+################################################
+
+6. Check CPU Information
+
+import psutil
+print("CPU Cores:", psutil.cpu_count(logical=False))        
+print("Logical CPUs:", psutil.cpu_count(logical=True))     
+
+################################################
+
+Day.12
+
+7. Check Disk Usage (Total and Free Space)
+
+import psutil
+disk = psutil.disk_usage('/')
+t = disk.total / ( 1024 ** 3 )
+f = disk.free / ( 1024 ** 3 )
+print(f"Total Disk Space: {t:.0f} GB")
+print(f"Free Disk Space: {f:.0f} GB")
+
+################################################
+
+8. Check CPU Usage
+
+import psutil
+cpu = psutil.cpu_percent(interval=1)
+print(f"CPU Usage:", cpu, "%")
+
+################################################
+
+9. Check Battery Status
+
+import psutil
+
+battery = psutil.sensors_battery()
+charging = battery.power_plugged
+percent = battery.percent
+
+print(f"Battery Status: {percent}%")
+print("Charging:", charging)
+
+################################################
+
+import psutil
+disk = psutil.disk_usage('/')
+
+gb = disk.free // ( 1024 ** 3 )
+mb = (disk.free % ( 1024 ** 3 )) // ( 1024 ** 2 )
+kb = ((disk.free % ( 1024 ** 3 )) % ( 1024 ** 2 )) // 1024
+b =  ((disk.free % ( 1024 ** 3 )) % ( 1024 ** 2 )) % 1024
+print(f"Free Disk Space: {gb} GB {mb} MB {kb} KB and {b} bytes")
+
+print(dir(psutil)) 
+
+################################################################################################
+
+        bytes
+              
+         GB        B             ( 1024 ** 3 )
+         
+              MB     B           ( 1024 ** 2 )
+              
+                 KB    B         ( 1024 )
+                 
+                                
+               136_023_508_001 bytes       (1000) (1024)
+             
+        136_023_508 kb       1 b
+        
+   136_023 mb   508 kb
+    
+136 gb  23 mb     
+
+
+import psutil
+disk = psutil.disk_usage('/')
+
+gb = disk.free // ( 1024 ** 3 )
+mb = (disk.free % ( 1024 ** 3 )) // ( 1024 ** 2 )
+kb = ((disk.free % ( 1024 ** 3 )) % ( 1024 ** 2 )) // 1024
+b =  ((disk.free % ( 1024 ** 3 )) % ( 1024 ** 2 )) % 1024
+print(f"Free Disk Space: {gb} GB {mb} MB {kb} KB and {b} bytes")
+
+b = disk.free % 1024
+kb = (disk.free // 1024) % 1024
+mb = ((disk.free // 1024) // 1024) % 1024
+gb = ((disk.free // 1024) // 1024) // 1024
+print(f"Free Disk Space: {gb} GB {mb} MB {kb} KB and {b} bytes")
+
+################################################
+
+Day.13
+
+10. BMI (Body Mass Index) Calculator  (kg per m**2)
+
+weight = float(input("Enter weight in kg: "))
+height = float(input("Enter height in meters: "))
+bmi = weight / (height ** 2)
+print(f"Your BMI is: {bmi}")
+
+
+weight = float(input("Enter weight in lb: ")) * 0.454
+height = float(input("Enter height in ft: ")) * 0.3048
+bmi = weight / (height ** 2)
+print(f"Your BMI is: {bmi}")
+
+
+# 1lb = 0.454 kg  ( lb * 0.454 )
+# 1kg = 2.2lb     ( lb / 2.2 )
+
+# 1ft = 0.3048m   ( ft * 0.3048 )
+# 1m = 3.28 ft    ( ft / 3.28 )
+
+weight2 = float(input("Enter weight in lb: ")) * 0.454
+height_f = float(input("Enter height in ft: ")) * 0.3048
+height_i = float(input("Enter height in inches: ")) * 0.0254
+height2 = height_f + height_i
+
+bmi2 = weight2 / (height2 ** 2)
+print(f"Your BMI is: {bmi2}")
+
+################################################
+
+11. Heart Rate Zones Calculator
+
+32
+
+188 bpm                 
+
+< 94         ( sit )
+
+> 94         ( walk )
+
+> 131 bpm    ( run )
+
+
+64
+
+156  bpm
+
+< 78         ( sit )
+
+> 78         ( walk )
+
+> 109 bpm    ( run )
+
+100  --> 50
+1    --> ? 1 / 100  * 50  = 0.5
+
+
+100 % = 100 / 100 = 1
+95%  = 95 / 100 = 0.95
+85 % = 85 / 100 = 0.85
+75 % = 75 / 100 = 0.75
+50 % = 50 / 100 = 0.5
+5 %  = 5 / 100  = 0.05 
+105% = 105 / 100 = 1.05 
+
+100  -> 50
+1    -> 0.5      (rate)
+188  -> ?  188 * 0.5 = 94
+
+
+age = int(input("Enter your age: "))
+max_heart_rate = 220 - age
+
+print(f"Maximum Heart Rate: {max_heart_rate} bpm")
+print(f"Fat Burn Zone (50-70%): {max_heart_rate * 0.5} - {max_heart_rate * 0.7} bpm")
+print(f"Cardio Zone (70-85%): {max_heart_rate * 0.7} - {max_heart_rate * 0.85} bpm")
+print(f"Peak Zone (85-100%): {max_heart_rate * 0.85} - {max_heart_rate} bpm")
+
+################################################
+
+12. Moles to Mass Converter
+
+molar_mass = float(input("Enter molar mass (g/mol): "))
+moles = float(input("Enter number of moles: "))
+print("Mass:", molar_mass * moles, "g")
+
+################################################
+
+13. Mass to Moles Converter
+
+mass = float(input("Enter mass (g): "))
+molar_mass = float(input("Enter molar mass (g/mol): "))
+print("Moles:", mass / molar_mass)
+
+################################################
+
+14. Concentration (Molarity) Calculator
+
+moles = float(input("Enter moles of solute: "))
+volume = float(input("Enter volume of solution (L): "))
+print("Molarity:", moles / volume, "M")
+
+################################################
+
+15. Dilution Calculator (M1V1 = M2V2)
+
+M1V1 = M2V2
+M2V2 = M1V1
+M2 = M1V1/V2
+
+M1 = float(input("Enter initial molarity (M): "))
+V1 = float(input("Enter initial volume (L): "))
+M2 = float(input("Enter final molarity (M): "))
+print("Final volume:", (M1 * V1) / M2, "L")
+
+################################################
+
+16. Work Done
+
+force = float(input("Enter force (N): "))
+distance = float(input("Enter distance (m): "))
+print("Work Done:", force * distance, "J")
+
+################################################
+
+17. Gravitational Force
+
+G = 6.674 * (10**-11)
+m1 = float(input("Enter mass of first object (kg): "))
+m2 = float(input("Enter mass of second object (kg): "))
+r = float(input("Enter distance between objects (m): "))
+print("Gravitational Force:", G * m1 * m2 / (r ** 2), "N")
+
+################################################
+
+18. Kinetic Energy ( 1/2.m.v**2 )  ( 0.5 * m * v ** 2 )
+
+mass = float(input("Enter mass (kg): "))
+velocity = float(input("Enter velocity (m/s): "))
+print("Kinetic Energy:", 0.5 * mass * velocity ** 2, "J")
+
+################################################
+
+19. Potential Energy (mgh) ( m * g * h )
+
+mass = float(input("Enter mass (kg): "))
+height = float(input("Enter height (m): "))
+g = 9.81
+ans = mass * g * height
+print("Potential Energy:", ans, "J")
+
+################################################
+
+20. Power Calculation (Electrical Power) ( P = VI ) ( V * I )
+
+voltage = float(input("Enter voltage (V): "))
+current = float(input("Enter current (A): "))
+
+print("Power:", voltage * current, "W")
+
+################################################
+
+21. Frequency and Wavelength (Wave Equation) (Frequency = speed / wavelength)
+
+
+Frequency = speed / wavelength
+
+wavelength = 3m
+
+speed = 12 m sec
+
+Frequency = 12 / 3 = 4
+
+speed = float(input("Enter wave speed (m/s): "))
+wavelength = float(input("Enter wavelength (m): "))
+print("Frequency:", speed / wavelength, "Hz")
+
+################################################
+
+22. Momentum
+
+mass = float(input("Enter mass (kg): "))
+velocity = float(input("Enter velocity (m/s): "))
+print("Momentum:", mass * velocity, "kg·m/s")
+
+################################################
+
+23. Ideal Gas Law Calculator (PV = nRT) (P = nRT/V) (P = n * R * T / V)
+
+V = float(input("Enter volume (L): "))
+n = float(input("Enter number of moles: "))
+R = 0.0821  # Gas constant (L·atm/mol·K)
+T = float(input("Enter temperature (K): "))
+print("Pressure:", n * R * T / V, "atm")
+
+################################################
+
+24. Percentage Composition
+
+p = 200       100%
+s = 210       ? 105%
+
+210 / 200  *  100  = 21000 / 200 = 210 / 2 = 105 %
+
+x = (s / p) * 100  # 105 % -> + 5%
+print(x)
+
+element_mass = float(input("Enter mass of the element (g): "))
+compound_mass = float(input("Enter total mass of the compound (g): "))
+print("Percentage composition:", (compound_mass / element_mass) * 100, "%")
+
+
+################################################
+
+25. Heat Energy Calculation (q = mcΔT) (mass * specific_heat * temp_change)
+
+mass = float(input("Enter mass (g): "))
+specific_heat = float(input("Enter specific heat capacity (J/g·°C): "))
+temp_change = float(input("Enter temperature change (°C): "))
+print("Heat energy:", mass * specific_heat * temp_change, "J")
+
+################################################
+
+26. Avogadro’s Law Calculator (V1/n1 = V2/n2) (v2 = (V1/n1) * n2 )
+
+V1 = float(input("Enter initial volume (L): "))
+n1 = float(input("Enter initial moles: "))
+n2 = float(input("Enter final moles: "))
+print("Final volume:", (V1/n1) * n2, "L")
+
+################################################
+
+27. Running Pace Calculator
+
+distance = float(input("Enter distance in kilometers: "))
+time_minutes = float(input("Enter time taken in minutes: "))
+
+pace = time_minutes / distance
+print(f"Your running pace is {pace:.2f} minutes per km.")
+
+################################################
+
+28. Fuel Efficiency Converter (L/100km to MPG) (miles per gallon)
+
+mpg = 235.215 / liters_per_100km
+mpg * liters_per_100km = 235.215  
+liters_per_100km = 235.215 / mpg  
+
+
+x = y / z
+y = x * z
+z = y / x
+liters_per_100km = 235.215 / mpg
+
+liters_per_100km = float(input("Enter fuel efficiency in L/100km: "))
+mpg = 235.215 / liters_per_100km
+print(mpg, "MPG")
+
+mpg = float(input("Enter fuel efficiency in mpg: "))
+liters_per_100km = 235.215 / mpg
+print(liters_per_100km, "l per 100km.")
+
+################################################
+
+29. Square Root Calculator
+
+number = float(input("Enter a number: "))
+sqrt = number ** (1/2)
+print(f"The square root of {number} is {sqrt}")
+
+# Cube Root Calculator
+number = float(input("Enter a number: "))
+print(f"The cube root of {number} is {number ** (1/3):.0f}")
+
+################################################
+
+30. Simple Interest  (p * r * t)
+
+100_000
+1 year = 100_000 + 10_000 = 110_000
+
+10 %  
+100      ->  10
+
+rate
+1        ->  1/100 * 10 = 10/100  = 0.1                 <- rate for 1 item
+
+100000   ->  100000 / 1 * 0.1 = 100000 * 0.1 = 10000    <- Interest for 1 year
+
+1 year   ->  10000
+5 years  ->  5/1 * 10000 =  5 * 10000 = 50000           <- Interest for 5 years
+
+50000
+10000 * 5
+100000 * 0.1 * 5
+p * rate * year
+
+p = float(input("Enter principal amount: "))
+r = float(input("Enter interest rate (%): ")) / 100  # 0.1
+t = float(input("Enter time (years): "))
+print("Simple Interest:", p * r * t)
+
+################################################
+
+31. Compound Interest
+
+100_000
+1 year => 100_000 + 10_000 =>  110_000 
+2 year => 110_000 + 11_000 =>  121_000
+3 year => 121_000 + 12_100 =>  133_100
+
+################################################
+
+p = 100_000
+r = 0.1
+
+i = p * r # 10_000
+p = p + i # 110_000
+print(p)
+
+################################################
+
+p = 100_000
+r = 0.1
+
+i = p * r # 10_000
+p = p + i # 110_000
+print(f"1 year = {p}")
+
+i = p * r # 11_000
+p = p + i # 121_000
+print(f"2 year = {p}")
+
+i = p * r # 12_100
+p = p + i # 133_100
+print(f"3 year = {p}")
+
+i = p * r
+p = p + i
+print(f"4 year = {p}")
+
+i = p * r
+p = p + i 
+print(f"5 year = {p}")
+
+################################################
+
+p = 100_000
+r = 0.1
+
+for n in range(1, 6): 
+    i = p * r
+    p = p + i
+    print(f"{n} year = {p}")
+
+################################################################################################
+
+p = 100_000
+r = 0.1
+
+i = p * r # 10_000
+p = p + i # 110_000
+
+i = p * r # 11_000
+p = p + i # 121_000
+
+i = p * r # 12_100
+p = p + i # 133_100
+
+i = p * r
+p = p + i
+
+i = p * r
+p = p + i
+
+print(f"5 year = {p}")
+
+################################################
+
+p = 100_000
+r = 0.1
+
+for _ in range(5):
+    i = p * r
+    p = p + i
+
+print(f"5 year = {p}")
+
+################################################################################################
+
+for
+1. iteration       for n in range(1, 6)
+2. looping (_)     for _ in range(5)
+
+################################################
+
+p = float(input("Enter principal amount: "))
+r = float(input("Enter interest rate (%): ")) / 100  # 0.1
+t = int(input("Enter time (years): ")) # 5
+
+# print(f"{t} year = {(p * r * t) + p}")
+
+for _ in range(t):
+    i = p * r
+    p = p + i
+
+print(f"{t} year = {p}")
+
+################################################
+
+p = float(input("Enter principal amount: "))
+r = float(input("Enter interest rate (%): ")) / 100  # 0.1
+t = int(input("Enter time (years): ")) # 5
+
+for n in range(1, t+1):
+    i = p * r
+    p = p + i
+    print(f"{n} year = {p}")
+    
+################################################################################################
+
+32. nested loop
+
+2 * 1 = 2
+2 * 2 = 4
+2 * 3 = 6
+2 * 4 = 8
+2 * 5 = 10
+2 * 6 = 12
+2 * 7 = 14
+2 * 8 = 16
+2 * 9 = 18
+2 * 10 = 20
+2 * 11 = 22
+2 * 12 = 24
+
+
+print(f"2 * 1 = ?")
+print(f"2 * 2 = ?")
+print(f"2 * 3 = ?")
+print(f"2 * 4 = ?")
+print(f"2 * 5 = ?")
+print(f"2 * 6 = ?")
+print(f"2 * 7 = ?")
+print(f"2 * 8 = ?")
+print(f"2 * 9 = ?")
+print(f"2 * 10 = ?")
+print(f"2 * 11 = ?")
+print(f"2 * 12 = ?")
+
+################################################
+
+for n in range(1, 13):
+    print(f"2 * {n} = {2 * n}")
+
+print("- " * 39)
+
+for n in range(1, 13):
+    print(f"3 * {n} = {3 * n}")
+
+print("- " * 39)
+
+for n in range(1, 13):
+    print(f"4 * {n} = {4 * n}")
+
+print("- " * 39)
+
+for n in range(1, 13):
+    print(f"5 * {n} = {5 * n}")
+
+print("- " * 39)
+
+################################################
+
+2 * 1 = 2
+2 * 2 = 4
+
+print(f"2 * 1 = 2")
+print(f"2 * 2 = 4")
+...
+..
+print(f"11 * 10 = 110")
+
+################################################
+    
+for i in range(2, 12):
+    for n in range(1, 11):
+        print(f"{i} * {n} = {i * n}")
+
+    print("- " * 39)
+    
+################################################
+
+for i in range(2, 25):
+    for n in range(1, 13):
+        print(f"{i} * {n} = {i * n}")
+
+    print("- " * 39)
+
+################################################################################################
+
+Computer    
+
+generation
+
+i3     10
+i5     15
+i7     25
+
+silicon chip
+m1         i7 12 generation      
+m2
+m3
+m4
+m5
+
+i7    13 seconds      100 m     ( 1 km)
+m1    13 seconds      100 m     (40 km)
+
+Server  car       
+
+quantom  aeroplane
+
+################################################
+
+AI
+
+AI    500 millions
+D       5 millions
+
+AI      5 millions to  500 millions, data 
+
+quantom  5000 
+
+New AI
+
+################################################################################################   
+
+
 
 """
