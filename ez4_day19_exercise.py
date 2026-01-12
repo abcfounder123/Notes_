@@ -540,4 +540,185 @@ def max_min(lst):
     
 ################################################################################################
 
+Day. 20
+
+10. leap year (ရက်ထပ်နှစ်) (and, or)
+    1. divisible by 400 ( eg. 2000, 1600 )    ( y % 400 == 0 )
+    2. divisible by 4 + not divisible by 100   ( y % 4 == 0 and y % 100 != 0 )
+    - Rule.1 or Rule.2
+
+=> divisible by 4, + 1 days  
+=> -3d by 400 years 
+
+################################################
+
+
+def isleapyear(y):
+    return (y % 400 == 0) or (y % 4 == 0 and y % 100 != 0)
+    
+
+################################################
+
+
+def isleapyear(y):
+    c1 = y % 400 == 0
+    c2_1 = y % 4 == 0
+    c2_2 = y % 100 != 0
+    print("l.1 =", c1)
+    print("l.2.1 =", c2_1)
+    print("l.2.2 =", c2_2)
+    return c1 or (c2_1 and c2_2)
+
+
+################################################
+
+365 days
+
+1 day -> earth 
+1 year -> sun
+
+################################################
+
+Julian calendar ( 365 days 6 hour ) (+1 day per 4 years)
+
+
+def isleapyear(y):
+    return y % 4 == 0 
+
+
+1
+2
+3
+4   + 1
+5
+6
+7
+8   + 1
+
+################################################
+
+365 days 5 h 48 min 46 sec
+
+11 min 15 sec per 1
+3 day         per 400
+
+################################################
+
+Gregorian calendar (-3 day per 400) (not 100) (400)
+
+100    - 1    366 - 1 = 365
+200    - 1
+300    - 1
+400           366
+500    - 1
+600    - 1
+700    - 1
+800   
+
+
+def isleapyear(y):
+    return (y % 400 == 0) or (y % 4 == 0 and y % 100 != 0)
+
+################################################
+
++ 27 secs ( - 1 day for 4800, 5000) (400, not 4800)
+
+
+def isleapyear(y):
+    return (y % 400 == 0 and y % 4800 != 0) or (y % 4 == 0 and y % 100 != 0) 
+
+
+################################################
+
+# Julian calendar
+def isleapyear(y):
+    return y % 4 == 0 
+    
+
+# Gregorian calendar
+def isleapyear(y):
+    return (y % 400 == 0) or (y % 4 == 0 and y % 100 != 0)
+
+
+# Modern calendar
+def isleapyear(y):
+    return (y % 400 == 0 and y % 4800 != 0) or (y % 4 == 0 and y % 100 != 0) 
+    
+
+################################################################################################
+
+
+20. Linear search (iteration)
+
+
+def linear_search(collection, element):
+    for e in collection:
+        if e == element:
+            return True
+            
+    return False
+
+
+################################################
+
+21. Binary_search  (empty list)
+
+
+def binary_search(collection, element):
+    while len(collection) > 0:   
+        t = len(collection)   
+        m = t // 2           
+        middle = collection[m] 
+
+        if middle == element:
+            return True
+        elif element < middle:
+            collection = collection[:m]  # L
+        elif element > middle:
+            collection = collection[m+1:] # R
+
+    return False
+
+
+################################################
+
+
+def binary_search(collection, element):
+    n = 1
+    while len(collection) > 0:
+        t = len(collection)   # 1
+        m = t // 2            # 0
+        middle = collection[m] # 10
+        print(n, middle)
+        n += 1
+        if middle == element:
+            return True
+        elif element < middle:
+            collection = collection[:m]  # L
+        elif element > middle:
+            collection = collection[m+1:] # R
+
+        print(collection)
+    return False
+    
+
+################################################################################################
+
+atoms = ['Aluminium', 'Antimony', 'Argon', 'Arsenic', 'Astatine', 'Barium', 'Barium', 'Beryllium', 'Boron', 'Bromine', 'Cadmium', 'Calcium', 'Carbon', 'Cerium', 'Cesium', 'Chlorine', 'Chromium', 'Cobalt', 'Copper', 'Dysprosium', 'Erbium', 'Europium', 'Fluorine', 'Francium', 'Gadolinium', 'Gallium', 'Germanium', 'Gold', 'Hafnium', 'Helium', 'Holmium', 'Hydrogen', 'Indium', 'Iodine', 'Iron', 'Krypton', 'Lanthanum', 'Lithium', 'Lutetium', 'Magnesium', 'Manganese', 'ManganeseGermanium', 'Mercury', 'Molybdenum', 'Neodymium', 'Neon', 'Nickel', 'Niobium', 'Nitrogen', 'Oxygen', 'Palladium', 'Phosphorus', 'Platinum', 'Potassium', 'Praseodymium', 'Promethium', 'Radium', 'Radon', 'Rhodium', 'Rubidium', 'Ruthenium', 'Samarium', 'Scandium', 'Selenium', 'Silicon', 'Silver', 'Sodium', 'Strontium', 'Strontium', 'Sulfur', 'Tantalum', 'Technetium', 'Tellurium', 'Terbium', 'Thulium', 'Tin', 'Titanium', 'Tungsten', 'Vanadium', 'Xenon', 'Ytterbium', 'Yttrium', 'Zinc', 'Zirconium']
+
+
+x = [10, 30, 40, 50, 70, 72, 74, 81, 98, 131, 164]
+    
+################################################################################################
+
+Linear search  Vs  Binary_search
+
+84   ->  1 to 84   , 6
+11   ->  1 to 11   , 4
+
+1000000  -> 1 to 1000000    , 19
+
+################################################################################################
+
+
 """
