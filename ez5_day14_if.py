@@ -220,6 +220,321 @@ else:
                 print("new3")
             else:
                 print("new4")
+                
+################################################################################################
 
+day. 15
+
+Step.4 ( idea => code )
+- motor on
+
+################################################
+
+1. low_level
+
+if low_level:
+    print("motor on")
+    
+################################################
+
+2. electric
+
+if low_level:
+    if electric:
+        print("motor on")
+    else:
+        print("generator on")
+        print("motor on")
+
+################################################
+
+3. short_circuit
+
+low_level = True
+electric = False
+short_circuit = True
+
+if low_level:
+    if electric:
+        if short_circuit:
+            print("call mechanic")
+            print("motor.2 on")
+        else:
+            print("motor on")
+    else:
+        print("generator on")
+        if short_circuit:
+            print("call mechanic")
+            print("motor.2 on")
+        else:
+            print("motor on")
+
+################################################
+       
+4. m2  
+
+low_level = True
+electric = False
+short_circuit = True
+short_circuit2 = True
+
+if low_level:
+    if electric:
+        if short_circuit:
+            print("call mechanic (m1) ")
+            if short_circuit2:
+                print("call mechanic (m2) ")
+            else:
+                print("motor.2 on")
+        else:
+            print("motor on")
+    else:
+        print("generator on")
+        if short_circuit:
+            print("call mechanic (m1) ")
+            if short_circuit2:
+                print("call mechanic (m2) ")
+                print("generator off")
+            else:
+                print("motor.2 on")
+        else:
+            print("motor on")
+
+        
+################################################
+
+5. m3
+
+11110
+10110
+
+11111
+10111
+
+low_level = True
+electric = False
+short_circuit = True
+short_circuit2 = True
+short_circuit3 = True
+
+if low_level:
+    if electric:
+        if short_circuit:
+            print("call mechanic (m1) ")
+            if short_circuit2:
+                print("call mechanic (m2) ")
+                if short_circuit3:
+                    print("call mechanic (m3) ")
+                else:
+                    print("motor.3 on")
+            else:
+                print("motor.2 on")
+        else:
+            print("motor on")
+    else:
+        print("generator on")
+        if short_circuit:
+            print("call mechanic (m1) ")
+            if short_circuit2:
+                print("call mechanic (m2) ")
+                if short_circuit3:
+                    print("call mechanic (m3) ")
+                    print("generator off")
+                else:
+                    print("motor.3 on")
+            else:
+                print("motor.2 on")
+        else:
+            print("motor on")
+
+################################################
+
+6. m4
+
+111110
+101110
+
+111111
+101111
+
+################################################################################################
+
+13. Normally open Vs Normally close
+
+short circuit sensor
+- Normal condition (close)      =>  no signal
+- short circuit (open)          =>  signal
+
+sensor error
+- Normal condition       =>  no signal
+- short circuit          =>  no signal    (sensor error)
+
+################################################  
+
+Normally open for safety purpose
+- Normally open        =>  signal
+- short circuit open   =>  not signal  (human, sensor)
+          
+if c3:
+    print("Saw machine ON")
+else:
+    print("Saw machine OFF")
+    
+    
+# close
+if c3: # human
+    print("Saw machine OFF")
+else:
+    print("Saw machine ON")
+    
+################################################ 
+
+14. Opposite condition ( not )
+    
+# normally close
+if c3: # human
+    print("Saw machine OFF")
+else:
+    print("Saw machine ON")
+    
+    
+# open
+if not c3: 
+    print("Saw machine OFF")
+else:
+    print("Saw machine ON")
+
+################################################ 
+
+16. one from one ( if ), all from all
+
+greater or equal 500, doctor    
+greater or equal 400, engineer   
+greater or equal 300, distance  
+
+520  ->  1 2 3
+420  ->  2 3
+320  ->  3
+
+mark = int(input("Marks = "))
+
+c1 = mark >= 500
+c2 = mark >= 400
+c3 = mark >= 300
+
+if c1:
+    print("doctor")
+
+if c2:
+    print("engineer")
+
+if c3:
+    print("distance")
+
+################################################ 
+
+15. one from all (if + elif + else)
+
+Doctor -> engineer -> distance  
+
+mark = int(input("Marks = "))
+
+c1 = mark >= 500
+c2 = mark >= 400
+c3 = mark >= 300
+
+if c1:
+    print("doctor")
+
+if not c1 and c2:
+    print("engineer")
+
+if not c1 and not c2 and c3:
+    print("distance")
+
+################################################ 
+
+> else + if
+
+mark = int(input("Marks = "))
+
+c1 = mark >= 500
+c2 = mark >= 400
+c3 = mark >= 300
+
+if c1:
+    print("doctor")
+
+elif c2:
+    print("engineer")
+
+elif c3:
+    print("distance")
+
+################################################ 
+
+mark = int(input("Marks = "))
+
+if mark >= 500:
+    print("doctor")
+
+elif mark >= 400:
+    print("engineer")
+
+elif mark >= 300:
+    print("distance")
+    
+################################################ 
+
+> not c1 + not c2 + not c3 => online shop
+
+mark = int(input("Marks = "))
+
+if mark >= 500:
+    print("doctor")
+
+elif mark >= 400:
+    print("engineer")
+
+elif mark >= 300:
+    print("distance")
+
+else:
+    print("online shop")
+
+################################################ 
+
+7. Boolean value  (empty, anything)
+
+c1 = 1
+
+if bool(c1):
+    print("m1 on.")
+
+
+if 1:
+    print("m1 on.")
+
+################################################ 
+
+fruits = ["apple", "banana"]
+
+if fruits:
+    print("you can buy.")
+    
+else:
+    print("you can not buy.")
+    
+################################################ 
+
+if sensor value is something / anything, do it.   
+
+sensor = "1V"
+
+if sensor:
+    print("m1 on.")
+
+################################################################################################ 
+ 
 """
 
