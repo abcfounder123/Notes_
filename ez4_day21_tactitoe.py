@@ -1043,7 +1043,7 @@ def show_tie():
 
 #########################################
 
-Step.13   -->   show and count (marks)
+Step.14   -->   show and count (marks)
 
 l1 = Label(x, text="X scroll = 0", font=('Arial', 30, 'bold'))
 l1.grid(row=3, columnspan=3)
@@ -1180,6 +1180,168 @@ l2.grid(row=4, columnspan=3)
 x.mainloop()
 
 ##################################################################################
+
+Step.15   --->    Computer
+
+def computer():
+    while True:
+        b = randrange(1, 10)  # 5  (1, 1), 9 (2, 2)
+        r = (b - 1) // 3
+        c = (b - 1) % 3
+        if not board[r][c]["text"]:
+            board[r][c]["text"] = current_player
+            board[r][c].update_idletasks()
+            break
+
+##################################################################################
+
+from tkinter import *
+from tkinter import messagebox
+from random import randrange
+
+
+current_player = "X"
+p1 = 0
+p2 = 0
+
+board = [
+    [None, None, None],
+    [None, None, None],
+    [None, None, None]
+
+]
+
+
+def click(event):
+    b = event.widget
+    if b['text']:
+        return
+    b['text'] = current_player
+    b.update_idletasks()
+    if win():
+        show_winner()
+        restart()
+    if tie():
+        show_tie()
+        restart()
+
+    switch_player()
+    
+    computer()
+
+    if win():
+        show_winner()
+        restart()
+    if tie():
+        show_tie()
+        restart()
+    switch_player()
+
+
+def switch_player():
+    global current_player
+    if current_player == 'X':
+        current_player = 'O'
+    else:
+        current_player = 'X'
+
+
+def win():
+    row0 = board[0][0]["text"] == current_player and board[0][1]["text"] == current_player and board[0][2]["text"] == current_player
+    row1 = board[1][0]["text"] == current_player and board[1][1]["text"] == current_player and board[1][2]["text"] == current_player
+    row2 = board[2][0]["text"] == current_player and board[2][1]["text"] == current_player and board[2][2]["text"] == current_player
+
+    column_0 = board[0][0]["text"] == current_player and board[1][0]["text"] == current_player and board[2][0]["text"] == current_player
+    column_1 = board[0][1]["text"] == current_player and board[1][1]["text"] == current_player and board[2][1]["text"] == current_player
+    column_2 = board[0][2]["text"] == current_player and board[1][2]["text"] == current_player and board[2][2]["text"] == current_player
+
+    diagonal_1 = board[0][0]["text"] == current_player and board[1][1]["text"] == current_player and board[2][2]["text"] == current_player
+    diagonal_2 = board[0][2]["text"] == current_player and board[1][1]["text"] == current_player and board[2][0]["text"] == current_player
+
+    return row0 or row1 or row2 or column_0 or column_1 or column_2 or diagonal_1 or diagonal_2
+
+
+def show_winner():
+    m = f"Player {current_player} win!"
+    messagebox.showinfo("Game Over", m)
+    if current_player == "X":
+        global p1
+        p1 += 1
+        l1["text"] = f"X scroll = {p1}"
+    else:
+        global p2
+        p2 += 1
+        l2["text"] = f"O scroll = {p2}"
+
+
+def restart():
+    board[0][0]['text'] = ''
+    board[0][1]['text'] = ''
+    board[0][2]['text'] = ''
+    board[1][0]['text'] = ''
+    board[1][1]['text'] = ''
+    board[1][2]['text'] = ''
+    board[2][0]['text'] = ''
+    board[2][1]['text'] = ''
+    board[2][2]['text'] = ''
+
+
+def tie():
+    n = 0
+    for row in board:  # row = [b1, b2, b3]
+        for b in row:  # b = b1
+            if b["text"]:
+                n += 1
+
+    if n == 9 and not win():
+        return True
+
+
+def show_tie():
+    messagebox.showinfo("Game Over", "Tie.")
+
+
+def computer():
+    while True:
+        b = randrange(1, 10)  # 5  (1, 1), 9 (2, 2)
+        r = (b - 1) // 3
+        c = (b - 1) % 3
+        if not board[r][c]["text"]:
+            board[r][c]["text"] = current_player
+            board[r][c].update_idletasks()
+            break
+
+
+x = Tk()
+x.title("Tac Ti Toe")
+
+for row in range(3): # 0
+    for col in range(3): # 0 1 2
+        b = Button(x, width=4, height=2, font=('Arial', 30, 'bold'), text='')
+        b.grid(row=row, column=col)
+        b.bind("<Button-1>", click)
+        board[row][col] = b
+
+l1 = Label(x, text="X scroll = 0", font=('Arial', 30, 'bold'))
+l1.grid(row=3, columnspan=3)
+
+l2 = Label(x, text="O scroll = 0", font=('Arial', 30, 'bold'))
+l2.grid(row=4, columnspan=3)
+
+x.mainloop()
+
+###############################################
+
+Step.16   --->   Making application
+
+Pycharm(Terminal)
+
+1. pip3 install pyinstaller
+2. python3 -m PyInstaller --onefile --windowed ttt.py
+
+Build complete! The results are available in: /Users/myothantzin/PycharmProjects/NewCourse2025/dist
+
+################################################################################################
 
 """
 
