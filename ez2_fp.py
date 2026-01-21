@@ -290,6 +290,233 @@ for c in generator():
 
 ##################################################################################
 
+4. Lambda
+
+lambda x, y:x + y
+lambda x, y:x - y
+lambda x, y=0: x + y
+lambda x, y, /: x + y
+lambda :print("-" * 42)
+
+
+def add(x, y):
+    return x + y
+
+
+def sub(x, y):
+    return x - y
+
+
+def add(x, y=0):
+    return x + y
+
+
+def add(x, y, /):
+    return x + y
+
+
+def line():
+    print("-" * 42)
+
+
+#########################################
+
+For garbage collection
+
+x = 1
+y = 2
+z = x + y
+print(z)
+>> int(1), int(2) ->  int(3)
+>> 28 bytes 28 bytes 28 bytes -> 84 bytes, int 3
+
+print(1 + 2)
+>>28 bytes 28 bytes 28 bytes -> 0 bytes , int 0
+
+#########################################
+
+Test purpose
+
+line = lambda :print("-" * 42)
+line()
+
+
+def line():
+    print("-" * 42)
+
+
+line()
+
+##################################################################################
+
+5. Higher-Order Functions
+
+First-Order Functions -> f(x)
+
+x = 3
+y = 2x = 6
+
+
+def f(x):
+    y = 2 * x
+    return y
+
+#########################################
+
+Second-Order Functions (produce First-Order Functions)
+
+
+def s(a):
+
+    def f(x):
+        y = 2 * x
+        return y
+
+    return f
+
+
+s(a) <- Second-Order Functions
+f(x) <- First-Order Functions
+
+#########################################
+
+Third-Order Functions (produce Second-Order Functions)
+
+##################################################################################
+
+6. Closure
+
+- a process of closing somthing
+- closing different data => s(2), s(3), s(7)
+
+- data hiding
+- function factories
+- decorators
+
+
+def s(a):
+
+    def f(x):
+        y = a * x
+        return y
+
+    return f
+
+
+x = s(2)
+print(x.__closure__)
+
+#########################################
+
+z = s(2) is same as z = f that closed a=2
+
+
+def f(x):
+    y = 2 * x
+    return y
+
+
+#########################################
+
+z = s(3) is same as z = f that closed a=3
+
+
+def f(x):
+    y = 3 * x
+    return y
+
+
+#########################################
+
+
+def s(a):
+
+    def f(x):
+        y = a * x
+        return y
+
+    return f
+
+
+multiply_2 = s(2)  # a=2
+print(multiply_2(1))      # 2 * x = 2
+print(multiply_2(2))      # 2 * x = 4
+print(multiply_2(3))      # 2 * x = 6
+
+multiply_3 = s(3)  # a=3
+print(multiply_3(1))      # 3 * x = 3
+print(multiply_3(2))      # 3 * x = 6
+print(multiply_3(3))      # 3 * x = 9
+
+multiply_79 = s(79)
+
+#########################################
+
+
+def add_factory(n):
+    def add(x):
+        return x + n
+    return add
+
+
+add_1 = add_factory(1) # closed 1
+print(add_1(2))
+
+add_7 = add_factory(7) # closed 7
+print(add_7(2))
+
+#########################################
+
+
+def factory(age_by_country):
+
+    def alcohol_permit(age):
+        return age >= age_by_country
+
+    return alcohol_permit
+
+
+age_by_country = 16 # 19, 16, 21, 18 by location of country
+age = 18
+
+alcohol_permit = factory(age_by_country)  # 19, 16, 21, 18
+
+if alcohol_permit(age):
+    print("You can buy.")
+
+else:
+    print("You can not buy.")
+
+##################################################################################
+
+
+def s(a, b, c):
+
+    def f1(x):
+        y = a + x
+        return y
+
+    def f2(x):
+        y = a + b + x
+        return y
+
+    def f3(x):
+        y = a + b + c + x
+        return y
+
+    return f1, f2, f3
+
+
+x, y, z = s(1, 2, 3)
+
+print(s.__closure__)     # None
+print(x.__closure__)     # closed  1
+print(y.__closure__)     # closed  1 and 2
+print(z.__closure__)     # closed  1 and 2 and 3
+
+##################################################################################
+
+
 """
 
 
