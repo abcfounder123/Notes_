@@ -516,6 +516,287 @@ print(z.__closure__)     # closed  1 and 2 and 3
 
 ##################################################################################
 
+7. Map
+
+- create a connection between fun and data
+- transform(kg to lb)
+
+#########################################
+
+>> transform(kg to lb)
+
+
+def f1(kg):
+    return round(kg * 2.2, 2)
+
+
+kgs = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+#########################################
+
+for kg in kgs:               # for loop
+    lbs.append(f1(kg))
+
+
+lbs = [f1(kg) for kg in kgs] # list comprehension
+
+lbs = map(f1, kgs)           # map
+
+#########################################
+
+List comprehension example
+
+
+def f1(kg):
+    print("h")
+    return round(kg * 2.2, 2)
+
+
+kgs = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+l = [f1(kg) for kg in kgs] # 10 s
+
+print(l)
+
+#########################################
+
+f1
+f1
+f1
+f1
+f1
+f1
+f1
+f1
+f1
+f1
+[2.2, 4.4, 6.6, 8.8, 11.0, 13.2, 15.4, 17.6, 19.8, 22.0]
+
+#########################################
+
+Map example
+
+
+def f1(kg):
+    print("h")
+    return round(kg * 2.2, 2)
+
+
+kgs = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+l = map(f1, kgs)
+
+print(next(l))  # 1s
+
+#########################################
+
+f1
+2.2
+
+##################################################################################
+
+Time consumption
+
+all data => 1 hour
+
+1 page  => 1 sec
+
+##################################################################################
+
+Memory consumption
+
+all int => 10
+1 int   => 1
+
+lbs = [2.2, 4.4, 6.6, 8.8, 11.0, 13.2, 15.4, 17.6, 19.8, 22.0]
+list = 50 bytes
+float 10 = 300 bytes
+total = 350 bytes
+
+next(l)
+float 1 = 30 bytes = 0 bytes
+
+##################################################################################
+
+kgs = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+lbs = [f1(kg) for kg in kgs]
+
+list      => 50
+int 10    => 280
+lbs       => 50
+float 10  => 300 bytes
+total     => 680 bytes
+
+########################################
+
+kgs = range(1, 11)
+l = map(f1, kgs)
+print(next(l))  #  1 from range, f1(1) => 2.2
+
+range(1, 11) => 30
+map     => 30 byte
+int 1   => 28 byte  => 0 bytes
+float 1 => 30 bytes => 0 bytes
+
+total   => 60 to 118
+
+##################################################################################
+
+Pip line
+
+1000 GB  (1 page = 1MB )
+
+database = 1 page (next value)
+pip_line = map(negative_word, database)
+
+total = 0  -> 10 -> 18 -> 100000
+total += next(pip_line)
+
+##################################################################################
+
+In List Comprehension or 'for loop',
+if 1 error, None of result.
+
+
+def f1(kg):
+    print("f1")
+    return round(kg * 2.2, 2)
+
+
+kgs = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, "abc"]   # 11 => 10 + 1(error)
+lbs = [f1(kg) for kg in kgs]
+print(lbs)
+
+#########################################
+
+Map can work well until error.
+
+
+def f1(kg):
+    print("f1")
+    return round(kg * 2.2, 2)
+
+
+kgs = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, "abc"]   # 11 => 10 + 1(error)
+lbs = map(f1, kgs)
+print(next(lbs))
+print(next(lbs))
+print(next(lbs))
+print(next(lbs))
+print(next(lbs))
+print(next(lbs))
+print(next(lbs))
+print(next(lbs))
+print(next(lbs))
+print(next(lbs))
+# print(next(lbs))  # error
+
+##################################################################################
+
+8. Filter
+- Filtering data
+
+#########################################
+
+Filtering data (even number)
+
+1. for loop example
+
+def is_even(n):
+    return n % 2 == 0
+
+
+l = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+even_numbers = []
+
+for n in l:
+    if is_even(n):
+        even_numbers.append(n)
+
+print(even_numbers)
+
+#########################################
+
+2. LC example
+
+l = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+leven_numbers = [n for n in l if is_even(n)]   # [2, 4, 6, 8, 10]
+
+print(leven_numbers)
+
+#########################################
+
+2. filter example
+
+l = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+f = filter(is_even, l)
+
+print(next(f))
+print(next(f))
+
+#########################################
+
+
+def is_even(n):
+    print(f"is even({n})")
+    return n % 2 == 0
+
+
+l = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+f = filter(is_even, l)
+
+print(next(f))  #  1 from list , is_even(1) => 2 from list , is_even(2) => 2
+print(next(f))  #  3 from list , is_even(3) => 4 from list , is_even(4) => 4
+
+#########################################
+
+Time and memory
+
+After 10s,  [2, 4, 6, 8, 10]
+
+
+2            after 2s
+4            after 2s
+6            after 2s
+8            after 2s
+10           after 2s
+
+##################################################################################
+
+9. Reduce
+
+- reducing data
+- all data to 1 data
+
+#########################################
+
+numbers to total
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10] to 55
+
+#########################################
+
+from functools import reduce
+
+
+def add(a, b):
+    return a + b
+
+
+l = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+r = reduce(add, l)  # add(1, 2) = 3 -> add(3, 3) = 6 -> add(6, 4) = 10 ... => 55
+
+print(r)
+
+##################################################################################
+
+Data (Transform, filter, reduce)
+
+1. map => kg to lb  => 10 to 10
+
+2. filter => even numbers from list => 10 to 5
+
+3. reduce => all data -> 1 data (total marks)
+
+##################################################################################
+
 
 """
 
