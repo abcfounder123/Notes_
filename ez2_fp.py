@@ -1349,6 +1349,220 @@ print(c[0])
 
 ##################################################################################
 
+12. Partial
+
+power function    =>   base, exponent  => 2 ** 2, 3 ** 2, 4 ** 2, 5 ** 2 | 2 ** 3, 3 ** 3, 4 ** 3, 5 ** 3
+square function   =>   base ** 2
+cube   function   =>   base ** 3
+
+#########################################
+
+fun => argument 1, argument 2, argument 3, argument 4, argument 5, argument 6
+
+#########################################
+
+power(base, exponent)
+square(5) => power(base=5, exponent=2)  => 5 ** 2  => 25
+cube(5) => power(base=5, exponent=3)  => 5 ** 3 =>  125
+
+#########################################
+
+
+from functools import partial
+
+
+def power(base, exponent):
+    return base ** exponent
+
+
+square = partial(power, exponent=2)  # power(base, exponent=2)
+cube = partial(power, exponent=3)  # power(base, exponent=3)
+
+print(power(5, 3))
+print(square(5))
+print(cube(5))
+
+##################################################################################
+
+13. Currying
+
+- Haskell Curry
+- f(x, y) => f(x)(y)
+- multiply(x, y, z) => multiply(x)(y)(z)
+- nested function
+
+1. Reusability
+2. Function composition
+3. Delayed Execution
+
+##################################################################################
+
+Currying methods example.1
+- multiply(x, y, z) => multiply(x)(y)(z)
+
+def multiply(x, y, z):
+    return x * y * z
+
+
+def multiply(x):
+    def f2(y):
+        def f3(z):
+            return x * y * z
+        return f3
+    return f2
+
+#########################################
+
+def multiply(x):
+    def f2(y):
+        def f3(z):
+            return x * y * z
+        return f3
+    return f2
+
+
+b = multiply(1) # x=1 => f2
+print(b)
+
+c = b(2) # x=1, y=2 => f3
+print(c)
+
+ans = c(3) # x=1, y=2, z=3 => x * y * z => 6
+print(ans)
+
+#########################################
+
+Currying methods example.2
+- tax_calculator(tax_rate, price)  =>  tax_calculator(tax_rate)(price)
+
+tax_rate = 5%, 10%, 15%
+price = ?
+
+food_tax = 5%
+electronic_tax = 10%
+house_tax = 15%
+price = ?
+
+#########################################
+
+1. Reusability
+   - tax_calculator() => food_tax_calculator(), electronic_tax_calculator()
+
+
+def tax_calculator(tax_rate):
+    def f2(price):
+        return price + (price * tax_rate)
+    return f2
+
+
+food_tax_calculator = tax_calculator(0.05)
+electronic_tax_calculator = tax_calculator(0.1)
+house_tax_calculator = tax_calculator(0.15)
+
+print(tax_calculator(0.05)(100))
+print(food_tax_calculator(100))
+print(electronic_tax_calculator(1200))
+print(house_tax_calculator(1_000_000))
+
+#########################################
+
+3. Delayed Execution
+
+student =>  roll, result(pass, fail)
+
+
+def student(roll):
+    print("roll = ", roll)
+    def f2(result):
+        print(f"roll {roll} (exam = {result})")
+    return f2
+
+
+s1 = student(1)  # Execution with first data
+# s1("pass") # Execution with second data
+
+##################################################################################
+
+14. Lazy Evaluation
+
+- memory efficiency
+- performance
+- infinite series
+
+generator = 50 bytes
+next value = 28 bytes  (int)
+total = 50 + 28
+
+#########################################
+
+numbers = (n for n in range(1, 1_000_001))
+
+print(numbers)
+print(next(numbers))    # 1sec
+
+#########################################
+
+15. Eager Evaluation
+
+- creating all data in RAM
+- ready to use all data
+
+list = 50 bytes
+int = 28 bytes
+total = 50 + 28 million
+
+#########################################
+
+numbers = [n for n in range(1, 1_000_001)]  # 1_000_000 intehes
+
+print(numbers[0]) # 1_000_000 sec
+
+##################################################################################
+
+16. list comprehension to generator
+    => [] to ()
+    => (n for n in range(1, 1_000_001)) will create following generator object
+
+#########################################
+
+
+def generator_object():
+    n = 0
+    while n < 1000001:
+        n += 1
+        yield n
+
+
+numbers = generator_object()
+print(numbers)
+print(next(numbers))
+
+numbers = (n for n in range(1, 1_000_001))  # same as above generator
+print(numbers)
+print(next(numbers))
+
+##################################################################################
+
+17. Lazy Evaluation Vs Eager Evaluation
+
+RAM 8 GB -> about int 300 millions (can not create one billion objects by Eager Evaluation)
+
+numbers = [n for n in range(1, 1_000_000_001)]
+
+for n in numbers:
+    print(n)
+
+#########################################
+
+Generator can create a series of one billion objects by Lazy Evaluation.
+
+numbers = (n for n in range(1, 1_000_000_001))
+
+for n in numbers:
+    print(n)
+
+##################################################################################
+
 """
 
 
