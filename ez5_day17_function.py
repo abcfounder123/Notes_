@@ -521,4 +521,379 @@ info(name="Mg Mg", age=10, grade=5, weight=50, country="Myanmar", ph_no="0912345
 
 ################################################################################################
 
+Day.19
+
+1. (a, b, c)                            Form.1, 2, 3
+2. (name, age, country="Myanmar")       Form.1, 2, 3
+3. (n1, n2, n3, /)                      Form.1
+4. (*, name, age, country)              Form.2
+5. (*unlimited_pos)                     Form.1
+6. (**unlimited_kwargs)                 Form.2
+
+################################################
+
+Positional arguments   =>   args         =>  tuple
+Keyword arguments      =>   kw, kwargs   =>  dict
+
+################################################
+
+1. No.3 (Simple is better than complex.)
+
+
+def add(x, y, /):
+    return x + y
+
+
+add(1, 2)
+add(2, 1)
+
+################################################
+
+2. No.4 (Complex is better than complicated.)
+
+
+def info(*, name, age, grade):
+    print(name, age, grade, country)
+
+
+info(age=10, name="Mg Mg", grade=5)
+
+################################################
+
+3.  No.1 + No.4
+
+x, y          =>  form.1, 2, 3
+name, age     =>  form.2
+
+
+
+def f(x, y, *, name, age):
+    print(x, y, name, age)
+
+
+f(1, 2, name="abc", age=10)
+f(x=1, y=2, name="abc", age=10)
+f(1, y=2, name="abc", age=10)
+
+
+################################################
+
+4. No.3 + No.1 + No.4
+
+
+a, b, c       =>  form.1
+x, y          =>  form.1, 2, 3
+name, age     =>  form.2
+
+(a, b, c, /, x, y, *, name, age)
+
+Step.1 => Check parameter list (/, *)
+Step.2 => Divide
+
+- a, b, c     - pos 
+- x, y        - 1, 2, 3
+- name, age   - kw
+
+
+def f(a, b, c, /, x, y, *, name, age):
+    print(a, b, c, x, y, name, age)
+    
+    
+f(1, 2, 3, 4, 5, name="abc", age=10)
+f(1, 2, 3, x=4, y=5, name="abc", age=10)
+f(1, 2, 3, 4, y=5, name="abc", age=10)
+
+################################################
+
+5. No.3 + No.4 + No.2
+
+form.1   -->  left
+form.2   -->  right
+1, 2, 3  -->  middle
+
+a, b, c       =>  form.1              No.3
+name, age     =>  form.2              No.4
+country       =>  form.2("Myanmar")   No.4 + No.2
+
+(a, b, c, /, *, name, age, country="Myanmar")     
+
+################################################
+
+(x, y)        =>  form.1, 2, 3
+
+(a, b, c, /, x, y, *, name, age, country="Myanmar")     
+
+################################################
+
+(d, e, f)        =>  form.1
+
+(a, b, c, d, e, f, /, x, y, *, name, age, country="Myanmar") 
+
+################################################
+
+ph_no        =>  form.2
+
+(a, b, c, d, e, f, /, x, y, *, name, age, ph_no, country="Myanmar") 
+
+################################################
+
+city = "Yangon"
+
+(a, b, c, d, e, f, /, x, y, *, name, age, ph_no, city="Yangon", country="Myanmar") 
+
+################################################
+
+z        =>  form.1, 2, 3
+
+(a, b, c, d, e, f, /, x, y, z, *, name, age, ph_no, city="Yangon", country="Myanmar") 
+
+################################################################################################
+
+6. No.5  (variable length + simple data)
+
+
+def add(*args):
+    total = 0
+    for number in args:
+        total += number
+    return total
+
+
+ans = add(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+print(ans)
+
+################################################
+
+7. No.6  (variable length + complex data)
+
+
+def info(**kw):
+    print(kw)
+
+
+info(name="Mg Mg", age=10, grade=5, weight=50)
+
+################################################
+
+8. No.3 + No.6
+
+at least 3 values by pos and more items
+
+def f(a, b, c, /, **kwargs):
+    print(a, b, c)
+    print(kwargs)
+
+
+f(1, 2, 3)
+f(1, 2, 3, name="abc", age=10)
+
+################################################
+
+9. No.3 + No.5
+
+at least 3 values by pos and more values
+
+
+def f(a, b, c, /, *args):
+    print(a, b, c)
+    print(args)
+
+
+f(1, 2, 3, 4, 100, 1000)
+
+################################################
+
+10. No.4 + No.6
+
+at least 2 values by name and more items
+
+user_name, password
+gender, age, country, .....
+
+
+def f(*, user_name, password, **kwargs):
+    print(user_name, password)
+    print(kwargs)
+
+
+f(user_name="abc", password="123456", country="Myanmar", age=10)
+
+################################################
+
+11. No.5 + No.4
+
+at least 2 values by name and more values
+
+
+def f(*args, user_name, password):
+    print(args)
+    print(user_name, password)
+
+
+
+f(user_name="abc", password="123456")
+f(1, 2, 3, user_name="abc", password="123456")
+
+################################################
+
+12. No.3 + No.5 + No.4 + No.6
+
+
+at least 3 values by pos and more values
+No.3 + No.5       =>  pos (left)
+
+a, b, c, /
+*args
+
+at least 2 values by name and more items
+No.4 + No.6       =>  name (right)
+
+*, user_name, password
+**kwargs
+
+################################################
+
+
+def f(a, b, c, /, *args, user_name, password, **kwargs):
+    print(a, b, c)
+    print(args)
+    print(user_name, password)
+    print(kwargs)
+
+
+f(1, 2, 3, user_name="abc", password="123456")
+
+f(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, country="Myanmar", age=10, user_name="abc", password="123456")
+
+################################################
+
+Passing correct values to function
+
+a = 20
+b = 10
+c = 30
+args = (100, 200, 300)
+
+user_name = "Mg Mg"
+password = "123456"
+kw = {'country': 'Myanmar', 'age': 10}
+
+f(20, 10, 30, 100, 200, 300, user_name="Mg Mg", password="123456", country='Myanmar', age=10)
+
+################################################
+
+13. No.5 + No.6 (all forms, variable length)
+
+all values, all items
+
+
+def f(*args, **kwargs):
+    print(args)
+    print(kwargs)
+    print("- " * 42)
+
+
+f()
+f(1, 2, 3)
+f(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+f(user_name="Mg Mg", password="123456")
+f(user_name="Mg Mg", password="123456", country='Myanmar', age=10)
+f(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, user_name="Mg Mg", password="123456", country='Myanmar', age=10)
+
+################################################################################################
+
+Arguments
+
+1. Positional arguments
+2. Keyword arguments
+3. Default arguments    
+4. Positional only arguments
+5. Keyword only arguments
+6. Arbitrary positional only arguments, Arbitrary positional arguments
+7. Arbitrary keyword only arguments, Arbitrary keyword arguments
+
+You should be able to see the connection behind it just by knowing the name.
+
+################################################
+
+
+def add(x, y):
+    pass
+
+
+add(1, 2)     #  Positional Arguments
+add(x=1, y=2) #  Keyword Arguments
+
+################################################
+
+
+def add(x, y, /):
+    pass
+
+
+add(1, 2)  # Positional only arguments
+
+################################################
+
+
+def add(*, x, y):
+    pass
+
+
+add(x=1, y=2) #  Keyword only arguments
+
+################################################
+
+
+def add(*args):
+    total = 0
+    for number in args:
+        total += number
+    return total
+    
+
+add(1)
+add(1, 2)
+add(1, 2, 3, 4, 5)  # Arbitrary positional arguments
+
+################################################
+
+
+def info(**kw):
+    print(kw)
+
+
+info(name="Mg Mg")
+info(name="Mg Mg", age=10)
+info(name="Mg Mg", age=10, grade=5, weight=50)  # Arbitrary keyword arguments
+
+################################################################################################
+
+You should be able to see the connection behind it just by knowing the name.
+
+Arguments ရဲ့ အမည်တွေနဲ့ ပတ်သတ်ပြီး လေ့ကျင့်ရမှာက
+
+အမည်သိရုံနဲ့ နောက်ကွယ်က ချိတ်ဆက်မှုကို မြင်နိုင်ရပါမယ်။
+
+1. Positional arguments လို့ ပြောခဲ့မယ်ဆိုရင် နောက်ကွယ်မှာ ဖန်တီးထားတဲ့ စည်းမျဉ်းအမျိုးအစားက နံပါတ်ဘယ်လောက်ဖြစ်မလဲ။
+
+2. Positional only arguments လို့ ပြောခဲ့မယ်ဆိုရင် နောက်ကွယ်မှာ ဖန်တီးထားတဲ့ စည်းမျဉ်းအမျိုးအစားက နံပါတ်ဘယ်လောက်ဖြစ်မလဲ။
+
+3. Keyword only arguments လို့ ပြောခဲ့မယ်ဆိုရင် နောက်ကွယ်မှာ ဖန်တီးထားတဲ့ စည်းမျဉ်းအမျိုးအစားက နံပါတ်ဘယ်လောက်ဖြစ်မလဲ။
+
+4. Arbitrary positional arguments လို့ ပြောခဲ့မယ်ဆိုရင် နောက်ကွယ်မှာ ဖန်တီးထားတဲ့ စည်းမျဉ်းအမျိုးအစားက နံပါတ်ဘယ်လောက်ဖြစ်မလဲ။
+
+5. Arbitrary keyword arguments လို့ ပြောခဲ့မယ်ဆိုရင် နောက်ကွယ်မှာ ဖန်တီးထားတဲ့ စည်းမျဉ်းအမျိုးအစားက နံပါတ်ဘယ်လောက်ဖြစ်မလဲ။
+
+6. Default arguments လို့ ပြောခဲ့မယ်ဆိုရင် နောက်ကွယ်မှာ ဖန်တီးထားတဲ့ စည်းမျဉ်းအမျိုးအစားက နံပါတ်ဘယ်လောက်ဖြစ်မလဲ။
+
+7. Keyword arguments လို့ ပြောခဲ့မယ်ဆိုရင် နောက်ကွယ်မှာ ဖန်တီးထားတဲ့ စည်းမျဉ်းအမျိုးအစားက နံပါတ်ဘယ်လောက်ဖြစ်မလဲ။
+
+
+ဘာလို့ သင်ရလဲဆိုတော့ documentation ဖတ်တတ်ဖို့ပါ။
+
+အမည်အမျိုးမျိုးနဲ့ လှည့်ပတ်ရေးထားကြတော့ တစ်ခုချင်းစီကို သိထားတဲ့သူက ချက်ချင်းနားလည်နိုင်ပေမယ့် မသိတဲ့သူကြတော့လည်း ပိုရှုတ်သွားကြပါတယ်။
+
+################################################################################################
+
 """
