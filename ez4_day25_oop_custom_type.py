@@ -560,7 +560,148 @@ def f2(n):
 print(1 .dollar == 5000 .kyat)
 print(5000 .kyat == 1 .dollar)
 
+##################################################################################################
+
+Step.11
+
+Memory သက်သာအောင် တန်ဖိုးတူခဲ့ရင် တစ်ကြိမ်ပဲ ဖန်တီးပြီး ဝေမျှသုံးစေချင်တာပါ။
+
+
+x = Dollar(1)   house.1        50 bytes     Mandalay
+y = Dollar(1)   house.2        50 bytes     Yangon
+z = Dollar(1)   house.3        50 bytes
+
+x = Dollar(1)   house.1        50 bytes     Mandalay
+y = Dollar(1)   house.1                     Mandalay
+
 #################################################
+
+x = Dollar(1)    # 4338709616
+y = Dollar(1)    # 4338709760
+z = Dollar(1)    # 4338978592
+
+x = Dollar(1)    # 4338709616
+y = Dollar(1)    #     ... old
+z = Dollar(1)    #     ... old
+
+#################################################
+
+if same value, 
+1. do not create new obj
+2. reuse the old one
+
+#################################################
+
+တန်ဖိုးတူခဲ့ရင် တစ်ကြိမ်ပဲ ဖန်တီး  =>  new()
+
+
+class Dollar:
+    x = {}
+
+    def __new__(cls, n):
+        if n in Dollar.x.keys():
+            return Dollar.x[n]                # 0x100d52120
+        else:
+            new = super().__new__(cls)        # 0x100d52120
+            new.n = n                         # 0x100d52120 <- n=1
+            Dollar.x[n] = new
+            return new
+
+
+#################################################
+
+
+from custom_literals import literal
+
+
+class Dollar:
+    x = {}
+
+    def __new__(cls, n):
+        if n in Dollar.x.keys():
+            return Dollar.x[n]                # 0x100d52120
+        else:
+            new = super().__new__(cls)        # 0x100d52120
+            new.n = n                         # 0x100d52120 <- n=1
+            Dollar.x[n] = new
+            return new
+
+    def __add__(self, other):
+        if type(other) == Dollar:
+            return Dollar(self.n + other.n)
+        if type(other) == Kyat:
+            return Dollar(self.n + other.n/5000)
+
+    def __sub__(self, other):
+        if type(other) == Dollar:
+            return Dollar(self.n - other.n)
+        if type(other) == Kyat:
+            return Dollar(self.n - other.n/5000)
+
+    def __eq__(self, other):
+        if type(other) == Dollar:
+            return self.n == other.n
+        if type(other) == Kyat:
+            return self.n == other.n/5000
+
+    def __repr__(self):
+        return f"{self.n} dollar"
+
+
+class Kyat:
+    x = {}
+
+    def __new__(cls, n):
+        if n in Kyat.x.keys():
+            return Kyat.x[n]
+        else:
+            new = super().__new__(cls)
+            new.n = n
+            Kyat.x[n] = new
+            return new
+
+    def __add__(self, other):
+        if type(other) == Kyat:
+            return Kyat(self.n + other.n)
+        if type(other) == Dollar:
+            return Kyat(self.n + other.n * 5000)
+
+    def __sub__(self, other):
+        if type(other) == Kyat:
+            return Kyat(self.n - other.n)
+        if type(other) == Dollar:
+            return Kyat(self.n - other.n * 5000)
+
+    def __eq__(self, other):
+        if type(other) == Kyat:
+            return self.n == other.n
+        if type(other) == Dollar:
+            return self.n == other.n * 5000
+
+    def __repr__(self):
+        return f"{self.n} kyat"
+    
+
+@literal(int, float, name="dollar")
+def f1(n):
+    return Dollar(n)
+
+
+@literal(int, float, name="kyat")
+def f1(n):
+    return Kyat(n)
+
+
+x = 10000 .kyat 
+y = 10000 .kyat 
+
+z = x + y
+
+print(id(x))
+print(id(y))
+print(id(z))
+
+##################################################################################################
 
 """
 
