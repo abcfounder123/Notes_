@@ -1169,6 +1169,293 @@ Knowledges
 
 ##################################################################################################
 
+Day.28 (Inheritance and Composition)
+
+Inheritance
+
+                             F
+                             
+                         /   |   \\
+                                
+                        A    T      O
+                        
+                        
+A is a child class of F.  (parent and child)
+A is a F.
+T is a F.
+O is a F.                 ('is a' relation)
+
+#################################################
+
+Diesel_Engine_Car
+Petrol_Engine_Car
+Car
+
+#################################################
+
+Diesel_Engine_Car is a Car. 
+Petrol_Engine_Car is a Car. 
+
+#################################################      
+
+                        Car
+                        
+                    /       \\
+                    
+     Diesel_Engine_Car       Petrol_Engine_Car 
+     
+#################################################
+
+Attributes
+
+brand = "BMW"
+serial_no = 0001
+
+on()
+off()
+
+#################################################
+
+1. Normal code
+
+
+class Diesel_Engine_Car:
+    def __init__(self, brand, serial_no):
+        self.brand = brand
+        self. serial_no = serial_no
+
+    def on(self):
+        print("Diesel Engine On.(more electric)")
+    
+    def off(self):
+        print("Off.")
+
+
+class Petrol_Engine_Car:
+    def __init__(self, brand, serial_no):
+        self.brand = brand
+        self.serial_no = serial_no
+
+    def on(self):
+        print("Petrol Engine On.(less electric)")
+
+    def off(self):
+        print("Off.")
+
+#################################################
+
+2. Normal code to resuable code
+
+
+class Car:
+    def __init__(self, brand, serial_no):
+        self.brand = brand
+        self. serial_no = serial_no
+
+    def off(self):
+        print("Off.")
+
+
+class Diesel_Engine_Car(Car):
+    def on(self):
+        print("Diesel Engine On.(more electric)")
+
+
+class Petrol_Engine_Car(Car):
+    def on(self):
+        print("Petrol Engine On.(less electric)")
+
+
+car1 = Diesel_Engine_Car(brand="BMW", serial_no="BMW-0001")
+car2 = Petrol_Engine_Car(brand="Toyota", serial_no="Toyota-0001")
+
+car1.off()
+
+#################################################
+
+{'brand': 'BMW', 'serial_no': 'BMW-0001'}
+{'brand': 'Toyota', 'serial_no': 'Toyota-0001'}
+
+Diesel Engine On.(more electric)
+Petrol Engine On.(less electric)
+
+##################################################################################################
+
+Composition
+
+Car has an Engine.
+Car has a brand.
+Car has a serial_no.
+
+             Engine
+         /
+  Car    ---   brand
+         \
+            serial_no
+            
+#################################################
+
+Normal code to flexible code
+
+
+class Car:
+    def __init__(self, engine, brand, serial_no):
+        self.engine = engine
+        self.brand = brand
+        self.serial_no = serial_no
+        
+        
+#################################################
+
+class DieselEngine:
+    def on(self):
+        print("Diesel Engine On.(more electric)")
+
+    def off(self):
+        print("Off.")
+
+
+class PetrolEngine:
+    def on(self):
+        print("Petrol Engine On.(less electric)")
+
+    def off(self):
+        print("Off.")
+
+
+class Car:
+    def __init__(self, engine, brand, serial_no):
+        self.engine = engine
+        self.brand = brand
+        self.serial_no = serial_no
+        
+
+car1 = Car(engine=DieselEngine(), brand="BMW", serial_no="BMW-0001")
+print(car1.__dict__)
+car1.engine = PetrolEngine()   # flexible engine
+print(car1.__dict__)
+
+#################################################
+
+{'engine': Diesel_Engine object, 'brand': 'BMW', 'serial_no': 'BMW-0001'}
+{'engine': Petrol_Engine object, 'brand': 'BMW', 'serial_no': 'BMW-0001'}
+
+#################################################
+
+Inheritance and Composition
+
+1. Inheritance 
+
+"Code reuse for large scale project"
+
+AI car model.1 =>  parmanent
+AI car model.2 =>  parmanent
+AI car model.3 =>  parmanent
+AI car model.4 =>  parmanent
+
+AI car model.1 is a Car.
+AI car model.2 is a Car.
+model.3 is a "model.1 + model.2".
+model.4 is a model.3.
+
+           Car
+        
+        /      \\
+      
+model.1          model.2 
+
+      \\       /
+     
+        model.3
+       
+          |
+         
+        model.4  
+
+#################################################
+
+Composition 
+
+"Creating flexible code"
+
+Car has various engines, various brake and various AI model
+
+             Engine
+         /
+    Car   ---  brake
+         \\
+             AI model
+            
+##################################################################################################
+
+Exercise of Composition and Inheritance
+
+- Write code for the following pictures.
+
+
+         Engine
+         /
+    Car   ---  brake
+         \\
+             AI model
+
+
+                      Engine                             Brake
+                        
+                    /        \\                        /       \
+                    
+      DieselEngine             PetrolEngine       Normal          ABS
+      
+      
+         AI model
+        
+        /      \\
+      
+model.1          model.2 
+
+      \\       /
+     
+        model.3
+       
+          |
+         
+        model.4  
+                        
+##################################################################################################
+
+Sample code of Composition and Inheritance
+
+
+class Engine:
+    def off(self):
+        print("Off.")
+
+
+class DieselEngine(Engine):
+    def on(self):
+        print("Diesel Engine On.(more electric)")
+
+
+class PetrolEngine(Engine):
+    def on(self):
+        print("Petrol Engine On.(less electric)")
+
+
+class Car:
+    def __init__(self, engine, brand, serial_no, ai_model=None):
+        self.engine = engine
+        self.brand = brand
+        self.serial_no = serial_no
+        self.ai_model = ai_model
+
+
+car1 = Car(engine=DieselEngine(), brand="BMW", serial_no="BMW-0001")
+print(car1.__dict__)
+car1.engine = PetrolEngine()
+print(car1.__dict__)
+
+##################################################################################################
+
 """
 
 
