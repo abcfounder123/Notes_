@@ -563,8 +563,10 @@ print(board)
 
 Step.12.5  --> Creating 3D data   (row + column + text)
 
+[0][0]['text']  => apple
+
 [   
-    [{'text': ''}, {'text': ''}, {'text': ''}], 
+    [{'text': 'apple'}, {'text': ''}, {'text': ''}],
     [{'text': ''}, {'text': ''}, {'text': ''}], 
     [{'text': ''}, {'text': ''}, {'text': ''}]
     
@@ -761,7 +763,6 @@ board[1][0]['text'] == 'X' and board[1][1]['text'] == 'X' and board[1][2]['text'
 row 2   =>  B7, B8, B9
 board[2][0]['text'] == 'X' and board[2][1]['text'] == 'X' and board[2][2]['text'] == 'X'
 
-
 r0 or r1 or r2
 
 #########################################
@@ -956,10 +957,492 @@ for row in range(3):
 
 x.mainloop()
 
+
 ##################################################################################
 
 
+Step.22  -->  Tie, Draw
 
+9 + not win
+
+
+
+board = [
+
+    [<tkinter.Button object .!button> , <tkinter.Button object .!button2>, <tkinter.Button object .!button3>],
+    [<tkinter.Button object .!button4>, <tkinter.Button object .!button5>, <tkinter.Button object .!button6>],
+    [<tkinter.Button object .!button7>, <tkinter.Button object .!button8>, <tkinter.Button object .!button9>]
+
+]
+
+
+
+
+def check_tie():
+    n = 0
+    for l in board:
+        for b in l:
+            if b['text']:
+                n += 1
+
+    if n == 9 and not check_win():
+        return True
+
+
+def show_tie():
+    m = "Tie"
+    messagebox.showinfo("Game Over", m)
+
+
+#########################################
+
+from tkinter import *
+from tkinter import messagebox
+
+
+current_player = "X"
+board = [
+    [None, None, None],
+    [None, None, None],
+    [None, None, None],
+
+]
+
+
+def switch_player():
+    global current_player
+    if current_player == "X":
+        current_player = "O"
+    else:
+        current_player = "X"
+
+
+def f(e):
+    b = e.widget
+
+    if b['text']:
+        return
+
+    b["text"] = current_player
+    b.update_idletasks()
+
+    if check_win():
+        show_winner()
+        restart()
+
+    if check_tie():
+        show_tie()
+        restart()
+
+    switch_player()
+
+
+def show_winner():
+    m = f"{current_player} player win."
+    messagebox.showinfo("Game Over", m)
+
+
+def check_win():
+    row0 = board[0][0]['text'] == current_player and board[0][1]['text'] == current_player and board[0][2]['text'] == current_player
+    row1 = board[1][0]['text'] == current_player and board[1][1]['text'] == current_player and board[1][2]['text'] == current_player
+    row2 = board[2][0]['text'] == current_player and board[2][1]['text'] == current_player and board[2][2]['text'] == current_player
+
+    col0 = board[0][0]['text'] == current_player and board[1][0]['text'] == current_player and board[2][0]['text'] == current_player
+    col1 = board[0][1]['text'] == current_player and board[1][1]['text'] == current_player and board[2][1]['text'] == current_player
+    col2 = board[0][2]['text'] == current_player and board[1][2]['text'] == current_player and board[2][2]['text'] == current_player
+
+    diagonal1 = board[0][0]['text'] == current_player and board[1][1]['text'] == current_player and board[2][2]['text'] == current_player
+    diagonal2 = board[0][2]['text'] == current_player and board[1][1]['text'] == current_player and board[2][0]['text'] == current_player
+
+    return row0 or row1 or row2 or col0 or col1 or col2 or diagonal1 or diagonal2
+
+
+def restart():
+    board[0][0]['text'] = ''
+    board[0][1]['text'] = ''
+    board[0][2]['text'] = ''
+
+    board[1][0]['text'] = ''
+    board[1][1]['text'] = ''
+    board[1][2]['text'] = ''
+
+    board[2][0]['text'] = ''
+    board[2][1]['text'] = ''
+    board[2][2]['text'] = ''
+
+
+def check_tie():
+    n = 0
+    for l in board:
+        for b in l:
+            if b['text']:
+                n += 1
+
+    if n == 9 and not check_win():
+        return True
+
+
+def show_tie():
+    m = "Tie"
+    messagebox.showinfo("Game Over", m)
+
+
+x = Tk()
+x.title("Tac Ti Toe")
+
+for row in range(3):
+    for col in range(3):
+        b = Button(x, width=8, height=4, text='', font=('Arial', 30, 'bold'))
+        b.grid(row=row, column=col)
+        b.bind("<Button-1>", f)
+        board[row][col] = b
+
+
+x.mainloop()
+
+#########################################
+
+Step.23  -->  scroll (marks)
+
+p1 = 0
+p2 = 0
+
+l1 = Label(x, text='X scroll = 0', font=('Arial', 30, 'bold'))
+l2 = Label(x, text='Y scroll = 0', font=('Arial', 30, 'bold'))
+l1.grid(row=3, columnspan=3)
+l2.grid(row=4, columnspan=3)
+
+
+def show_winner():
+    m = f"{current_player} player win."
+    messagebox.showinfo("Game Over", m)
+
+    if current_player == "X":
+        global p1
+        p1 += 1
+        l1['text'] = f'X scroll = {p1}
+
+    else:
+        global p2
+        p2 += 1
+        l2['text'] = f'Y scroll = {p2}'
+
+#########################################
+
+from tkinter import *
+from tkinter import messagebox
+
+
+current_player = "X"
+board = [
+    [None, None, None],
+    [None, None, None],
+    [None, None, None],
+]
+p1 = 0
+p2 = 0
+
+
+def switch_player():
+    global current_player
+    if current_player == "X":
+        current_player = "O"
+    else:
+        current_player = "X"
+
+
+def f(e):
+    b = e.widget
+
+    if b['text']:
+        return
+
+    b["text"] = current_player
+    b.update_idletasks()
+
+    if check_win():
+        show_winner()
+        restart()
+
+    if check_tie():
+        show_tie()
+        restart()
+
+    switch_player()
+
+
+def show_winner():
+    m = f"{current_player} player win."
+    messagebox.showinfo("Game Over", m)
+
+    if current_player == "X":
+        global p1
+        p1 += 1
+        l1['text'] = f'X scroll = {p1}'
+
+    else:
+        global p2
+        p2 += 1
+        l2['text'] = f'Y scroll = {p2}'
+
+
+def check_win():
+    row0 = board[0][0]['text'] == current_player and board[0][1]['text'] == current_player and board[0][2]['text'] == current_player
+    row1 = board[1][0]['text'] == current_player and board[1][1]['text'] == current_player and board[1][2]['text'] == current_player
+    row2 = board[2][0]['text'] == current_player and board[2][1]['text'] == current_player and board[2][2]['text'] == current_player
+
+    col0 = board[0][0]['text'] == current_player and board[1][0]['text'] == current_player and board[2][0]['text'] == current_player
+    col1 = board[0][1]['text'] == current_player and board[1][1]['text'] == current_player and board[2][1]['text'] == current_player
+    col2 = board[0][2]['text'] == current_player and board[1][2]['text'] == current_player and board[2][2]['text'] == current_player
+
+    diagonal1 = board[0][0]['text'] == current_player and board[1][1]['text'] == current_player and board[2][2]['text'] == current_player
+    diagonal2 = board[0][2]['text'] == current_player and board[1][1]['text'] == current_player and board[2][0]['text'] == current_player
+
+    return row0 or row1 or row2 or col0 or col1 or col2 or diagonal1 or diagonal2
+
+
+def restart():
+    board[0][0]['text'] = ''
+    board[0][1]['text'] = ''
+    board[0][2]['text'] = ''
+
+    board[1][0]['text'] = ''
+    board[1][1]['text'] = ''
+    board[1][2]['text'] = ''
+
+    board[2][0]['text'] = ''
+    board[2][1]['text'] = ''
+    board[2][2]['text'] = ''
+
+
+def check_tie():
+    n = 0
+    for l in board:
+        for b in l:
+            if b['text']:
+                n += 1
+
+    if n == 9 and not check_win():
+        return True
+
+
+def show_tie():
+    m = "Tie"
+    messagebox.showinfo("Game Over", m)
+
+
+x = Tk()
+x.title("Tac Ti Toe")
+
+for row in range(3):
+    for col in range(3):
+        b = Button(x, width=8, height=4, text='', font=('Arial', 30, 'bold'))
+        b.grid(row=row, column=col)
+        b.bind("<Button-1>", f)
+        board[row][col] = b
+
+l1 = Label(x, text='X scroll = 0', font=('Arial', 30, 'bold'))
+l2 = Label(x, text='Y scroll = 0', font=('Arial', 30, 'bold'))
+l1.grid(row=3, columnspan=3)
+l2.grid(row=4, columnspan=3)
+
+x.mainloop()
+
+##################################################################################
+
+Step.24  -->  Computer
+
+
+def computer():
+    while True:
+        b = randrange(1, 10)  # 5    9
+        r = (b - 1) // 3      # 1    2
+        c = (b - 1) % 3       # 1    2
+        if not board[r][c]['text']:
+            board[r][c]['text'] = current_player
+            board[r][c].update_idletasks()
+            break
+
+
+def f(e):
+    b = e.widget
+    if b['text']:
+        return
+    b["text"] = current_player
+    b.update_idletasks()
+    if check_win():
+        show_winner()
+        restart()
+    if check_tie():
+        show_tie()
+        restart()
+    switch_player()
+
+    computer()
+    if check_win():
+        show_winner()
+        restart()
+    if check_tie():
+        show_tie()
+        restart()
+    switch_player()
+
+##################################################################################
+
+from tkinter import *
+from tkinter import messagebox
+from random import randrange
+
+
+current_player = "X"
+board = [
+    [None, None, None],
+    [None, None, None],
+    [None, None, None],
+]
+p1 = 0
+p2 = 0
+
+
+def switch_player():
+    global current_player
+    if current_player == "X":
+        current_player = "O"
+    else:
+        current_player = "X"
+
+
+def f(e):
+    b = e.widget
+
+    if b['text']:
+        return
+
+    b["text"] = current_player
+    b.update_idletasks()
+
+    if check_win():
+        show_winner()
+        restart()
+
+    if check_tie():
+        show_tie()
+        restart()
+
+    switch_player()
+
+    computer()
+
+    if check_win():
+        show_winner()
+        restart()
+
+    if check_tie():
+        show_tie()
+        restart()
+
+    switch_player()
+    
+
+def show_winner():
+    m = f"{current_player} player win."
+    messagebox.showinfo("Game Over", m)
+
+    if current_player == "X":
+        global p1
+        p1 += 1
+        l1['text'] = f'X scroll = {p1}'
+
+    else:
+        global p2
+        p2 += 1
+        l2['text'] = f'Y scroll = {p2}'
+
+
+def check_win():
+    row0 = board[0][0]['text'] == current_player and board[0][1]['text'] == current_player and board[0][2]['text'] == current_player
+    row1 = board[1][0]['text'] == current_player and board[1][1]['text'] == current_player and board[1][2]['text'] == current_player
+    row2 = board[2][0]['text'] == current_player and board[2][1]['text'] == current_player and board[2][2]['text'] == current_player
+
+    col0 = board[0][0]['text'] == current_player and board[1][0]['text'] == current_player and board[2][0]['text'] == current_player
+    col1 = board[0][1]['text'] == current_player and board[1][1]['text'] == current_player and board[2][1]['text'] == current_player
+    col2 = board[0][2]['text'] == current_player and board[1][2]['text'] == current_player and board[2][2]['text'] == current_player
+
+    diagonal1 = board[0][0]['text'] == current_player and board[1][1]['text'] == current_player and board[2][2]['text'] == current_player
+    diagonal2 = board[0][2]['text'] == current_player and board[1][1]['text'] == current_player and board[2][0]['text'] == current_player
+
+    return row0 or row1 or row2 or col0 or col1 or col2 or diagonal1 or diagonal2
+
+
+def restart():
+    board[0][0]['text'] = ''
+    board[0][1]['text'] = ''
+    board[0][2]['text'] = ''
+
+    board[1][0]['text'] = ''
+    board[1][1]['text'] = ''
+    board[1][2]['text'] = ''
+
+    board[2][0]['text'] = ''
+    board[2][1]['text'] = ''
+    board[2][2]['text'] = ''
+
+
+def check_tie():
+    n = 0
+    for l in board:
+        for b in l:
+            if b['text']:
+                n += 1
+
+    if n == 9 and not check_win():
+        return True
+
+
+def show_tie():
+    m = "Tie"
+    messagebox.showinfo("Game Over", m)
+
+
+def computer():
+    while True:
+        b = randrange(1, 10)  # 5    9
+        r = (b - 1) // 3      # 1    2
+        c = (b - 1) % 3       # 1    2
+        if not board[r][c]['text']:
+            board[r][c]['text'] = current_player
+            board[r][c].update_idletasks()
+            break
+
+
+x = Tk()
+x.title("Tac Ti Toe")
+
+for row in range(3):
+    for col in range(3):
+        b = Button(x, width=8, height=4, text='', font=('Arial', 30, 'bold'))
+        b.grid(row=row, column=col)
+        b.bind("<Button-1>", f)
+        board[row][col] = b
+
+l1 = Label(x, text='X scroll = 0', font=('Arial', 30, 'bold'))
+l2 = Label(x, text='Y scroll = 0', font=('Arial', 30, 'bold'))
+l1.grid(row=3, columnspan=3)
+l2.grid(row=4, columnspan=3)
+
+x.mainloop()
+
+##################################################################################
+
+Step.25  -->  Making application
+
+Pycharm - Terminal
+
+1. pip3 install pyinstaller
+3. python3 -m PyInstaller --onefile --windowed ttt5.py
+
+Build complete! The results are available in: /Users/myothantzin/PycharmProjects/NewCourse2025/dist
+
+##################################################################################
 
 """
-
