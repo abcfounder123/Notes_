@@ -1456,6 +1456,95 @@ print(car1.__dict__)
 
 ##################################################################################################
 
+Exercise of Composition and Inheritance
+
+- Write code for the following pictures.
+
+
+         Engine
+         /
+    Car   ---  brake
+         \\
+             AI model
+
+
+                      Engine                             Brake
+                        
+                    /        \\                        /       \
+                    
+      DieselEngine             PetrolEngine       Normal          ABS
+      
+      
+         AI model
+        
+        /      \\
+      
+model.1          model.2 
+
+      \\       /
+     
+        model.3
+       
+          |
+         
+        model.4  
+
+
+class Car:
+    def __init__(self, engine, brake, ai_model):
+        self.engine = engine
+        self.brake = brake
+        self.ai_model = ai_model
+    
+    
+class Engine:
+    pass
+
+
+class DieselEngine(Engine):
+    pass
+
+
+class PetrolEngine(Engine):
+    pass
+    
+    
+class Brake:
+    pass
+
+
+class Normal(Brake):
+    pass
+
+
+class Abs(Brake):
+    pass
+
+
+class AiModel:
+    pass
+
+
+class Model1(AiModel):
+    pass
+
+
+class Model2(AiModel):
+    pass
+
+
+class Model3(Model1, Model2):
+    pass
+
+
+class Model4(Model3):
+    pass
+
+
+##################################################################################################
+##################################################################################################
+
+
 """
 
 
