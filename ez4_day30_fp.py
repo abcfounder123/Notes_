@@ -946,6 +946,545 @@ Transform လုပ်ချင်တဲ့အခါ map ကို သုံး�
 
 ##################################################################################
 
+11. Recursion
+
+1. Direct Recursion ( tail, head, tree, nested )
+2. Indirect Recursion
+
+- recursive program
+
+Recursion example => fibonacci
+
+Recursion and cache
+1. Normal recursion
+2. Recursion with cache
+3. Recursion with lru cache  (Least Recently Used Cache)
+
+#########################################
+
+a. Tail Recursion
+
+def f(n):
+    if n > 0:
+        print(n)
+        f(n-1)  # tail
+    return None
+
+
+n = 3
+
+if 3 > 0:
+    print(3)
+    if 2 > 0:
+        print(2)
+        if 1 > 0:
+            print(1)
+            if 0 > 0:
+                print(n)
+                f(n-1) 
+            return None 
+        return None 
+    return None 
+return None
+
+#########################################
+
+b. Head Recursion
+
+def f(n):
+    if n > 0:
+        f(n - 1)  # head
+        print(n)
+    return None
+
+
+f(3)
+
+#########################################
+
+if 3 > 0:
+    if 2 > 0:
+        if 1 > 0:
+            if 0 > 0:
+                f(0 - 1)
+                print(0)
+            return None # f(0)
+            print(1)
+        return None  # f(1)
+        print(2)
+    return None # f(2)
+    print(3)
+return None  # f(3)
+
+
+if 3 > 0:
+    if 2 > 0:
+        if 1 > 0:
+            if 0 > 0:
+                f(0 - 1)
+                print(0)
+            print(1)
+        print(2)
+    print(3)
+
+1
+2
+3
+
+#########################################
+
+Tail and Head
+
+def t(n):
+    if n > 0:
+        print(n)
+        t(n - 1) # tail
+
+
+def h(n):
+    if n > 0:
+        h(n - 1)  # head
+        print(n)
+
+
+t(5)  #  5 4 3 2 1
+h(5)  #  1 2 3 4 5
+
+#########################################
+
+c. Tree Recursion
+
+2 or more recursive program
+
+f()      => recursive program
+f()      => recursive program
+
+#########################################
+
+
+def f(n):
+    if n > 0:
+        print(n)
+        f(n - 1)   # calling once
+        f(n - 1)   # calling twice
+
+
+f(3)
+
+#########################################
+
+if 3 > 0:
+    print(3)
+    if 2 > 0:
+        print(2)
+        if 1 > 0:
+            print(1)
+            if 0 > 0:
+                print(0)
+                f(0 - 1)
+                f(0 - 1)
+            if 0 > 0:
+                print(0)
+                f(0 - 1)
+                f(0 - 1)
+
+        if 1 > 0:
+            print(1)
+            if 0 > 0:
+                print(0)
+                f(0 - 1)
+                f(0 - 1)
+            if 0 > 0:
+                print(0)
+                f(0 - 1)
+                f(0 - 1)
+    if 2 > 0:
+        print(2)
+        if 1 > 0:
+            print(1)
+            if 0 > 0:
+                print(0)
+                f(0 - 1)
+                f(0 - 1)
+            if 0 > 0:
+                print(0)
+                f(0 - 1)
+                f(0 - 1)
+        if 1 > 0:
+            print(1)
+            if 0 > 0:
+                print(0)
+                f(0 - 1)
+                f(0 - 1)
+            if 0 > 0:
+                print(0)
+                f(0 - 1)
+                f(0 - 1)
+
+#########################################
+
+if n > 0:
+    f(n-1)
+    f(n-1)
+    
+
+
+                           f(3)
+
+                 f(2)                 f(2)
+
+            f(1)     f(1)          f(1)        f(1)
+
+        f(0) f(0)  f(0) f(0)    f(0) f(0)     f(0) f(0)
+
+#########################################
+
+                                                f(4)
+
+                           f(3)                                              f(3)
+
+                 f(2)                   f(2)                     f(2)                   f(2)
+
+            f(1)     f(1)          f(1)        f(1)         f(1)     f(1)          f(1)        f(1)
+
+        f(0) f(0)  f(0) f(0)    f(0) f(0)     f(0) f(0)  f(0) f(0)  f(0) f(0)    f(0) f(0)     f(0) f(0)
+
+
+4
+3
+2
+1
+1
+2
+1
+1
+3
+2
+1
+1
+2
+1
+1
+
+#########################################
+
+
+f(5)
+
+5
+
+4
+3
+2
+1
+1
+2
+1
+1
+3
+2
+1
+1
+2
+1
+1
+
+4
+3
+2
+1
+1
+2
+1
+1
+3
+2
+1
+1
+2
+1
+1
+
+
+##################################################################################
+
+d. Nested Recursion
+
+f()      => normal recursive program
+f(f())   => nested recursive program
+
+#########################################
+
+def f(n):
+    print(f"f({n})")
+    if n > 100:
+        return n - 10
+    else:
+        return f(f(n+11))
+
+
+print(f(99))
+
+
+f(99)
+=> return f(f(110))
+=> return f(100)
+=> return 91
+
+f(100)
+=> return f(f(111))
+=> return f(101)
+=> return 91
+
+f(110) => return 110 - 10   =>  100
+f(111) => return n - 10 => 101
+f(101) => return n - 10 => 91
+
+f(99)
+f(110)
+f(100)
+f(111)
+f(101)
+
+##################################################################################
+
+2. Indirect Recursion
+
+Indirect recursion between A() and B().
+
+A() calls B() and B() calls A().
+
+A(5) => 5
+B(4) => 4
+A(3) => 3
+B(2) => 2
+A(1) => 1
+B(0) =>
+
+#########################################
+
+
+def A(n):
+    print(f"A({n})", end=" => ")
+    if n > 0:
+        print(n)
+        B(n-1)
+
+
+def B(n):
+    print(f"B({n})", end=" => ")
+    if n > 0:
+        print(n)
+        A(n-1)
+
+
+A(5)
+
+##################################################################################
+
+Recursion example => fibonacci
+
+f0 = 0
+f1 = 1
+
+f2 = 1
+f3 = 2
+f4 = 3
+f5 = 5
+f6 = f5 + f4
+f10 = f9 + f8
+fn = f(n-1) + f(n-2)
+
+
+
+0 1 1 2 3 5 8 13 21 .....
+
+f0 = 0
+f1 = 1
+
+fn = f(n-1) + f(n-2)
+
+
+#########################################
+
+
+def fib(n):
+    if n == 0:
+        return 0
+    elif n == 1:
+        return 1
+    else:
+        return fib(n-1) + fib(n-2)
+
+
+#########################################
+
+fib(3)
+
+>> return f(2) + f(1)
+>> return 1 + 1
+>> return 2
+
+
+f2
+=> f(1) + f(0)
+=> 1 + 0
+
+#########################################
+
+             fib(2)
+
+        fib(1)    fib(0)
+
+
+
+                       fib(3)
+
+                fib(2)        fib(1)
+
+            fib(1)    fib(0)
+
+
+                                                           fib(5)
+
+                                    fib(4)                                       fib(3)
+
+                         fib(3)                 fib(2)                    fib(2)        fib(1)
+
+                 fib(2)        fib(1)       fib(1)    fib(0)          fib(1)    fib(0)
+
+             fib(1)    fib(0)
+
+
+
+                                                           fib(5)
+
+                                    fib(4)                                       fib(3)
+
+                         fib(3)                 fib(2)
+
+                 fib(2)        fib(1)
+
+             fib(1)    fib(0)
+
+#########################################
+
+1. Normal recursion
+
+c = [0, ]
+
+
+def fib(n):
+    c[0] += 1
+    print(f"f({n})")
+    if n == 0:
+        return 0
+    elif n == 1:
+        return 1
+    else:
+        return fib(n-1) + fib(n-2)
+
+
+print(fib(25))
+print(c[0])
+
+#########################################
+
+2. Recursion with cache
+
+c = [0,]
+
+x = {0: 0,
+     1: 1,
+}
+
+
+def fib(n):
+    c[0] += 1
+    # print(f"f({n})")
+
+    if n in x:
+        return x[n]
+    else:
+        ans = fib(n-1) + fib(n-2)
+
+    x[n] = ans
+    return ans
+
+
+print(fib(25))
+print(c[0])
+print(x)
+
+#########################################
+
+3. Recursion with lru cache
+
+
+from functools import lru_cache
+
+
+c = [0, ]
+
+@lru_cache()
+def fib(n):
+    c[0] += 1
+    print(f"f({n})")
+    if n == 0:
+        return 0
+    elif n == 1:
+        return 1
+    else:
+        return fib(n-1) + fib(n-2)
+
+
+print(fib(5))
+print(c[0])
+
+#########################################
+
+1. Normal recursion         => 242785
+2. Recursion with cache     => 49
+3. Recursion with lru cache => 26
+
+#########################################
+
+def fib(n):
+    if n == 0:
+        return 0
+    elif n == 1:
+        return 1
+    else:
+        return fib(n-1) + fib(n-2)
+
+
+print(fib(40))
+
+#########################################
+
+from functools import  lru_cache
+
+
+@lru_cache
+def fib(n):
+    if n == 0:
+        return 0
+    elif n == 1:
+        return 1
+    else:
+        return fib(n-1) + fib(n-2)
+
+
+print(fib(40))
+
+#########################################
+
+1. Normal recursion         =>  f40 = 20 sec
+3. Recursion with lru cache =>  f40 = -
+
+##################################################################################
+
+
 
 
 
