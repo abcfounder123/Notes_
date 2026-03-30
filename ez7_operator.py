@@ -246,4 +246,117 @@ Comparison operators.6 (equal, greater)(boolean value)
 
 #################################################
 
+Identity operator(2)(same object)
+- is
+- is not
+
+#################################################
+
+Membership operator (2)
+- in
+- not in
+
+#################################################
+
+Logical operator (2) (logical value)(boolean value)(True, False)
+- not
+- and
+- or
+
+#################################################
+
+Ternary operator, if else operator, conditional operator
+- left operand, right operand, middle operand
+
+mark = 50
+
+exam_result_1 = "pass" if mark >= 40 else "fail"
+exam_result_2 = "fail" if mark < 40 else "pass"
+
+#################################################
+
+Assignment operator ( 13 )
+
+1. Normal assign ( = )
+
+2. exponent and assign ( **= )
+3. multiply and assign ( *= )
+4. division and assign ( /= )
+5. floor division and assign ( //= )
+6. modulus and assign ( %= )
+7. add and assign ( += )
+8. substract and assign ( -= )
+
+9. left shift and assign ( <<= )
+10. right shift and assign ( >>= )
+11. bitwise AND and assign ( &= )
+12. bitwise XOR and assign ( ^= )
+13. bitwise OR and assign ( |= )
+
+#################################################
+
+Walrul operator  ( := )
+ - assign in operation (operation and assign)
+
+#################################################
+
+1. e                                    
+2. u       +1, -1, ~                       
+3. */ 
+4. +-
+
+5. shift
+6. and         bitwise
+7. xor 
+8. or                       
+
+9. C           C, I, M
+10. not        logical                 
+11. and
+12. or
+
+13. t
+14. assignment                           
+15. walrul         :=                    
+
+#################################################
+
+1. Arithmetic Operators(9)
+2. Bitwise operators (6)
+3. Comparison operators (6)
+4. Identity operator (2)
+5. Membership operator (2)
+6. Logical operator (2)
+7. conditional operator(1)
+8. assignment operator (14)
+      
+#################################################
+
+Unary operator (4)
+Binary operator (38)
+Ternary operator (1)
+
+#################################################
+
+5. Associativity
+   - Left-sided bind  ( - )
+   - Right-sided bind (e, u, assign)
+
+Left-sided bind
+2 ** 2 ** 3
+     4 ** 3
+         64
+
+Right-sided bind
+2 ** 2 ** 3
+2 ** 8
+256
+
+#################################################
+
+Precedence(15)
+Associativity(e, u, assign)
+
+##################################################################################################
+
 """
