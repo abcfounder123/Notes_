@@ -29,10 +29,10 @@ Logical Operators
 2. and   =>  all
 3. or    =>  any
 
-14. If mark is greater than 40 or mark is equal to 40, exam pass.                          or
-15. If username is equal to "Mg Mg" and password is equal to "12345", login successful.    and
+14. If mark is greater than 40 or mark is equal to 40, exam pass.
+15. If username is equal to "Mg Mg" and password is equal to "12345", login successful.
 16. if full water, Motor Stop.
-17. if not full water, Motor ON.                                                           not
+17. if not full water, Motor ON.    
 
 ##########################################
 
