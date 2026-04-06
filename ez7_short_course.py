@@ -59,12 +59,11 @@ print(ans)
 
 ##########################################
 
-
-                 90350 seconds                60         = 1 days 1 hours 5 minutes and 50 seconds
+                  90350 seconds = 1 days 1 hours 5 minutes and 50 seconds
       
-        1505 minutes   +   50 seconds         60
+         1505 minutes     +     50 seconds        
 
-  25 hours + 5 minutes                        24
+     25 hours    +    5 minutes                  
 
 1 day +  1 hours                             
 
@@ -119,7 +118,7 @@ Logical Operators
 14. If mark is greater than 40 or mark is equal to 40, exam pass.
 15. If username is equal to "Mg Mg" and password is equal to "12345", login successful.
 16. if full water, Motor Stop.
-17. if not full water, Motor ON.                                                           not
+17. if not full water, Motor ON. 
 
 If mark is greater than 40 or mark is equal to 40, exam pass.
 if mark > 40 or mark == 40: print("exam pass")
@@ -267,4 +266,5 @@ elif c3: print("Engineer.")
 elif c4: print("Distance.")
 
 #####################################
+
 """
