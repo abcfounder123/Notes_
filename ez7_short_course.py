@@ -267,4 +267,201 @@ elif c4: print("Distance.")
 
 #####################################
 
+Programmer  =>  not c1 and c2
+Engineer    =>  not c1 and not c2 and c3
+Doctor      =>  c1
+Distance    =>  not c1 and not c2 and not c3 and c4
+
+Doctor      =>  c1
+Programmer  =>  not c1 and c2
+Engineer    =>  not c1 and not c2 and c3
+Distance    =>  not c1 and not c2 and not c3 and c4
+
+Grade 12    =>  not c1 and not c2 and not c3 and not c4
+
+#####################################
+
+6. if + elif + else
+
+if not c1 and not c2 and not c3 and not c4: print("Grade 12.")
+
+#####################################
+
+mark = int(input("Marks = "))
+
+c1 = mark >= 500
+c2 = mark >= 400
+c3 = mark >= 300
+c4 = mark >= 240
+
+if c1: print("Doctor.")
+
+elif c2: print("Programmer.")
+
+elif c3: print("Engineer.")
+
+elif c4: print("Distance.")
+
+else: print("Grade 12.")
+
+#####################################
+
+A+             90
+A              80
+B              70
+C              50
+F
+
+A+  =>  c1
+A   =>  not c1 and c2
+B   =>  not c1 and c2 and c3
+C   =>  not c1 and c2 and not c3 and c4
+F   =>  not c1 and c2 and not c3 and not c4
+
+c1 = mark >= 90
+c2 = mark >= 80
+c3 = mark >= 70
+c4 = mark >= 50
+
+#####################################
+
+mark = 100
+
+c1 = mark >= 90
+c2 = mark >= 80
+c3 = mark >= 70
+c4 = mark >= 50
+
+
+if c1:
+    print("A+")
+
+elif c2:
+    print("A")
+
+elif c3:
+    print("B")
+
+elif c4:
+    print("C")
+
+else:
+    print("Fail")
+
+#####################################
+
+String formatting (fat)
+- fill character (space)
+- alignment (<, >, ^) (right)
+- total character count
+- f, :
+
+"BMW-0001"
+"BMW-0011"
+"BMW-0100"
+
+n = 1
+s = f"BMW-{n:0>4}"
+print(s)
+
+##########################################################################
+
+3. Loop
+   1. Iteration - value
+   2. Looping - 12 times
+   3. nested loop
+   4. definite loop (for)
+   5. indefinite loop (while)
+   6. break => to stop loop
+
+##########################################
+
+1. Iteration
+
+numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]     13
+
+for number in numbers:
+    print(f"2 x {number} = {2 * number}")
+
+for r in range(1, 13, 1):
+    print(f"2 x {r} = {2 * r}")
+
+##########################################
+
+2. Looping - 12 times   (definite loop)
+
+for _ in range(12):
+    print("apple")
+
+##########################################
+
+3. nested loop
+
+print("2 x 1 = 1")
+
+2 x 1 = 2
+2 x 2 = 4
+2 x 3 = 6
+2 x 4 = 8
+2 x 5 = 10
+2 x 6 = 12
+2 x 7 = 14
+2 x 8 = 16
+2 x 9 = 18
+2 x 10 = 20
+2 x 11 = 22
+2 x 12 = 24
+
+
+for r in range(1, 13):
+    print("1 * " + str(r) + " = " + str(1 * r))
+
+print("-" * 42)
+
+
+for r in range(1, 13, 1):
+    print(f"2 x {r} = {2 * r}")
+
+print('-' * 42)
+
+##########################################
+
+for r in range(1, 13, 1):
+    print(f"2 x {r} = {2 * r}")
+
+print('-' * 42)
+
+for r in range(1, 13, 1):
+    print(f"3 x {r} = {3 * r}")
+
+print('-' * 42)
+
+for r in range(1, 13, 1):
+    print(f"4 x {r} = {4 * r}")
+
+print('-' * 42)
+
+for r in range(1, 13, 1):
+    print(f"5 x {r} = {5 * r}")
+
+print('-' * 42)
+
+for r in range(1, 13, 1):
+    print(f"6 x {r} = {6 * r}")
+
+print('-' * 42)
+
+....
+
+....
+
+##########################################
+
+for l in range(1, 17, 1):
+    for r in range(1, 13, 1):
+        print(f"{l} x {r} = {l * r}")
+    print('-' * 42)
+
+####################################################################################
+
 """
