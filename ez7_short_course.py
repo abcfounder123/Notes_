@@ -464,4 +464,203 @@ for l in range(1, 17, 1):
 
 ####################################################################################
 
+3. Loop
+   1. Iteration - value
+   2. Looping - 12 times ( underscore )
+   3. nested loop
+   4. definite loop (for)
+   5. indefinite loop (while)
+   6. break => to stop loop
+   7. exit  => to stop program
+   8. else  => if, for, while
+
+##########################################
+
+5. Indefinite loop (while)
+
+condition = True
+
+while condition:
+
+    user_name = input("user name = ")
+    password = input("password = ")
+
+    if user_name == "abc" and password == "12345":
+        print("login successful.(opened abc' account.)")
+        condition = False
+
+    else:
+        print("Wrong password. Try again.")
+
+    print('-' * 42)
+
+
+##########################################
+
+6. break => to stop loop
+
+while True:
+
+    user_name = input("user name = ")
+    password = input("password = ")
+
+    if user_name == "abc" and password == "12345":
+        print("login successful.(opened abc' account.)")
+        break
+
+    else:
+        print("Wrong password. Try again.")
+
+    print('-' * 42)
+
+##########################################
+
+"Indefinite loop with maximum count 3"
+
+n = 0
+
+while True:
+
+    user_name = input("user name = ")
+    password = input("password = ")
+
+    if user_name == "abc" and password == "12345":
+        print("login successful.(opened abc' account.)")
+        break
+
+    else:
+        print("Wrong password. Try again.")
+    
+    print('-' * 42)
+    
+    n += 1
+    if n == 3:
+        print("Wait 24 hours.")
+        break
+
+    
+##########################################
+
+8. else  => if, for, while
+
+parents = ["UBa@gmail.com", "UMya@gmail.com", "DawMya@gmail.com"]
+
+for email in parents:
+    print(f"Sent Congratulation letter to {email}")
+
+else:
+    print("Successfully sent all email.")
+
+####################################################################################
+####################################################################################
+
+4. Function
+   - code reuse
+   - call, invoke   => ( )
+
+##########################################
+
+for r in range(1, 13, 1):
+    print(f"2 x {r} = {2 * r}")
+
+print('-' * 42)
+
+
+for r in range(1, 13, 1):
+    print(f"2 x {r} = {2 * r}")
+
+print('-' * 42)
+
+
+for r in range(1, 13, 1):
+    print(f"2 x {r} = {2 * r}")
+
+print('-' * 42)
+
+##########################################
+
+Step.1
+
+
+def m2():
+    for r in range(1, 13, 1):
+        print(f"2 x {r} = {2 * r}")
+
+    print('-' * 42)
+
+
+def m3():
+    for r in range(1, 13, 1):
+        print(f"3 x {r} = {3 * r}")
+
+    print('-' * 42)
+
+
+def m4():
+    for r in range(1, 13, 1):
+        print(f"4 x {r} = {4 * r}")
+
+    print('-' * 42)
+
+
+m2()
+m3()
+m4()
+
+##########################################
+
+Step.2
+
+
+def m(n):
+    for r in range(1, 13, 1):
+        print(f"{n} x {r} = {n * r}")
+
+    print('-' * 42)
+
+
+m(n=1)
+m(n=2)
+m(n=3)
+m(n=4)
+m(n=1028)
+
+##########################################
+
+Step.3
+
+
+def m12(n):
+    for r in range(1, 13, 1):
+        print(f"{n} x {r} = {n * r}")
+
+    print('-' * 42)
+
+
+def m10(n):
+    for r in range(1, 11, 1):
+        print(f"{n} x {r} = {n * r}")
+
+    print('-' * 42)
+
+
+m12(n=2)
+m10(n=2)
+
+##########################################
+
+Step.4
+
+def m(n1, n2):
+    for r in range(1, n2, 1):
+        print(f"{n1} x {r} = {n1 * r}")
+
+    print('-' * 42)
+
+
+m(2, 11)
+m(2, 13)
+
+####################################################################################
+
 """
