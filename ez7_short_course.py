@@ -663,4 +663,137 @@ m(2, 13)
 
 ####################################################################################
 
+Step.1  (multiple by 2)(1 to 12)
+
+
+def m2():
+    for r in range(1, 13, 1):
+        print(f"2 x {r} = {2 * r}")
+
+    print('-' * 42)
+
+
+##########################################
+
+Step.2   (multiple by n)(1 to 12)
+
+
+def m(n):
+    for r in range(1, 13, 1):
+        print(f"{n} x {r} = {n * r}")
+
+    print('-' * 42)
+
+##########################################
+
+Step.3  (multiple by n)(1 to n2 - 1)
+
+
+def m(n1, n2):
+    for r in range(1, n2, 1):
+        print(f"{n1} x {r} = {n1 * r}")
+
+    print('-' * 42)
+
+
+##########################################
+
+Step.4  (multiple by n)(1 to n2)
+
+def m2(n, nn):
+    for r in range(1, nn+1, 1):
+        print(f"{n} x {r} = {n * r}")
+    print('-' * 42)
+    
+####################################################################################
+
+Parameters(6)
+
+1. Normal Parameters, Standard Parameters        (x, y)
+2. Default Parameters                            country="Myanmar"
+3. Positional only Parameters                    /
+4. Keyword only Parameters                       *
+5. Variable length positional only Parameters    *name
+6. Variable length keyword only Parameters       **name
+
+Standard Form(3)
+1. Position                f(1, 2)
+2. Keyword name            f(x=1, y=2)
+3. 1 + 2                   f(1, y=2)
+     
+##########################################
+
+1. Normal Parameters
+
+
+def add(x, y):
+    print(x + y)
+
+
+add(1, 2)
+
+##########################################
+
+2. Default Parameters
+
+
+def info(name, password, country="Myanmar"):
+    print(name, password, country)
+
+
+info("abc", "12345")
+
+##########################################
+
+3. Positional only Parameters
+
+Simple is better than complex.
+
+##########################################
+
+
+def add(x, y, /):
+    print(x + y)
+
+
+add(1, 2)
+add(2, 1)
+
+##########################################
+
+4. Keyword only Parameters
+
+Complex is better than complicated.
+
+##########################################
+
+
+def info(*, name, age, ph_no, blood, height, weight, country):
+    print(f"Name = {name}")
+    print(f"age = {age}")
+    print(f"ph_no = {ph_no}")
+    print(f"blood = {blood}")
+    print(f"height = {height}")
+    print(f"weight = {weight}")
+    print(f"country = {country}")
+
+
+info(name="Mg Mg", age=10, weight=20, ph_no="09123456", height='''4' 2"''', country="Myanmar", blood="O")
+
+##########################################
+
+(x, y)
+x <-- first parameter  (No.1)
+y <-- second parameter (No.1)
+
+(x, y, /)
+x <-- first parameter  (No.3)
+y <-- second parameter (No.3)
+
+(*, x, y)
+x <-- first parameter  (No.4)
+y <-- second parameter (No.4)
+
+##########################################
+
 """
