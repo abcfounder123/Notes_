@@ -713,14 +713,17 @@ Parameters(6)
 2. Default Parameters                            country="Myanmar"
 3. Positional only Parameters                    /
 4. Keyword only Parameters                       *
-5. Variable length positional only Parameters    *name
-6. Variable length keyword only Parameters       **name
+5. Variable length positional only Parameters    *name, *args
+6. Variable length keyword only Parameters       **name, **kw, **kwargs
+
+*  <---  all values
+**  <---  all items
 
 Standard Form(3)
 1. Position                f(1, 2)
 2. Keyword name            f(x=1, y=2)
 3. 1 + 2                   f(1, y=2)
-     
+
 ##########################################
 
 1. Normal Parameters
@@ -794,6 +797,302 @@ y <-- second parameter (No.3)
 x <-- first parameter  (No.4)
 y <-- second parameter (No.4)
 
+####################################################################################
+
+5. Variable length positional only Parameters
+
+Fixed length = 2
+
+
+def add(x, y):
+    ans = x + y
+    print(ans)
+
+
+add(1, 2)
+
 ##########################################
+
+variable length
+
+add()
+add(1)
+add(1, 2)
+add(1, 2, 3)
+add(1, 2, 3, 4)
+
+##########################################
+
+
+def add(*numbers):
+    ans = 0
+
+    for number in numbers:
+        ans += number
+
+    print(ans)
+
+
+add()
+add(1)
+add(1, 2)
+add(1, 2, 3)
+add(1, 2, 3, 4)
+
+##########################################
+
+6. Variable length keyword only Parameters
+
+Fixed length = 7
+
+
+def info(*, name, age, ph_no, blood, height, weight, country):
+    print(f"Name = {name}")
+    print(f"age = {age}")
+    print(f"ph_no = {ph_no}")
+    print(f"blood = {blood}")
+    print(f"height = {height}")
+    print(f"weight = {weight}")
+    print(f"country = {country}")
+
+
+info(name="Mg Mg", age=10, weight=20, ph_no="09123456", height='''4' 2"''', country="Myanmar", blood="O")
+
+##########################################
+
+Variable length
+
+
+def info(**x):
+    print(x)
+
+
+info()
+info(name="Mg Mg")
+info(name="Mg Mg", age=10)
+info(name="Mg Mg", age=10, ph_no="09123456")
+
+####################################################################################
+
+Combination of Parameters (12)
+
+
+1. Simple is better than complex. (N0.3)
+
+
+def add(n1, n2, /):
+    print(n1 + n2)
+
+
+add(1, 2)
+
+##########################################
+
+2. Complex is better than complicated. (No.4)
+
+
+def info(*, name, age, grade, roll):
+    print(name, age, grade, roll)
+
+
+info(name="abc", age=10, grade="A", roll=1)
+
+##########################################
+
+3. No.1 + No.4
+
+x, y        --->   F1, F2, F3
+name, age   --->   F2
+
+
+def f(x, y, *, name, age):
+    print(x, y, name, age)
+
+
+f(1, 2, name="Mg Mg", age=10)
+f(x=1, y=2, name="Mg Mg", age=10)
+f(1, y=2, name="Mg Mg", age=10)
+
+##########################################
+
+4. N0.3 + N0.1 + No.4
+
+a, b, c     --->   F1
+x, y        --->   F1, F2, F3
+name, age   --->   F2
+
+
+def f(a, b, c, /, x, y, *, name, age):
+    print(a, b, c, x, y, name, age)
+
+
+f(1, 2, 3, 4, 5, name="Mg Mg", age=10)
+f(1, 2, 3, x=4, y=5, name="Mg Mg", age=10)
+f(1, 2, 3, 4, y=5, name="Mg Mg", age=10)
+
+##########################################
+
+Understanding other functions
+
+(a, b, c, /, x, y, *, name, age)
+
+Step.1   ->  check parameter list (/, *)
+Step.2   ->  divide
+
+a, b, c      ->   F1
+x, y         ->   F1, F2, F3
+name, age    ->   F2
+
+##########################################
+
+5. No.3 + No.4 + No.2
+
+a, b, c     --->   F1                    No.3
+name, age   --->   F2                    No.4
+country     --->   F2 ("Myanmar")        No.4 + No.2
+
+
+def f(a, b, c, /, *, name, age, country="Myanmar"):
+    print(a, b, c, name, age, country)
+
+
+f(1, 2, 3, name="Mg Mg", age=10, country="England")
+f(1, 2, 3, name="Mg Mg", age=10)
+
+##########################################
+
+6. No.5
+
+variable length + simple data
+
+m1   60 + 70 + 65
+m2   60 + 70 + 65 + 70 + 68
+m3   ...
+
+
+def add(*x):
+    ans = 0
+    for number in x:
+        ans += number
+    print(ans)
+
+
+add(60, 70, 65)
+add(60, 70, 65, 70, 68)
+add()
+
+
+##########################################
+
+7. No.6
+
+variable length + complicated data
+
+
+def info(**x):
+    print(x)
+
+
+info()
+info(name="abc", age=10, weight = 20)
+
+##########################################
+
+8. No.3 + No.6
+
+at least 3 values by pos
+and more items
+
+
+def f(a, b, c, /, **x):
+    print(a, b, c, x)
+
+
+f(1, 2, 3)
+f(1, 2, 3, name="Mg Mg", age=10)
+
+##########################################
+
+9. No.3 + No.5
+
+at least 3 values by pos
+and more values
+
+
+def f(a, b, c, /, *x):
+    print(a, b, c)
+    print(x)
+
+
+f(1, 2, 3)
+f(1, 2, 3, 4, 5, 6)
+
+##########################################
+
+10. No.4 + No.6
+
+
+at least 2 values by name
+and more items
+
+
+def f(*, user_name, password, **x):
+    print(user_name, password)
+    print(x)
+
+
+f(user_name="Mg Mg", password="12345")
+f(user_name="Mg Mg", password="12345", gender="Male")
+
+##########################################
+
+11.
+
+at least 3 values by pos
+and more values
+
+at least 2 values by name
+and more items
+
+
+def f(a, b, c, /, *t, user_name, password, **d):
+    print(a, b, c)
+    print(t)
+    print(user_name, password)
+    print(d)
+
+
+f(1, 2, 3, 4, 5, 6, user_name="Mg Mg", password="12345", gender="Male", age=10)
+
+##########################################
+
+12. Unlimited function (No.5 + No.6)
+
+all values, all items, all forms
+variable length of values, variable length of items, (F1, F2, F3)
+
+
+def f(*args, **kw):
+    print(args)
+    print(kw)
+    print("-"* 42)
+
+
+f()
+
+f(1)
+f(1, 2, 3)
+
+f(age=10)
+f(age=10, weight=20, name="Mg Mg")
+
+f(1, 2, 3, age=10, weight=20, name="Mg Mg")
+
+##########################################
+
+*x   positional values, positional arguments    (args)
+**y  keyword values, keyword arguments          (kw, kwargs)
+
+####################################################################################
 
 """
