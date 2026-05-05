@@ -1575,4 +1575,130 @@ def greater_number(n1, n2):
 
 ------------------------------------------
 
+10. leap year (ရက်ထပ်နှစ်) (and, or)
+    1. divisible by 400 ( eg. 2000, 1600 )       ( y % 400 == 0 )
+    2. divisible by 4 and not divisible by 100   ( y % 4 == 0 and y % 100 != 0 )
+
+Rule.1 or Rule.2
+
+=> divisible by 4, + 1 days
+=> -3d by 400 years
+=>  
+
+------------------------------------------
+
+Julian
+
+1. divisible by 4  (y % 4 == 0)
+
+
+def is_leap_year(y):
+    return y % 4 == 0
+
+
+------------------------------------------
+
+Gregorian
+
+
+def is_leap_year(y):
+    return (y % 400 == 0) or (y % 4 == 0 and y % 100 != 0)
+
+
+------------------------------------------
+
+Modern calendar
+
+?
+
+------------------------------------------
+
+11. summation
+    => summation of 5 = 1 + 2 + 3 + 4 + 5 = 15
+
+
+def summation(n):
+    ans = 0
+    for i in range(1, n + 1):
+        ans += i
+    return ans
+
+
+------------------------------------------
+
+12. factorial(n) (မြှောက်ဖော်ကိန်း)
+    => factorial of 5 = 1 * 2 * 3 * 4 * 5 = 120
+
+
+def factorial(n):
+    ans = 1
+    for i in range(1, n + 1):
+        ans *= i
+    return ans
+
+
+------------------------------------------
+
+13. reverse_string(s) (string ကိုနောက်ကစပြီး ပြောင်းပြန်ရေးခြင်း။) ( [::-1] )
+    - "I go to school."
+    - ".loohcs ot og I"
+
+
+def reverse_string(s):
+    return s[::-1]
+
+
+------------------------------------------
+
+14. count_vowels(s) (စာလုံးထဲက a, e, i, o, u ရေတွက်ခြင်း။)
+
+
+def count_vowels(s):
+    t = 0
+    for c in s:
+        if c in "aeiouAEIOU":
+            t += 1
+    return t
+    
+
+------------------------------------------
+
+15. count_vowels(s) (စာလုံးထဲက a, e, i, o, u ဘယ်နှစ်လုံးရှိလဲရေတွက်ခြင်း။)
+
+Add item to dict
+d["I"] = 1
+
+Update dict value
+d["I"] = 2
+d["I"] += 1
+
+------------------------------------------
+
+
+def count_vowels(s):
+    d = {}
+    for c in s:
+        if c in "aeiouAEIOU":  # I
+            if c not in d.keys():
+                d[c] = 1
+            else:
+                d[c] += 1
+    return d
+
+
+------------------------------------------
+
+16. sum_of_list(lst) (စာရင်းထဲက နံပါတ်တွေကို ပေါင်းခြင်း။)
+
+
+def sum_of_list(lst):
+    t = 0
+    for n in lst:
+        t += n
+    return t
+    
+    
+------------------------------------------
+
+
 """
